@@ -1,0 +1,171 @@
+{
+    "## Comment" = "Do NOT change this file, Gorm maintains it";
+    AdvancedTableView = {
+	Actions = (
+	    "springezuAction:",
+	    "kategoryCheckboxClicked:",
+	    "springezuAction:"
+	);
+	Outlets = (
+	    registerScrollView,
+	    springezuText,
+	    springezuTextField,
+	    kategoriebox
+	);
+	Super = NSTableView;
+    };
+    Controller = {
+	Actions = (
+	    "historyButtonAction:",
+	    "textModusAction:",
+	    "tabellenModusAction:",
+	    "splitviewModusAction:",
+	    "printwordlistAction:",
+	    "konkordanzTextFieldAction:",
+	    "markerClickedAction:",
+	    "showsuchoptionenAction:",
+	    "suchen:",
+	    "druckenStartTextFieldAction:",
+	    "druckenEndeTextFieldAction:",
+	    "druckenMengeTextFieldAction:",
+	    "druckenStartenButtonAction:",
+	    "menuMarkierungenLadenAction:",
+	    "menuMarkierungenSpeichernAction:",
+	    "menuMarkierungenLoeschenAction:",
+	    "menuMarkierungenExportierenAction:",
+	    "menuMarkierungenFundstellenUebernehmen:",
+	    "openFileReq:",
+	    "nextpageButtonAction:",
+	    "backpageButtonAction:",
+	    "historyButtonAction:",
+	    "pagesliderAction:",
+	    "abbildungStichwortTextFieldAction:",
+	    "abbildungStichwortPopUpButtonAction:",
+	    "tabellenPopUpButtonAction:",
+	    "galeryClickedAction:",
+	    "print:",
+	    "searchAction:",
+	    "menuGeheZuSeite:"
+	);
+	Outlets = (
+	    mainWindow,
+	    printWindow,
+	    mainTabView,
+	    pageBoxView,
+	    outlineview,
+	    galeryview,
+	    pageView,
+	    scrollView,
+	    mainDrawer,
+	    infoImageView,
+	    Info1,
+	    Info2,
+	    Info3,
+	    Info4,
+	    Info5,
+	    Info6,
+	    Info7,
+	    Bandinfo,
+	    sigelField,
+	    seitenField,
+	    treetextField,
+	    registerView,
+	    registerTextField,
+	    nextpageButton,
+	    backpageButton,
+	    pageslider,
+	    historyBackButton,
+	    historyForwardButton,
+	    abbildungstichwortTextField,
+	    abbildungentrefferTextField,
+	    abbildungenPopUpButton,
+	    tabellenPopUpButton,
+	    tabellenView,
+	    markierungenTableView,
+	    markierungenMenu,
+	    mark1Button,
+	    mark2Button,
+	    mark3Button,
+	    mark4Button,
+	    lastMarker,
+	    suchbegriffTextField,
+	    suchbeergebnissTextField,
+	    suchenButton,
+	    maximalerWortabstandTextField,
+	    schreibweisentolerantButton,
+	    grosskleinschreibungButton,
+	    abaktuellerSeiteButton,
+	    fundstellenvorherloeschenButton,
+	    suchbereichseingrenzungPopUpButton,
+	    maximaleFundstellenPopUpButton,
+	    suchProgressIndicator,
+	    fundstellenTableView,
+	    suchoptionenAktivBox,
+	    suchoptionenInAktivBox,
+	    suchoptionenBox,
+	    druckenStartTextField,
+	    druckenEndeTextField,
+	    druckenMengeTextField,
+	    printdebugwindow,
+	    geheZuSeiteTextField,
+	    geheZuSeiteWindow,
+	    mainMenu
+	);
+	Super = NSObject;
+    };
+    DBGaleryView = {
+	Actions = (
+	    "setTarget:",
+	    "scrollClick:",
+	    "setTarget:"
+	);
+	Outlets = (
+	    target
+	);
+	Super = NSControl;
+    };
+    DBPageView = {
+	Actions = (
+	);
+	Outlets = (
+	);
+	Super = NSTextView;
+    };
+    FirstResponder = {
+	Actions = (
+	    "abbildungStichwortPopUpButtonAction:",
+	    "abbildungStichwortTextFieldAction:",
+	    "backpageButtonAction:",
+	    "druckenEndeTextFieldAction:",
+	    "druckenMengeTextFieldAction:",
+	    "druckenStartTextFieldAction:",
+	    "druckenStartenButtonAction:",
+	    "galeryClickedAction:",
+	    "historyButtonAction:",
+	    "kategoryCheckboxClicked:",
+	    "konkordanzTextFieldAction:",
+	    "markerClickedAction:",
+	    "menuMarkierungenExportierenAction:",
+	    "menuMarkierungenFundstellenUebernehmen:",
+	    "menuMarkierungenLadenAction:",
+	    "menuMarkierungenLoeschenAction:",
+	    "menuMarkierungenSpeichernAction:",
+	    "menuGeheZuSeite:",
+	    "nextpageButtonAction:",
+	    "openFileReq:",
+	    "pagesliderAction:",
+	    "printwordlistAction:",
+	    "scrollClick:",
+	    "searchAction:",
+	    "setTarget:",
+	    "showsuchoptionenAction:",
+	    "splitviewModusAction:",
+	    "springezuAction:",
+	    "suchen:",
+	    "tabellenModusAction:",
+	    "tabellenPopUpButtonAction:",
+	    "textModusAction:"
+	);
+	Super = NSObject;
+    };
+}

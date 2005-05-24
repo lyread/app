@@ -1,0 +1,12 @@
+{
+    NSIcon = "Digibux_app.tiff";
+    NSRole = "Editor";
+    NSMainNibFile = "ldp.gorm";
+    ApplicationDescription = "Digibux";
+    ApplicationIcon = "Digibux_app.tiff";
+    ApplicationName = "Digibux";
+    ApplicationRelease = "Digibux 1.0.4";
+    Authors = ("Denis Ahrens","Karsten Fuhrmann");
+    Copyright = "Copyright (C) 2004, 2005 Directmedia Publishing GmbH";
+    NSBuildVersion = "[$Rev: 96 $] 23.3.2005";
+}

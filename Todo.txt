@@ -1,0 +1,38 @@
+---------------------------------------- MISSING FEATURES -----------------------------------
+ Die 'mailto:' links funktionieren nicht!
+
+--------------- SUCHE ------------------
+In den Suchergebnissen kann man nicht mit den pfeiltasten blaettern.
+Seite vor/zurueck geht nicht.
+bei der suche ist leben und tod nicht identisch mit tod und leben, vielleicht wegen eingrenzung (sollte erst am ende gemacht werden)
+
+-------------- WIKIPEDIA --------------
+
+Der Text fuer den unteren Bereich muss noch gemacht werden. Sollte dynamisch aus einer plist kommen, die auf der CD ist und nicht im Programm, dann muss man das nicht extra dafuer neu compilen.
+
+Den Text noch auf den 3.3.2005 0:00 Uhr angleichen
+
+------------- Drucken ------------------
+Geht noch gar nicht, kommen nur weisse Blaetter an!
+
+------------ Unicode Zeichen ----------
+Man weiss es nicht, aber muss natuerlich auch vom Font unterstuetzt werden!
+
+----------- Menus ----------------------
+Band wechseln fehlt, und wer weiss ob es funzt!
+
+---------------- GUI --------------------
+Faximile menu ist noch mit im Hauptmenu
+Man soll auf die Bilder im Text clicken koennen.
+Die Tooltips bei den Bildern funktionieren nicht.
+
+
+
+----------------------------------------- BUGS ---------------------------------------------
+-------------- WIKIPEDIA ----------------
+
+---------------- MARKIERUNGEN -----------
+
+Es crasht manchmal bei markieren. Wenn man im letzten wort auf der seite markiert will er das naechste markieren was nicht existiert und dann crasht es.
+
+Wenn man keine ganzen Woerter markiert wird das naechste aber nicht das aktuelle wort markiert.

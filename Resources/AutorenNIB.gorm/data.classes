@@ -1,0 +1,25 @@
+{
+    "## Comment" = "Do NOT change this file, Gorm maintains it";
+    AutorenController = {
+	Actions = (
+	    "ArtikelImWeb:",
+	    "Browserauswahl:",
+	    "DisskusionImWeb:"
+	);
+	Outlets = (
+	    tableView,
+	    anonymTextField,
+	    unteresTextField,
+	    oberesTextField
+	);
+	Super = NSWindowController;
+    };
+    FirstResponder = {
+	Actions = (
+	    "ArtikelImWeb:",
+	    "Browserauswahl:",
+	    "DisskusionImWeb:"
+	);
+	Super = NSObject;
+    };
+}

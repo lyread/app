@@ -1,0 +1,132 @@
+{
+    APPLICATIONICON = "";
+    BUILDTOOL = "/usr/bin/make";
+    CLASS_FILES = (
+	AppController.m,
+	AdvancedTableView.m,
+	Band.m,
+	Controller.m,
+	DataSource.m,
+	DBFundstellenDataSource.m,
+	DBGaleryView.m,
+	DBImageLoader.m,
+	DBImageSet.m,
+	DBKeyboardHandler.m,
+	DBPage.m,
+	DBPageView.m,
+	DBPrintView.m,
+	DBRegister.m,
+	DBRegisterEntry.m,
+	DBsuchBitmap.m,
+	DBSuche.m,
+	Entry.m,
+	Helper.m,
+	History.m,
+	ImageController.m,
+	Markierung.m,
+	StartWindowController.m,
+	TabellenDataSource.m,
+	Word.m
+    );
+    COMPILEROPTIONS = "";
+    CPPOPTIONS = "";
+    CREATION_DATE = "2004-07-12 04:29:09 +0000";
+    DOCU_FILES = (
+    );
+    FRAMEWORKS = (
+    );
+    HEADER_FILES = (
+	AppController.h,
+	AdvancedTableView.h,
+	Band.h,
+	Controller.h,
+	DataSource.h,
+	DBFundstellenDataSource.h,
+	DBGaleryView.h,
+	DBImageLoader.h,
+	DBImageSet.h,
+	DBKeyboardHandler.h,
+	DBPage.h,
+	DBPageView.h,
+	DBPrintView.h,
+	DBRegister.h,
+	DBRegisterEntry.h,
+	DBsuchBitmap.h,
+	DBSuche.h,
+	Entry.h,
+	Helper.h,
+	History.h,
+	ImageController.h,
+	Markierung.h,
+	StartWindowController.h,
+	TabellenDataSource.h,
+	Word.h,
+	schreibweisentoleranz.h
+    );
+    IMAGES = (
+    );
+    INSTALLDIR = "$(HOME)/GNUstep";
+    INTERFACES = (
+	ldp.gorm,
+	StartWindow.gorm,
+	Resources/ImageViewer.gorm
+    );
+    LANGUAGE = English;
+    LAST_EDITING = "2004-12-14 11:07:21 +0000";
+    LIBRARIES = (
+	"gnustep-base",
+	"gnustep-gui"
+    );
+    LINKEROPTIONS = "-lWand -lMagick";
+    LOCALIZED_RESOURCES = (
+    );
+    MAININTERFACE = ldp.gorm;
+    MAKEFILEDIR = "$(GNUSTEP_MAKEFILES)";
+    OBJC_COMPILEROPTIONS = "";
+    OTHER_RESOURCES = (
+	"Info-gnustep.plist",
+	digibiball.plist,
+	ImageLocator.plist,
+	unicode.plist
+    );
+    OTHER_SOURCES = (
+	main.m,
+	schreibweisentoleranz.c
+    );
+    PC_WINDOWS = {
+	ProjectBuild = "82 309 553 439 0 0  1216 1024 ";
+	ProjectWindow = "427 74 816 842 0 0  1216 1024 ";
+	ShowToolbar = YES;
+    };
+    PRINCIPAL_CLASS = NSApplication;
+    PROJECT_AUTHORS = (
+    );
+    PROJECT_COPYRIGHT = "Copyright (C) 200x";
+    PROJECT_COPYRIGHT_DESC = "Released under ...";
+    PROJECT_CREATOR = "Karsten Fuhrmann";
+    PROJECT_DESCRIPTION = "No description avaliable!";
+    PROJECT_DOCUMENTEXTENSIONS = (
+    );
+    PROJECT_GROUP = "No group avaliable!";
+    PROJECT_MAINTAINER = "Karsten Fuhrmann";
+    PROJECT_NAME = ldp;
+    PROJECT_RELEASE = 0.1;
+    PROJECT_SUMMARY = "No summary avaliable!";
+    PROJECT_TYPE = Application;
+    PROJECT_URL = "";
+    SEARCH_HEADER_DIRS = (
+    );
+    SEARCH_LIB_DIRS = (
+    );
+    SUBPROJECTS = (
+    );
+    SUPPORTING_FILES = (
+	GNUmakefile.preamble,
+	GNUmakefile,
+	GNUmakefile.postamble
+    );
+    USER_LANGUAGES = (
+	AmericanEnglish,
+	English
+    );
+}
