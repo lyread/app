@@ -1,0 +1,18 @@
+{
+    Faces = (
+	{
+	    Files = (
+		"@fontdir@/VeraSe.ttf"
+	    );
+	    Name = Roman;
+	    PostScriptName = "BitstreamVeraSerif-Roman";
+	},
+	{
+	    Files = (
+		"@fontdir@/VeraSeBd.ttf"
+	    );
+	    Name = Bold;
+	    PostScriptName = "BitstreamVeraSerif-Bold";
+	}
+    );
+}

@@ -1,0 +1,32 @@
+{
+    Faces = (
+	{
+	    Files = (
+		"@fontdir@/VeraMoBd.ttf"
+	    );
+	    Name = Bold;
+	    PostScriptName = "BitstreamVeraSansMono-Bold";
+	},
+	{
+	    Files = (
+		"@fontdir@/VeraMoIt.ttf"
+	    );
+	    Name = Oblique;
+	    PostScriptName = "BitstreamVeraSansMono-Oblique";
+	},
+	{
+	    Files = (
+		"@fontdir@/VeraMono.ttf"
+	    );
+	    Name = Roman;
+	    PostScriptName = "BitstreamVeraSansMono-Roman";
+	},
+	{
+	    Files = (
+		"@fontdir@/VeraMoBI.ttf"
+	    );
+	    Name = "Bold Oblique";
+	    PostScriptName = "BitstreamVeraSansMono-BoldOb";
+	}
+    );
+}

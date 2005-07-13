@@ -1,0 +1,64 @@
+#!/bin/sh
+
+oldifs=$IFS
+IFS=:
+for p in $PATH; do
+	if [ -e "$p/$0" ]; then
+		me="$p/$0"
+	fi
+done
+
+IFS=$oldifs
+
+if ! [ $me ]; then
+	if [ -e $0 ]; then
+		me=$0
+	fi
+fi
+
+if ! [ $me ]; then
+	echo "cannot find myself ($0)" >&2
+	exit 1
+fi
+
+cat <<EOB
+Please enter a path to install in. For example: /usr or /home/ruth/digibux
+
+Bitte einen Installationspfad angeben.
+Zum Beispiel: /usr, /opt oder /home/ruth/digibux
+EOB
+
+read -p "[ /usr/local ] >"
+
+if ! [ $REPLY ]; then
+	destpath=/usr/local
+else
+	destpath=$REPLY
+fi
+
+if ! [ -e $destpath ]; then
+	if ! mkdir -p $destpath; then
+		echo "Cannot create $destpath"
+		exit 1
+	fi
+fi
+
+tempf=$(mktemp)
+if [ $? -ne 0 ] || ! [ $tempf ]; then
+	tempf=/tmp/digibux_install.$$
+fi
+
+skip=$(grep -a -b [s]tart_of_buffer $me | awk -F: '{print $1}')
+skip=$(expr $skip + 16)
+dd if=$me of=$tempf bs=$skip count=1000000000 skip=1 2>/dev/null
+tar xzf $tempf -C $destpath
+tarret=$?
+rm $tempf
+if [ $? -eq 0 ]; then
+	echo "Installation complete."
+else
+	echo "Installation did not complete successfully."
+fi
+
+exit 0
+start_of_buffer

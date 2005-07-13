@@ -1,0 +1,48 @@
+
+ROOT=.
+GNUSTEPLIB=$(GNUSTEP_ROOT)
+GNUSTEPLIB:=/usr/lib/GNUstep
+LIBDIR=linux/$(ROOT)/lib/Digibux
+APPDIR=$(LIBDIR)/Digibux.app
+LDDIR=$(LIBDIR)/lib
+GSDIR=$(LIBDIR)/GNUstep
+BINDIR=linux/$(ROOT)/bin
+FONTDIR=$(LIBDIR)/fonts
+GSLOCAL=linux-data/GNUstep
+FONTPATHS=/usr/share/fonts/truetype/ttf-bitstream-vera /usr/share/fonts/truetype/freefont
+
+all:
+	test ! -e linux || rm -r linux
+	mkdir -p $(LIBDIR) $(APPDIR) $(LDDIR) $(GSDIR) $(BINDIR) $(FONTDIR)
+	for f in Digibux Resources; do cp -r Digibux.app/$$f $(APPDIR); done
+	cp linux-startup $(BINDIR)/Digibux
+	
+	for lib in $$(ldd Digibux.app/Digibux | awk '!/ \/lib/ { print $$3 }'); do echo $$lib >&2 ; cp $$lib $(LDDIR); done
+	mkdir -p $(GSDIR)/System/Library/Bundles
+	for g in System/Library/Images System/Tools System/Library/Fonts System/Library/Libraries/Resources; do \
+		mkdir -p $$(dirname $(GSDIR)/$$g); \
+		if [ -e $(GSLOCAL)/$$g ]; then \
+			cp -r $(GSLOCAL)/$$g $$(dirname $(GSDIR)/$$g); \
+		else \
+			cp -r $(GNUSTEPLIB)/$$g $$(dirname $(GSDIR)/$$g); \
+		fi \
+	done
+	for bundle in libgnustep-back; do \
+		cp -r $(GNUSTEPLIB)/System/Library/Bundles/$$bundle.bundle $(GSDIR)/System/Library/Bundles; \
+	done
+	for fpath in $(FONTPATHS); do \
+		if [ -e $$fpath ]; then \
+			cp -r $$fpath/* $(FONTDIR); \
+		fi \
+	done
+	for f in $$(find $(GSDIR)/System/Library/Fonts -type f); do \
+		perl -pi -e 's!\@fontdir\@!../../../../../fonts!' $$f; \
+	done
+
+linux-distrib.tgz: all
+	cd linux; tar czf ../$@ .
+
+linuxinstall: all
+	cd linux; tar czf /tmp/tempf.$$$$ . ; cd .. ; \
+	cat linux-installer > $@; \
+	cat /tmp/tempf.$$$$ >> $@

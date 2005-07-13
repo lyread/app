@@ -1,0 +1,32 @@
+{
+    Faces = (
+	{
+	    Files = (
+		"@fontdir@/FreeMonoBoldOblique.ttf"
+	    );
+	    Name = BoldOblique;
+	    PostScriptName = FreeMonoBoldOblique;
+	},
+	{
+	    Files = (
+		"@fontdir@/FreeMonoBold.ttf"
+	    );
+	    Name = Bold;
+	    PostScriptName = FreeMonoBold;
+	},
+	{
+	    Files = (
+		"@fontdir@/FreeMono.ttf"
+	    );
+	    Name = Medium;
+	    PostScriptName = FreeMono;
+	},
+	{
+	    Files = (
+		"@fontdir@/FreeMonoOblique.ttf"
+	    );
+	    Name = Oblique;
+	    PostScriptName = FreeMonoOblique;
+	}
+    );
+}

@@ -1,0 +1,50 @@
+#!/bin/sh
+
+for p in $PATH; do
+	if [ -e $p/$0 ]; then
+		me=$p/$0
+	fi
+done
+
+if ! [ $me ]; then
+	if [ -e $0 ]; then
+		me=$0
+	fi
+fi
+
+if ! [ $me ]; then
+	for spath in /opt /usr/local /usr .; do
+		if test -e $spath/bin/Digibux; then
+			me=$spath/bin/Digibux
+		fi
+	done
+fi
+
+spath=$(dirname $me)/..
+
+LIB=$spath/lib/Digibux
+
+if ! [ -e $LIB ]; then
+	echo "cannot find $LIB" >&2
+	exit 1
+fi
+
+#for p in /usr/share/fonts/truetype/ttf-bitstream-vera; do
+#	if [ -e $p/Vera.ttf ];
+#		fpath=$p
+#		break
+#	fi
+#done
+
+#if ! [ $fpath ]; then
+#	echo "cannot find truetype fonts" >&2
+#	exit 1
+#fi
+
+export LD_LIBRARY_PATH=$LIB/lib:$LD_LIBRARY_PATH
+export GNUSTEP_ROOT=$LIB/GNUstep
+export GNUSTEP_SYSTEM_ROOT=$LIB/GNUstep/System
+export PATH=$LIB/GNUstep/System/Tools:$PATH
+
+exec openapp $LIB/Digibux.app
+

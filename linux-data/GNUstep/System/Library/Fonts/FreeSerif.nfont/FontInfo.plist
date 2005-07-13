@@ -1,0 +1,32 @@
+{
+    Faces = (
+	{
+	    Files = (
+		"@fontdir@/FreeSerifBoldItalic.ttf"
+	    );
+	    Name = BoldItalic;
+	    PostScriptName = FreeSerifBoldItalic;
+	},
+	{
+	    Files = (
+		"@fontdir@/FreeSerifBold.ttf"
+	    );
+	    Name = Bold;
+	    PostScriptName = FreeSerifBold;
+	},
+	{
+	    Files = (
+		"@fontdir@/FreeSerifItalic.ttf"
+	    );
+	    Name = Italic;
+	    PostScriptName = FreeSerifItalic;
+	},
+	{
+	    Files = (
+		"@fontdir@/FreeSerif.ttf"
+	    );
+	    Name = Medium;
+	    PostScriptName = FreeSerif;
+	}
+    );
+}

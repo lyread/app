@@ -1,0 +1,32 @@
+{
+    Faces = (
+	{
+	    Files = (
+		"@fontdir@/FreeSans.ttf"
+	    );
+	    Name = Medium;
+	    PostScriptName = FreeSans;
+	},
+	{
+	    Files = (
+		"@fontdir@/FreeSansBold.ttf"
+	    );
+	    Name = Bold;
+	    PostScriptName = FreeSansBold;
+	},
+	{
+	    Files = (
+		"@fontdir@/FreeSansBoldOblique.ttf"
+	    );
+	    Name = BoldOblique;
+	    PostScriptName = FreeSansBoldOblique;
+	},
+	{
+	    Files = (
+		"@fontdir@/FreeSansOblique.ttf"
+	    );
+	    Name = Oblique;
+	    PostScriptName = FreeSansOblique;
+	}
+    );
+}
