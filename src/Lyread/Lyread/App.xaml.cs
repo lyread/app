@@ -4,10 +4,8 @@ using NLog.Targets;
 using System.IO;
 using Xamarin.Essentials;
 using Xamarin.Forms;
-using Xamarin.Forms.Xaml;
 using static Book.LinkType;
 
-[assembly: XamlCompilation(XamlCompilationOptions.Compile)]
 namespace Lyread
 {
     public partial class App : Application
