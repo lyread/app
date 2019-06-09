@@ -1,0 +1,44 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:lyread="clr-namespace:Lyread;assembly=Lyread"
+             xmlns:scroll="clr-namespace:Xamarin.Forms.Extended;assembly=Xamarin.Forms.Extended.InfiniteScrolling"
+             x:Class="Lyread.SearchPage"
+             Title="Search">
+
+    <ContentPage.BindingContext>
+        <lyread:SearchViewModel x:Name="SearchViewModel" />
+    </ContentPage.BindingContext>
+
+    <StackLayout>
+        <SearchBar Text="{Binding Pattern}" SearchCommand="{Binding SearchCommand}" BackgroundColor="#ffcf7f">
+            <SearchBar.Behaviors>
+                <lyread:IncrementalSearchBehavior />
+                <lyread:QueryBehavior />
+            </SearchBar.Behaviors>
+        </SearchBar>
+        <ListView x:Name="SearchView" ItemsSource="{Binding SearchItems}" CachingStrategy="RecycleElement">
+            <ListView.ItemTemplate>
+                <DataTemplate>
+                    <!--<TextCell Text="{Binding Title}" Command="{Binding OpenDocumentCommand, Source={x:Reference SearchViewModel}}" CommandParameter="{Binding}" />-->
+                    <ViewCell>
+                        <!--<Label>
+                            <Label.FormattedText>
+                                <FormattedString>
+                                    <Span Text="Test1" ForegroundColor="Yellow" FontAttributes="Bold"/>
+                                    <Span Text="Test2"/>
+                                </FormattedString>
+                            </Label.FormattedText>
+                        </Label>-->
+                        <Label Text="{Binding Title}"/>
+                    </ViewCell>
+                </DataTemplate>
+            </ListView.ItemTemplate>
+            <ListView.Behaviors>
+                <scroll:InfiniteScrollBehavior />
+                <lyread:ItemTappedBehavior Command="{Binding OpenDocumentCommand}"/>
+            </ListView.Behaviors>
+        </ListView>
+    </StackLayout>
+
+</ContentPage>

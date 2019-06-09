@@ -1,0 +1,75 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:converter="clr-namespace:Lyread.Converter;assembly=Lyread"
+             xmlns:lyread="clr-namespace:Lyread;assembly=Lyread"
+             xmlns:scroll="clr-namespace:Xamarin.Forms.Extended;assembly=Xamarin.Forms.Extended.InfiniteScrolling"
+             x:Class="Lyread.LibraryPage"
+             Title="Library">
+
+    <ContentPage.Resources>
+        <ResourceDictionary>
+            <converter:BytesToImageSourceConverter x:Key="ImageConverter"/>
+            <lyread:JobItemsToBooleanConverter x:Key="JobItemsConverter"/>
+        </ResourceDictionary>
+    </ContentPage.Resources>
+
+    <ContentPage.BindingContext>
+        <lyread:LibraryViewModel x:Name="LibraryViewModel"/>
+    </ContentPage.BindingContext>
+
+    <ContentPage.ToolbarItems>
+        <ToolbarItem Order="Primary" Command="{Binding OpenSettingsCommand}">
+            <ToolbarItem.Icon>
+                <OnPlatform x:TypeArguments="FileImageSource" Android="@drawable/ic_settings_white_24dp" WinPhone="Icons\settings.png"/>
+            </ToolbarItem.Icon>
+        </ToolbarItem>
+    </ContentPage.ToolbarItems>
+
+    <AbsoluteLayout Padding="0" HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand">
+        <StackLayout AbsoluteLayout.LayoutBounds="0, 0, 1, 1" AbsoluteLayout.LayoutFlags="All">
+            <SearchBar Text="{Binding Pattern}" SearchCommand="{Binding SearchBooksCommand}" BackgroundColor="#ffcf7f">
+                <SearchBar.Behaviors>
+                    <lyread:IncrementalSearchBehavior />
+                    <lyread:RegexBehavior />
+                </SearchBar.Behaviors>
+            </SearchBar>
+            <ListView x:Name="BooksView" RowHeight="{Binding CoverHeight}" ItemsSource="{Binding Books}" IsPullToRefreshEnabled="True" RefreshCommand="{Binding RefreshBooksCommand}" IsRefreshing="{Binding IsRefreshing}" CachingStrategy="RecycleElement" AbsoluteLayout.LayoutBounds="0, 0, 1, 1" AbsoluteLayout.LayoutFlags="All">
+                <ListView.ItemTemplate>
+                    <DataTemplate>
+                        <ViewCell>
+                            <Grid>
+                                <Grid.RowDefinitions>
+                                    <RowDefinition Height="{Binding CoverHeight, Source={x:Reference LibraryViewModel}}"/>
+                                </Grid.RowDefinitions>
+                                <Grid.ColumnDefinitions>
+                                    <ColumnDefinition Width="{Binding CoverWidth, Source={x:Reference LibraryViewModel}}"/>
+                                    <ColumnDefinition Width="*"/>
+                                </Grid.ColumnDefinitions>
+                                <Image Grid.Row="0" Grid.Column="0" Source="{Binding Cover, Converter={StaticResource ImageConverter}}"/>
+                                <Label Grid.Row="0" Grid.Column="1" Text="{Binding Title}" VerticalOptions="Center"/>
+                            </Grid>
+                        </ViewCell>
+                    </DataTemplate>
+                </ListView.ItemTemplate>
+                <ListView.Behaviors>
+                    <scroll:InfiniteScrollBehavior />
+                    <lyread:ItemTappedBehavior Command="{Binding OpenBookCommand}"/>
+                </ListView.Behaviors>
+            </ListView>
+        </StackLayout>
+        <ListView ItemsSource="{Binding Jobs}" CachingStrategy="RecycleElement" IsVisible="{Binding Jobs, Converter={StaticResource JobItemsConverter}}" BackgroundColor="White" AbsoluteLayout.LayoutBounds="0, 0, 1, 1" AbsoluteLayout.LayoutFlags="All">
+            <ListView.ItemTemplate>
+                <DataTemplate>
+                    <ViewCell>
+                        <StackLayout>
+                            <Label Text="{Binding Title}" />
+                            <ProgressBar Progress="{Binding Progress}" ProgressColor="{Binding Color}" />
+                        </StackLayout>
+                    </ViewCell>
+                </DataTemplate>
+            </ListView.ItemTemplate>
+        </ListView>
+    </AbsoluteLayout>
+
+</ContentPage>

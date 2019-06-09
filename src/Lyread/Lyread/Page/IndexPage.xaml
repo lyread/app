@@ -1,0 +1,56 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:lyread="clr-namespace:Lyread"
+             xmlns:scroll="clr-namespace:Xamarin.Forms.Extended;assembly=Xamarin.Forms.Extended.InfiniteScrolling"
+             x:Class="Lyread.IndexPage"
+             Title="Index">
+
+    <ContentPage.Resources>
+        <ResourceDictionary>
+            <lyread:CategoryItemsToStringConverter x:Key="StringConverter"/>
+            <lyread:CategoryItemsToBooleanConverter x:Key="BooleanConverter"/>
+        </ResourceDictionary>
+    </ContentPage.Resources>
+
+    <ContentPage.BindingContext>
+        <lyread:IndexViewModel x:Name="IndexViewModel" />
+    </ContentPage.BindingContext>
+
+    <AbsoluteLayout Padding="0" HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand">
+        <StackLayout AbsoluteLayout.LayoutBounds="0, 0, 1, 1" AbsoluteLayout.LayoutFlags="All">
+            <StackLayout BackgroundColor="#ff9f00">
+                <Button Text="{Binding CategoryItems, Converter={StaticResource StringConverter}}" IsVisible="{Binding CategoryItems, Converter={StaticResource BooleanConverter}}" Clicked="ToggleCategoryView" BorderColor="#ffcf7f" BackgroundColor="#ffcf7f"/>
+                <SearchBar Text="{Binding Pattern}" SearchCommand="{Binding QueryIndexCommand}" BackgroundColor="#ffcf7f">
+                    <SearchBar.Behaviors>
+                        <lyread:IncrementalSearchBehavior />
+                        <lyread:RegexBehavior />
+                    </SearchBar.Behaviors>
+                </SearchBar>
+            </StackLayout>
+            <ListView x:Name="IndexView" ItemsSource="{Binding IndexItems}" CachingStrategy="RecycleElement">
+                <ListView.ItemTemplate>
+                    <DataTemplate>
+                        <TextCell Text="{Binding Title}" Command="{Binding OpenDocumentCommand, Source={x:Reference IndexViewModel}}" CommandParameter="{Binding}" />
+                    </DataTemplate>
+                </ListView.ItemTemplate>
+                <ListView.Behaviors>
+                    <scroll:InfiniteScrollBehavior />
+                </ListView.Behaviors>
+            </ListView>
+        </StackLayout>
+        <ContentView x:Name="CategoryView" BackgroundColor="#80808080" Padding="10, 10" IsVisible="false" AbsoluteLayout.LayoutBounds="0, 0, 1, 1" AbsoluteLayout.LayoutFlags="All">
+            <StackLayout VerticalOptions="Center" HorizontalOptions="Center" BackgroundColor="White" Padding="10, 10">
+                <ListView x:Name="CategoryListView" ItemsSource="{Binding CategoryItems}" CachingStrategy="RecycleElement">
+                    <ListView.ItemTemplate>
+                        <DataTemplate>
+                            <SwitchCell Text="{Binding Title}" On="{Binding Selected}"/>
+                        </DataTemplate>
+                    </ListView.ItemTemplate>
+                </ListView>
+                <Button Text="OK" HorizontalOptions="Center" Clicked="ToggleCategoryView"/>
+            </StackLayout>
+        </ContentView>
+    </AbsoluteLayout>
+
+</ContentPage>

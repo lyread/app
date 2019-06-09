@@ -1,0 +1,42 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:lyread="clr-namespace:Lyread;assembly=Lyread"
+             x:Class="Lyread.FolderPickerPage"
+             Title="{Binding Parent.FullName}">
+
+    <ContentPage.Resources>
+        <ResourceDictionary>
+            <lyread:FileSystemInfoToNameConverter x:Key="NameConverter"/>
+            <lyread:FileSystemInfoToImageConverter x:Key="ImageConverter"/>
+        </ResourceDictionary>
+    </ContentPage.Resources>
+
+    <ContentPage.BindingContext>
+        <lyread:FolderPickerViewModel x:Name="FolderPickerViewModel"/>
+    </ContentPage.BindingContext>
+
+    <ListView x:Name="FolderPickerView" ItemsSource="{Binding FileSystemInfos}" IsPullToRefreshEnabled="True" RefreshCommand="{Binding RefreshFolderCommand}" IsRefreshing="{Binding IsRefreshing}" CachingStrategy="RecycleElement">
+        <ListView.ItemTemplate>
+            <DataTemplate>
+                <ViewCell>
+                    <Grid VerticalOptions="Center">
+                        <Grid.RowDefinitions>
+                            <RowDefinition Height="Auto"/>
+                        </Grid.RowDefinitions>
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="Auto"/>
+                            <ColumnDefinition Width="*"/>
+                        </Grid.ColumnDefinitions>
+                        <Image Grid.Row="0" Grid.Column="0" Source="{Binding Converter={StaticResource ImageConverter}}"/>
+                        <Label Grid.Row="0" Grid.Column="1" VerticalOptions="Center" LineBreakMode="TailTruncation" Text="{Binding Converter={StaticResource NameConverter}, ConverterParameter={x:Reference FolderPickerViewModel}}"/>
+                    </Grid>
+                </ViewCell>
+            </DataTemplate>
+        </ListView.ItemTemplate>
+        <ListView.Behaviors>
+            <lyread:ItemTappedBehavior Command="{Binding OpenFolderCommand}"/>
+        </ListView.Behaviors>
+    </ListView>
+
+</ContentPage>

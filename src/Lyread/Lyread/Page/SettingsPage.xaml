@@ -1,0 +1,48 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:lyread="clr-namespace:Lyread;assembly=Lyread"
+             x:Class="Lyread.SettingsPage"
+             Title="Settings">
+
+    <ContentPage.Resources>
+        <ResourceDictionary>
+            <lyread:PublisherToNameConverter x:Key="NameConverter"/>
+            <lyread:PublisherToPathConverter x:Key="PathConverter"/>
+        </ResourceDictionary>
+    </ContentPage.Resources>
+
+    <ContentPage.BindingContext>
+        <lyread:SettingsViewModel x:Name="SettingsViewModel"/>
+    </ContentPage.BindingContext>
+
+    <TableView Intent="Settings">
+        <TableRoot>
+            <TableSection>
+                <TextCell Text="{Binding Directmedia, Converter={StaticResource NameConverter}}" Detail="{Binding Directmedia, Converter={StaticResource PathConverter}}" Command="{Binding PickFolderCommand}" CommandParameter="{Binding Directmedia}">
+                    <TextCell.ContextActions>
+                        <MenuItem Text="Reset" Command="{Binding ResetFolderCommand}" CommandParameter="{Binding Directmedia}"/>
+                    </TextCell.ContextActions>
+                </TextCell>
+                <TextCell Text="{Binding Duden, Converter={StaticResource NameConverter}}" Detail="{Binding Duden, Converter={StaticResource PathConverter}}" Command="{Binding PickFolderCommand}" CommandParameter="{Binding Duden}">
+                    <TextCell.ContextActions>
+                        <MenuItem Text="Reset" Command="{Binding ResetFolderCommand}" CommandParameter="{Binding Duden}"/>
+                    </TextCell.ContextActions>
+                </TextCell>
+                <TextCell Text="{Binding Epub, Converter={StaticResource NameConverter}}" Detail="{Binding Epub, Converter={StaticResource PathConverter}}" Command="{Binding PickFolderCommand}" CommandParameter="{Binding Epub}">
+                    <TextCell.ContextActions>
+                        <MenuItem Text="Reset" Command="{Binding ResetFolderCommand}" CommandParameter="{Binding Epub}"/>
+                    </TextCell.ContextActions>
+                </TextCell>
+                <ViewCell>
+                    <StackLayout Padding="15, 0, 5, 0" Orientation="Horizontal">
+                        <Label Text="Cover size" TextColor="Black" VerticalOptions="Center"/>
+                        <Label Text="{Binding CoverSize}" HorizontalOptions="CenterAndExpand" VerticalOptions="Center"/>
+                        <Stepper Value="{Binding CoverSize}" Minimum="1" Maximum="5" VerticalOptions="Center"/>
+                    </StackLayout>
+                </ViewCell>
+            </TableSection>
+        </TableRoot>
+    </TableView>
+
+</ContentPage>

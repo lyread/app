@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<resources>
+
+  <style name="MainTheme" parent="MainTheme.Base">
+  </style>
+  <style name="MainTheme.Base" parent="Theme.AppCompat.Light.DarkActionBar">
+    <item name="windowNoTitle">true</item>
+    <item name="windowActionBar">false</item>
+    <item name="windowActionModeOverlay">true</item>
+
+    <item name="android:datePickerDialogTheme">@style/AppCompatDialogStyle</item>
+
+    <item name="colorPrimary">@color/orange</item>
+    <item name="colorPrimaryDark">@color/gray</item>
+    <item name="colorAccent">@color/gray</item>
+
+    <item name="android:colorPressedHighlight">@color/white</item>
+    <item name="android:colorLongPressedHighlight">@color/orange</item>
+    <item name="android:colorFocusedHighlight">@color/orange</item>
+    <item name="android:colorActivatedHighlight">@color/orange</item>
+    <item name="android:activatedBackgroundIndicator">@color/orange</item>
+
+    <!-- back arrow -->
+    <item name="colorControlNormal">@color/white</item>
+  </style>
+
+  <style name="AppCompatDialogStyle" parent="Theme.AppCompat.Light.Dialog">
+    <item name="colorAccent">@color/gray</item>
+  </style>
+
+  <style name="SplashTheme" parent="Theme.AppCompat.Light.NoActionBar">
+    <item name="android:windowBackground">@drawable/splash</item>
+    <item name="android:windowNoTitle">true</item>
+    <item name="android:windowFullscreen">true</item>
+  </style>
+</resources>

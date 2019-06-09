@@ -1,0 +1,14 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:lyread="clr-namespace:Lyread;assembly=Lyread"
+             x:Class="Lyread.DocumentPage"
+             Title="{Binding Id, StringFormat='Seite {0} ff.'}">
+
+    <ContentPage.BindingContext>
+        <lyread:DocumentViewModel x:Name="DocumentViewModel"/>
+    </ContentPage.BindingContext>
+
+    <WebView x:Name="webView" HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand" Navigating="WebView_Navigating"/>
+
+</ContentPage>

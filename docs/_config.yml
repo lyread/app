@@ -1,0 +1,5 @@
+theme: jekyll-theme-minimal
+title: Lyread
+description: Android-App für Bände von Directmedia und Duden.
+logo: /assets/img/logo.png
+lang: de-DE
