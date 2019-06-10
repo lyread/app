@@ -26,7 +26,7 @@ Directmedia
 ```
 
 ## Duden
-1. Wörterbücher als [Software-Download](https://www.duden.de/Shop/Deutsche-Sprache?medium=1120), mit Systemvoraussetzungen »Duden Bibliothek 6 oder höher«.
+1. Wörterbücher als [Software-Download](https://shop.duden.de/Shop/Deutsche-Sprache?medium=1120), mit Systemvoraussetzungen »Duden Bibliothek 6 oder höher«.
 2. Auf dem Telefon den Ordner »Duden« anlegen, in den Einstellungen von Lyread auswählen.
 3. Rechtsklick auf die heruntergeladene .exe-Datei, [7-Zip](http://www.7-zip.de) > Öffnen. Die .dbb-Datei im Ordner »data« entpacken.
 4. Um die Aussprache abzuspielen, die Datei [dbmedia.bdb](http://www.duden-bibliothek.de/data/dbmedia.bdb) herunterladen.
