@@ -7,7 +7,7 @@ inkscape logo.svg --export-png=src\Lyread\Lyread.Android\Resources\mipmap-xxxhdp
 inkscape logo.svg --export-png=$home\Desktop\play_high-res_icon.png --export-area-drawing -w512 -h512
 inkscape logo.svg --export-png=$home\Desktop\play_feature_graphic.png --export-area=-160:-29:352:221 -w1024 -h500 --export-background=#ffffff
 
-inkscape logo.svg --export-png=docs\assets\img\logo.png --export-area=-48:6:240:186 -w640 -h400
+inkscape logo.svg --export-png=assets\img\logo.png --export-area=-48:6:240:186 -w640 -h400
 
 inkscape logo.svg --export-png=$home\Desktop\github.png --export-area-drawing -w400 -h400
 
