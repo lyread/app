@@ -1,5 +1,3 @@
-[![Google Play Store](assets/img/play.svg)](https://play.google.com/store/apps/details?id=app.lyread)
-
 ## Bände
 
 | Reihe               | Verlag                     | Links                                                                                   |
