@@ -16,7 +16,7 @@ namespace Lyread
 
         protected override void OnAppearing()
         {
-            Refresh();
+            webView.Source = new UrlWebViewSource { Url = DocumentViewModel.DocumentUri() };
         }
 
         protected override bool OnBackButtonPressed()
@@ -32,15 +32,6 @@ namespace Lyread
         private async void WebView_Navigating(object sender, WebNavigatingEventArgs e)
         {
             e.Cancel = await DocumentViewModel.CancelNavigation(new Uri(e.Url));
-            if (Device.RuntimePlatform == Device.Android)
-            {
-                Refresh();
-            }
-        }
-
-        private void Refresh()
-        {
-            webView.Source = new UrlWebViewSource { Url = DocumentViewModel.DocumentUri() }; // TODO use webView.Reload()
         }
     }
 }
