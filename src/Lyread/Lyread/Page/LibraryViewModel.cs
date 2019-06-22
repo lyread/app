@@ -49,7 +49,6 @@ namespace Lyread
                 await Application.Current.MainPage.DisplayAlert("Error", e.Message, "OK");
             }
         });
-        public ICommand OpenSettingsCommand => new Command(async () => await Application.Current.MainPage.Navigation.PushAsync(new SettingsPage()));
 
         public LibraryViewModel()
         {

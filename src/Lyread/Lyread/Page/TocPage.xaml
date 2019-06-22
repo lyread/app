@@ -5,6 +5,10 @@
              x:Class="Lyread.TocPage"
              Title="Contents">
 
+    <ContentPage.Icon>
+        <OnPlatform x:TypeArguments="FileImageSource" Android="@drawable/ic_toc_white_24dp" WinPhone="Icons\toc.png"/>
+    </ContentPage.Icon>
+
     <ContentPage.Resources>
         <ResourceDictionary>
             <lyread:TextConverter x:Key="TextConverter"/>

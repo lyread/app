@@ -149,11 +149,14 @@
     <Content Include="Assets\Wide310x150Logo.scale-150.png" />
     <Content Include="Assets\Wide310x150Logo.scale-200.png" />
     <Content Include="Assets\Wide310x150Logo.scale-400.png" />
-    <Content Include="Icons\back.png" />
     <Content Include="Icons\file.png" />
     <Content Include="Icons\folder.png" />
-    <Content Include="Icons\forward.png" />
+    <Content Include="Icons\index.png" />
+    <Content Include="Icons\library.png" />
+    <Content Include="Icons\media.png" />
+    <Content Include="Icons\search.png" />
     <Content Include="Icons\settings.png" />
+    <Content Include="Icons\toc.png" />
     <Content Include="Properties\Default.rd.xml" />
   </ItemGroup>
   <ItemGroup>

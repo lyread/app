@@ -4,8 +4,11 @@
              xmlns:converter="clr-namespace:Lyread.Converter;assembly=Lyread"
              xmlns:lyread="clr-namespace:Lyread;assembly=Lyread"
              xmlns:scroll="clr-namespace:Xamarin.Forms.Extended;assembly=Xamarin.Forms.Extended.InfiniteScrolling"
-             x:Class="Lyread.LibraryPage"
-             Title="Library">
+             x:Class="Lyread.LibraryPage">
+
+    <ContentPage.Icon>
+        <OnPlatform x:TypeArguments="FileImageSource" Android="@drawable/ic_account_balance_white_24dp" WinPhone="Icons\library.png"/>
+    </ContentPage.Icon>
 
     <ContentPage.Resources>
         <ResourceDictionary>
@@ -18,17 +21,9 @@
         <lyread:LibraryViewModel x:Name="LibraryViewModel"/>
     </ContentPage.BindingContext>
 
-    <ContentPage.ToolbarItems>
-        <ToolbarItem Order="Primary" Command="{Binding OpenSettingsCommand}">
-            <ToolbarItem.Icon>
-                <OnPlatform x:TypeArguments="FileImageSource" Android="@drawable/ic_settings_white_24dp" WinPhone="Icons\settings.png"/>
-            </ToolbarItem.Icon>
-        </ToolbarItem>
-    </ContentPage.ToolbarItems>
-
     <AbsoluteLayout Padding="0" HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand">
         <StackLayout AbsoluteLayout.LayoutBounds="0, 0, 1, 1" AbsoluteLayout.LayoutFlags="All">
-            <SearchBar Text="{Binding Pattern}" SearchCommand="{Binding SearchBooksCommand}" BackgroundColor="#ffcf7f">
+            <SearchBar Text="{Binding Pattern}" SearchCommand="{Binding SearchBooksCommand}" TextColor="White" BackgroundColor="#2f2f2f">
                 <SearchBar.Behaviors>
                     <lyread:IncrementalSearchBehavior />
                     <lyread:RegexBehavior />

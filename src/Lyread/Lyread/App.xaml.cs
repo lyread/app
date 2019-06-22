@@ -1,4 +1,5 @@
-﻿using NLog;
+﻿using Lyread.Page;
+using NLog;
 using NLog.Config;
 using NLog.Targets;
 using System.IO;
@@ -14,7 +15,7 @@ namespace Lyread
         {
             InitializeComponent();
 
-            MainPage = new NavigationPage(new LibraryPage());
+            MainPage = new NavigationPage(new MainPage());
         }
 
         protected override void OnStart()

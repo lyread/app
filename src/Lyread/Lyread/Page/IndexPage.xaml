@@ -6,6 +6,10 @@
              x:Class="Lyread.IndexPage"
              Title="Index">
 
+    <ContentPage.Icon>
+        <OnPlatform x:TypeArguments="FileImageSource" Android="@drawable/ic_list_white_24dp" WinPhone="Icons\index.png"/>
+    </ContentPage.Icon>
+
     <ContentPage.Resources>
         <ResourceDictionary>
             <lyread:CategoryItemsToStringConverter x:Key="StringConverter"/>
@@ -19,9 +23,9 @@
 
     <AbsoluteLayout Padding="0" HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand">
         <StackLayout AbsoluteLayout.LayoutBounds="0, 0, 1, 1" AbsoluteLayout.LayoutFlags="All">
-            <StackLayout BackgroundColor="#ff9f00">
-                <Button Text="{Binding CategoryItems, Converter={StaticResource StringConverter}}" IsVisible="{Binding CategoryItems, Converter={StaticResource BooleanConverter}}" Clicked="ToggleCategoryView" BorderColor="#ffcf7f" BackgroundColor="#ffcf7f"/>
-                <SearchBar Text="{Binding Pattern}" SearchCommand="{Binding QueryIndexCommand}" BackgroundColor="#ffcf7f">
+            <StackLayout>
+                <Button Text="{Binding CategoryItems, Converter={StaticResource StringConverter}}" IsVisible="{Binding CategoryItems, Converter={StaticResource BooleanConverter}}" Clicked="ToggleCategoryView" TextColor="White" BorderColor="#2f2f2f" BackgroundColor="#2f2f2f"/>
+                <SearchBar Text="{Binding Pattern}" SearchCommand="{Binding QueryIndexCommand}" TextColor="White" BackgroundColor="#2f2f2f">
                     <SearchBar.Behaviors>
                         <lyread:IncrementalSearchBehavior />
                         <lyread:RegexBehavior />

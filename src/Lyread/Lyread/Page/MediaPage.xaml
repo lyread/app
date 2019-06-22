@@ -6,6 +6,10 @@
              x:Class="Lyread.MediaPage"
              Title="Media">
 
+    <ContentPage.Icon>
+        <OnPlatform x:TypeArguments="FileImageSource" Android="@drawable/ic_image_white_24dp" WinPhone="Icons\media.png"/>
+    </ContentPage.Icon>
+
     <ContentPage.Resources>
         <ResourceDictionary>
             <converter:BytesToImageSourceConverter x:Key="ImageConverter"/>

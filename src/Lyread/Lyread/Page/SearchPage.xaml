@@ -6,12 +6,16 @@
              x:Class="Lyread.SearchPage"
              Title="Search">
 
+    <ContentPage.Icon>
+        <OnPlatform x:TypeArguments="FileImageSource" Android="@drawable/ic_search_white_24dp" WinPhone="Icons\search.png"/>
+    </ContentPage.Icon>
+
     <ContentPage.BindingContext>
         <lyread:SearchViewModel x:Name="SearchViewModel" />
     </ContentPage.BindingContext>
 
     <StackLayout>
-        <SearchBar Text="{Binding Pattern}" SearchCommand="{Binding SearchCommand}" BackgroundColor="#ffcf7f">
+        <SearchBar Text="{Binding Pattern}" SearchCommand="{Binding SearchCommand}" TextColor="White" BackgroundColor="#2f2f2f">
             <SearchBar.Behaviors>
                 <lyread:IncrementalSearchBehavior />
                 <lyread:QueryBehavior />

@@ -3,16 +3,14 @@
             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
             xmlns:lyread="clr-namespace:Lyread"
             xmlns:android="clr-namespace:Xamarin.Forms.PlatformConfiguration.AndroidSpecific;assembly=Xamarin.Forms.Core"
-            x:Class="Lyread.BookPage"
-            Title="{Binding Book.Title}"
+            x:Class="Lyread.Page.MainPage"
+            Title="Lyread"
             BarBackgroundColor="#2F2F2F"
             BarTextColor="White"
             android:TabbedPage.ToolbarPlacement="Bottom"
             android:TabbedPage.BarItemColor="#66FFFFFF"
             android:TabbedPage.BarSelectedItemColor="White">
 
-    <TabbedPage.BindingContext>
-        <lyread:BookViewModel x:Name="BookViewModel"/>
-    </TabbedPage.BindingContext>
-
+    <lyread:LibraryPage Title="Library" />
+    <lyread:SettingsPage Title="Settings" />
 </TabbedPage>
