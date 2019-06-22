@@ -24,8 +24,8 @@
     <AbsoluteLayout Padding="0" HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand">
         <StackLayout AbsoluteLayout.LayoutBounds="0, 0, 1, 1" AbsoluteLayout.LayoutFlags="All">
             <StackLayout>
-                <Button Text="{Binding CategoryItems, Converter={StaticResource StringConverter}}" IsVisible="{Binding CategoryItems, Converter={StaticResource BooleanConverter}}" Clicked="ToggleCategoryView" TextColor="White" BorderColor="#2f2f2f" BackgroundColor="#2f2f2f"/>
-                <SearchBar Text="{Binding Pattern}" SearchCommand="{Binding QueryIndexCommand}" TextColor="White" BackgroundColor="#2f2f2f">
+                <Button Text="{Binding CategoryItems, Converter={StaticResource StringConverter}}" IsVisible="{Binding CategoryItems, Converter={StaticResource BooleanConverter}}" Clicked="ToggleCategoryView" BorderColor="LightGray" BackgroundColor="LightGray" FontSize="Medium"/>
+                <SearchBar Text="{Binding Pattern}" SearchCommand="{Binding QueryIndexCommand}" BackgroundColor="LightGray">
                     <SearchBar.Behaviors>
                         <lyread:IncrementalSearchBehavior />
                         <lyread:RegexBehavior />

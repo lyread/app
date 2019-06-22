@@ -15,7 +15,7 @@
     </ContentPage.BindingContext>
 
     <StackLayout>
-        <SearchBar Text="{Binding Pattern}" SearchCommand="{Binding SearchCommand}" TextColor="White" BackgroundColor="#2f2f2f">
+        <SearchBar Text="{Binding Pattern}" SearchCommand="{Binding SearchCommand}" BackgroundColor="LightGray">
             <SearchBar.Behaviors>
                 <lyread:IncrementalSearchBehavior />
                 <lyread:QueryBehavior />

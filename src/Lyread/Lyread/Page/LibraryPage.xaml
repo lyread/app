@@ -23,7 +23,7 @@
 
     <AbsoluteLayout Padding="0" HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand">
         <StackLayout AbsoluteLayout.LayoutBounds="0, 0, 1, 1" AbsoluteLayout.LayoutFlags="All">
-            <SearchBar Text="{Binding Pattern}" SearchCommand="{Binding SearchBooksCommand}" TextColor="White" BackgroundColor="#2f2f2f">
+            <SearchBar Text="{Binding Pattern}" SearchCommand="{Binding SearchBooksCommand}" BackgroundColor="LightGray">
                 <SearchBar.Behaviors>
                     <lyread:IncrementalSearchBehavior />
                     <lyread:RegexBehavior />
