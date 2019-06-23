@@ -2,7 +2,7 @@
 Android e-reader for volumes by Directmedia and Duden. Installation instructions [here](index.md) (german).
 
 ## Build
-![Build](https://build.appcenter.ms/v0.1/apps/18873b45-decc-440c-9c4a-69418d1c22ed/branches/master/badge)
+[![Build status](https://build.appcenter.ms/v0.1/apps/0d019815-0004-4034-9614-9c0c402a8060/branches/master/badge)](https://appcenter.ms)
 
 ## Trivia
 * Visual Studio 2017

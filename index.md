@@ -1,3 +1,6 @@
+## Herunterladen
+[App Center](https://install.appcenter.ms/users/lyread/apps/lyread/distribution_groups/public)
+
 ## Bände
 
 | Reihe               | Verlag                     | Links                                                                                   |

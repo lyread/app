@@ -12,3 +12,6 @@ inkscape logo.svg --export-png=assets\img\logo.png --export-area=-48:6:240:186 -
 inkscape logo.svg --export-png=$home\Desktop\github.png --export-area-drawing -w400 -h400
 
 inkscape logo.svg --export-pdf=$home\Desktop\uwp.pdf --export-area-drawing
+
+
+keytool -genkeypair -noprompt -keystore $home\Desktop\lyread.keystore -alias lyread -dname CN=lyread.github.io -storepass lyread -keypass lyread -keyalg RSA -keysize 2048 -startdate 00:00:00 -validity 10000
