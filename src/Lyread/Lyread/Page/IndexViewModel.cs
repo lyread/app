@@ -77,7 +77,7 @@ namespace Lyread
         {
             if (value is ObservableCollection<ICategoryItem> items)
             {
-                return items.Count > 1;
+                return items.Any();
             }
             return false;
         }

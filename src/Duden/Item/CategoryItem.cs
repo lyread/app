@@ -6,15 +6,15 @@ namespace Duden.Item
 {
     class CategoryItem : ICategoryItem
     {
-        public int BookId { get; set; }
+        public int RowId { get; set; }
         [MaxLength(40)]
         public string Desc { get; set; }
 
         [Ignore]
-        public int Id => BookId;
+        public int Id => RowId;
         [Ignore]
         public string Title => WebUtility.HtmlDecode(Desc);
         [Ignore]
-        public bool Selected { get; set; } = true;
+        public bool Selected { get; set; } = false;
     }
 }

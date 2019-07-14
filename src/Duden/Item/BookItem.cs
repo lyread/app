@@ -86,7 +86,15 @@ namespace Duden.Item
 
             if (categories.Any())
             {
-                query.WhereIn("TabBookDescription.BookId", categories.Select(item => item.Id.ToString()));
+                Query tabFieldValuesQuery = new Query(nameof(TabFieldValues))
+                    .Select(nameof(TabFieldValues.BookId))
+                    .SelectRaw(nameof(TabFieldValues.Field) + "||" + nameof(TabFieldValues.Val) + " AS " + nameof(TabMetaFachgebiete.FachgebietId))
+                    .WhereIn(nameof(CategoryItem.RowId), categories.Select(item => item.Id.ToString()));
+                Query tabMetaFachgebieteQuery = new Query(nameof(TabMetaFachgebiete))
+                    .Distinct()
+                    .Select(nameof(TabFieldValues.BookId), nameof(TabMetaFachgebiete.NumId))
+                    .Join(tabFieldValuesQuery.As("TabFieldValues"), j => j.On("TabMetaFachgebiete.FachgebietId", "TabFieldValues.FachgebietId"));
+                query.Join(tabMetaFachgebieteQuery.As("TabMetaFachgebiete"), j => j.On("TabBookDescription.BookId", "TabMetaFachgebiete.BookId").On("TabMap.NumId", "TabMetaFachgebiete.NumId"));
             }
             if (!string.IsNullOrWhiteSpace(pattern))
             {
@@ -104,9 +112,12 @@ namespace Duden.Item
 
         public Task<IEnumerable<ICategoryItem>> QueryCategories()
         {
-            Query query = new Query(nameof(TabBookDescription))
-                .Select(nameof(TabBookDescription.BookId), nameof(TabBookDescription.Desc))
-                .OrderBy(nameof(TabBookDescription.BookId));
+            Query tabFieldValuesQuery = new Query(nameof(TabFieldValues))
+                .Select(nameof(CategoryItem.RowId), nameof(TabFieldValues.Field), nameof(TabFieldValues.Desc));
+            Query query = new Query()
+                .Select(nameof(CategoryItem.RowId)).SelectRaw("TabFieldsTopLevel.Desc || ': ' || TabFieldValues.Desc AS Desc")
+                .From(tabFieldValuesQuery.As(nameof(TabFieldValues)))
+                .Join(nameof(TabFieldsTopLevel), "TabFieldValues.Field", "TabFieldsTopLevel.Field");
             return Task.FromResult(Query<CategoryItem>(query).AsEnumerable<ICategoryItem>());
         }
 
