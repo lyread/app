@@ -13,7 +13,7 @@ namespace Duden.Item
         [Ignore]
         public int Id => RowId;
         [Ignore]
-        public string Title => WebUtility.HtmlDecode(Desc);
+        public string Title => WebUtility.HtmlDecode(Desc).Replace(": single", string.Empty);
         [Ignore]
         public bool Selected { get; set; } = false;
     }

@@ -113,11 +113,10 @@ namespace Duden.Item
         public Task<IEnumerable<ICategoryItem>> QueryCategories()
         {
             Query tabFieldValuesQuery = new Query(nameof(TabFieldValues))
-                .Select(nameof(CategoryItem.RowId), nameof(TabFieldValues.Field), nameof(TabFieldValues.Desc));
-            Query query = new Query()
+                .Select(nameof(CategoryItem.RowId)).Select("*");
+            Query query = new Query(nameof(TabFieldsTopLevel))
                 .Select(nameof(CategoryItem.RowId)).SelectRaw("TabFieldsTopLevel.Desc || ': ' || TabFieldValues.Desc AS Desc")
-                .From(tabFieldValuesQuery.As(nameof(TabFieldValues)))
-                .Join(nameof(TabFieldsTopLevel), "TabFieldValues.Field", "TabFieldsTopLevel.Field");
+                .Join(tabFieldValuesQuery.As(nameof(TabFieldValues)), j => j.On("TabFieldsTopLevel.BookId", "TabFieldValues.BookId").On("TabFieldsTopLevel.Field", "TabFieldValues.Field"));
             return Task.FromResult(Query<CategoryItem>(query).AsEnumerable<ICategoryItem>());
         }
 
