@@ -2,6 +2,13 @@
 using Book.Item;
 using Book.Util;
 using Duden.Table;
+using Lucene.Net.Analysis;
+using Lucene.Net.Analysis.Standard;
+using Lucene.Net.Documents;
+using Lucene.Net.Index;
+using Lucene.Net.QueryParsers.Classic;
+using Lucene.Net.Store;
+using Lucene.Net.Util;
 using NLog;
 using SQLite;
 using SQLitePCL;
@@ -138,9 +145,25 @@ namespace Duden.Item
             return FindWithQuery<TabGUIBitmaps>(query)?.Image;
         }
 
-        public Task<IEnumerable<ISearchItem>> Search(string query, int page)
+        public Task<IEnumerable<ISearchItem>> Search(string pattern, int page)
         {
-            return Task.FromResult(Enumerable.Empty<ISearchItem>());
+            using (Analyzer analyzer = new StandardAnalyzer(LuceneVersion.LUCENE_48))
+            using (Lucene.Net.Store.Directory index = new SimpleFSDirectory(Path.ChangeExtension(_bookFile.FullName, string.Empty)))
+            using (IndexReader reader = DirectoryReader.Open(index))
+            {
+                Lucene.Net.Search.Query query = new QueryParser(LuceneVersion.LUCENE_48, nameof(TabHtmlText.Html), analyzer).Parse(pattern);
+                Lucene.Net.Search.TopScoreDocCollector collector = Lucene.Net.Search.TopScoreDocCollector.Create(1000, true);
+                Lucene.Net.Search.IndexSearcher searcher = new Lucene.Net.Search.IndexSearcher(reader);
+                searcher.Search(query, collector);
+                Lucene.Net.Search.TopDocs docs = collector.GetTopDocs(page * PageSize, PageSize);
+                IEnumerable<ISearchItem> items = docs.ScoreDocs.Select(doc => CreateSearchItem(searcher.Doc(doc.Doc)));
+                return Task.FromResult(items.ToList().AsEnumerable());
+            }
+        }
+
+        private SearchItem CreateSearchItem(Document doc)
+        {
+            return new SearchItem(int.Parse(doc.Get(nameof(TabHtmlText.NumId))), doc.Get(nameof(TabHtmlText.Lemma)));
         }
 
         public Task<bool> Html(int numId, DirectoryInfo folder, string highlight)
@@ -262,7 +285,7 @@ namespace Duden.Item
                 case ViewType.Index:
                     return true;
                 case ViewType.Search:
-                    return false;
+                    return true;
                 case ViewType.Images:
                     return true;
             }

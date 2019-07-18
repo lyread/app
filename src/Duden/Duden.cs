@@ -18,9 +18,14 @@ namespace Duden
 
         public IEnumerable<IJobItem> QueryJobs(DirectoryInfo folder)
         {
-            return Enumerable.Concat(folder.EnumerateFiles("*.dbb"), folder.EnumerateFiles("*.bdb"))
-                .Where(file => !File.Exists(Path.ChangeExtension(file.FullName, "sqlite3")))
-                .Select(file => new JobItem(file));
+            IEnumerable<IJobItem> decrypt = Enumerable.Concat(folder.EnumerateFiles("*.dbb"), folder.EnumerateFiles("*.bdb"))
+               .Where(file => !File.Exists(Path.ChangeExtension(file.FullName, "sqlite3")))
+               .Select(file => new JobItem(file));
+            IEnumerable<IJobItem> index = folder.EnumerateFiles("*.sqlite3")
+                .Where(file => File.Exists(Path.ChangeExtension(file.FullName, "dbb")))
+                .Where(file => !Directory.Exists(Path.ChangeExtension(file.FullName, string.Empty)))
+                .Select(file => new LuceneItem(file));
+            return Enumerable.Concat(decrypt, index);
         }
     }
 }
