@@ -1,7 +1,11 @@
 ﻿using Book.Item;
 using Duden.Table;
 using Lucene.Net.Analysis;
+using Lucene.Net.Analysis.CharFilters;
+using Lucene.Net.Analysis.Core;
+using Lucene.Net.Analysis.De;
 using Lucene.Net.Analysis.Standard;
+using Lucene.Net.Analysis.Util;
 using Lucene.Net.Documents;
 using Lucene.Net.Index;
 using Lucene.Net.Store;
@@ -11,6 +15,7 @@ using SqlKata;
 using SqlKata.Compilers;
 using System;
 using System.IO;
+using static Lucene.Net.Util.PagedBytes;
 
 namespace Duden.Item
 {
@@ -31,7 +36,7 @@ namespace Duden.Item
         [Obsolete]
         public bool Run()
         {
-            using (Analyzer analyzer = new StandardAnalyzer(LuceneVersion.LUCENE_48))
+            using (Analyzer analyzer = new HTMLStripCharAnalyzer())
             using (Lucene.Net.Store.Directory index = new SimpleFSDirectory(Path.ChangeExtension(_file.FullName, string.Empty)))
             using (IndexWriter writer = new IndexWriter(index, new IndexWriterConfig(LuceneVersion.LUCENE_48, analyzer)))
             using (SQLiteConnection connection = new SQLiteConnection(_file.FullName))
@@ -43,7 +48,7 @@ namespace Duden.Item
                     {
                         new Int32Field(nameof(TabHtmlText.NumId), row.NumId, Field.Store.YES),
                         new StringField(nameof(TabHtmlText.Lemma), row.Lemma, Field.Store.YES),
-                        new TextField(nameof(TabHtmlText.Html), row.UncompressedHtml, Field.Store.NO)
+                        new TextField(nameof(TabHtmlText.Html), row.UncompressedHtml, Field.Store.YES)
                     };
                     writer.AddDocument(doc);
 
@@ -61,6 +66,23 @@ namespace Duden.Item
         public void Report(double progress)
         {
             ProgressChanged.Invoke(this, new ProgressEventArgs(progress));
+        }
+    }
+
+    class HTMLStripCharAnalyzer : Analyzer
+    {
+        protected override TokenStreamComponents CreateComponents(string fieldName, TextReader reader)
+        {
+            StandardTokenizer tokenizer = new StandardTokenizer(LuceneVersion.LUCENE_48, reader);
+            TokenStream stream = new StandardFilter(LuceneVersion.LUCENE_48, tokenizer);
+            stream = new LowerCaseFilter(LuceneVersion.LUCENE_48, stream);
+            stream = new StopFilter(LuceneVersion.LUCENE_48, stream, StopAnalyzer.ENGLISH_STOP_WORDS_SET);
+            return new TokenStreamComponents(tokenizer, stream);
+        }
+
+        protected override TextReader InitReader(string fieldName, TextReader reader)
+        {
+            return base.InitReader(fieldName, new HTMLStripCharFilter(reader));
         }
     }
 }

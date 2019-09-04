@@ -1,12 +1,9 @@
-﻿using System;
-
+﻿using Android;
 using Android.App;
 using Android.Content.PM;
-using Android.Runtime;
-using Android.Views;
-using Android.Widget;
 using Android.OS;
-using Android;
+using Android.Runtime;
+using LabelHtml.Forms.Plugin.Droid;
 using System.Linq;
 
 namespace Lyread.Droid
@@ -22,6 +19,7 @@ namespace Lyread.Droid
 
             base.OnCreate(savedInstanceState);
 
+            HtmlLabelRenderer.Initialize();
             Xamarin.Essentials.Platform.Init(this, savedInstanceState);
             global::Xamarin.Forms.Forms.Init(this, savedInstanceState);
 

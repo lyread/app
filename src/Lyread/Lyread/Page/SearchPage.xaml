@@ -3,6 +3,7 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              xmlns:lyread="clr-namespace:Lyread;assembly=Lyread"
              xmlns:scroll="clr-namespace:Xamarin.Forms.Extended;assembly=Xamarin.Forms.Extended.InfiniteScrolling"
+             xmlns:htmlLabel="clr-namespace:LabelHtml.Forms.Plugin.Abstractions;assembly=HtmlLabel.Forms.Plugin"
              x:Class="Lyread.SearchPage"
              Title="Search">
 
@@ -24,17 +25,8 @@
         <ListView x:Name="SearchView" ItemsSource="{Binding SearchItems}" CachingStrategy="RecycleElement">
             <ListView.ItemTemplate>
                 <DataTemplate>
-                    <!--<TextCell Text="{Binding Title}" Command="{Binding OpenDocumentCommand, Source={x:Reference SearchViewModel}}" CommandParameter="{Binding}" />-->
                     <ViewCell>
-                        <!--<Label>
-                            <Label.FormattedText>
-                                <FormattedString>
-                                    <Span Text="Test1" ForegroundColor="Yellow" FontAttributes="Bold"/>
-                                    <Span Text="Test2"/>
-                                </FormattedString>
-                            </Label.FormattedText>
-                        </Label>-->
-                        <Label Text="{Binding Title}"/>
+                        <htmlLabel:HtmlLabel Text="{Binding Title}" htmlLabel:HtmlLabel.MaxLines="2"/>
                     </ViewCell>
                 </DataTemplate>
             </ListView.ItemTemplate>

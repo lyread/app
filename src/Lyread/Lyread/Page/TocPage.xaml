@@ -9,13 +9,6 @@
         <OnPlatform x:TypeArguments="FileImageSource" Android="@drawable/ic_toc_white_24dp" WinPhone="Icons\toc.png"/>
     </ContentPage.Icon>
 
-    <ContentPage.Resources>
-        <ResourceDictionary>
-            <lyread:TextConverter x:Key="TextConverter"/>
-            <lyread:WidthConverter x:Key="WidthConverter"/>
-        </ResourceDictionary>
-    </ContentPage.Resources>
-
     <ContentPage.BindingContext>
         <lyread:TocViewModel x:Name="TocViewModel"/>
     </ContentPage.BindingContext>
@@ -23,15 +16,11 @@
     <ListView x:Name="TocView" ItemsSource="{Binding TocItems}" CachingStrategy="RecycleElement">
         <ListView.ItemTemplate>
             <DataTemplate>
-                <ViewCell>
-                    <StackLayout Orientation="Horizontal">
-                        <Label VerticalOptions="Center" Text="{Binding ., Converter={StaticResource TextConverter}}" HorizontalTextAlignment="End" WidthRequest="{Binding Level, Converter={StaticResource WidthConverter}}" />
-                        <Label VerticalOptions="Center" Text="{Binding Title}" LineBreakMode="TailTruncation" />
-                    </StackLayout>
-                    <ViewCell.ContextActions>
+                <TextCell Text="{Binding Title}" Command="{Binding OpenDocumentCommand, Source={x:Reference TocViewModel}}" CommandParameter="{Binding}" >
+                    <TextCell.ContextActions>
                         <MenuItem Text="Open" Command="{Binding OpenDocumentCommand, Source={x:Reference TocViewModel}}" CommandParameter="{Binding}"/>
-                    </ViewCell.ContextActions>
-                </ViewCell>
+                    </TextCell.ContextActions>
+                </TextCell>
             </DataTemplate>
         </ListView.ItemTemplate>
         <ListView.Behaviors>

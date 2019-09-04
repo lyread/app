@@ -5,7 +5,7 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <PackageReference Include="NLog" Version="4.6.5" />
+    <PackageReference Include="NLog" Version="4.6.6" />
     <PackageReference Include="SharpZipLib" Version="1.1.0" />
   </ItemGroup>
 

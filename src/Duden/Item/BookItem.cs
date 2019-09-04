@@ -3,10 +3,13 @@ using Book.Item;
 using Book.Util;
 using Duden.Table;
 using Lucene.Net.Analysis;
+using Lucene.Net.Analysis.CharFilters;
 using Lucene.Net.Analysis.Standard;
+using Lucene.Net.Analysis.TokenAttributes;
 using Lucene.Net.Documents;
 using Lucene.Net.Index;
 using Lucene.Net.QueryParsers.Classic;
+using Lucene.Net.Search.Highlight;
 using Lucene.Net.Store;
 using Lucene.Net.Util;
 using NLog;
@@ -152,21 +155,58 @@ namespace Duden.Item
             using (IndexReader reader = DirectoryReader.Open(index))
             {
                 Lucene.Net.Search.Query query = new QueryParser(LuceneVersion.LUCENE_48, nameof(TabHtmlText.Html), analyzer).Parse(pattern);
-                Lucene.Net.Search.TopScoreDocCollector collector = Lucene.Net.Search.TopScoreDocCollector.Create(1000, true);
+                Lucene.Net.Search.TopScoreDocCollector collector = Lucene.Net.Search.TopScoreDocCollector.Create(512, true);
                 Lucene.Net.Search.IndexSearcher searcher = new Lucene.Net.Search.IndexSearcher(reader);
                 searcher.Search(query, collector);
                 Lucene.Net.Search.TopDocs docs = collector.GetTopDocs(page * PageSize, PageSize);
-                IEnumerable<ISearchItem> items = docs.ScoreDocs.Select(doc => CreateSearchItem(searcher.Doc(doc.Doc)));
+
+                QueryScorer scorer = new QueryScorer(query);
+                Highlighter highlighter = new Highlighter(new SimpleHTMLFormatter(), scorer) // SpanGradientFormatter
+                {
+                    TextFragmenter = new SimpleSpanFragmenter(scorer, 30)
+                };
+
+                IEnumerable<ISearchItem> items = docs.ScoreDocs.Select(scoreDoc =>
+                {
+                    Document doc = searcher.Doc(scoreDoc.Doc);
+                    string html = doc.Get(nameof(TabHtmlText.Html));
+                    TokenStream stream = TokenSources.GetAnyTokenStream(reader, scoreDoc.Doc, nameof(TabHtmlText.Html), analyzer);
+                    string[] fragments = highlighter.GetBestFragments(stream, html, 10);
+                    //String[] fragments = highlighter.GetBestFragments(new HTMLStripCharAnalyzer(), nameof(TabHtmlText.Html), html, 10);
+
+                    //string s = "";
+                    //ICharTermAttribute cattr = stream.AddAttribute<ICharTermAttribute>();
+                    //stream.Reset();
+                    //while (stream.IncrementToken())
+                    //{
+                    //    s += cattr.ToString() + " ";
+                    //}
+                    //stream.End();
+                    //stream.Dispose();
+
+                    return new SearchItem(int.Parse(doc.Get(nameof(TabHtmlText.NumId))), string.Join(";", fragments));
+                });
+
                 return Task.FromResult(items.ToList().AsEnumerable());
             }
         }
 
-        private SearchItem CreateSearchItem(Document doc)
+        private string HtmlToPlain(string html)
         {
-            return new SearchItem(int.Parse(doc.Get(nameof(TabHtmlText.NumId))), doc.Get(nameof(TabHtmlText.Lemma)));
+            using (TextReader reader = new HTMLStripCharFilter(new StringReader(html)))
+            {
+                StringBuilder sb = new StringBuilder();
+                char[] chars = new char[1024];
+                int length;
+                while ((length = reader.Read(chars, 0, chars.Length)) > 0)
+                {
+                    sb.Append(chars, 0, length);
+                }
+                return sb.ToString();
+            }
         }
 
-        public Task<bool> Html(int numId, DirectoryInfo folder, string highlight)
+        public Task<bool> Html(int numId, DirectoryInfo folder, string pattern)
         {
             Query query = new Query(nameof(TabHtmlText))
                 .Select(nameof(TabHtmlText.Html))
@@ -177,9 +217,37 @@ namespace Duden.Item
             using (StreamWriter writer = new StreamWriter(Path.Combine(folder.FullName, Path.ChangeExtension(numId.ToString(), LinkType.html.ToString())), false, Encoding.UTF8))
             {
                 writer.WriteLine("<?xml version=\"1.0\" encoding=\"UTF-8\"?>");
-                writer.Write(ReplaceLinks(html, numId));
+                writer.Write(ReplaceLinks(Highlight(numId, pattern, html), numId));
             }
             return Task.FromResult(true);
+        }
+
+        private string Highlight(int numId, string pattern, string html)
+        {
+            if (!string.IsNullOrWhiteSpace(pattern))
+            {
+                using (Analyzer analyzer = new StandardAnalyzer(LuceneVersion.LUCENE_48))
+                using (Lucene.Net.Store.Directory index = new SimpleFSDirectory(Path.ChangeExtension(_bookFile.FullName, string.Empty)))
+                using (IndexReader reader = DirectoryReader.Open(index))
+                {
+                    Lucene.Net.Search.IndexSearcher searcher = new Lucene.Net.Search.IndexSearcher(reader);
+                    Lucene.Net.Search.TopDocs docs = searcher.Search(Lucene.Net.Search.NumericRangeQuery.NewInt32Range(nameof(TabHtmlText.NumId), numId, numId, true, true), 1);
+
+                    int docId = docs.ScoreDocs.First().Doc;
+
+                    QueryScorer scorer = new QueryScorer(new QueryParser(LuceneVersion.LUCENE_48, nameof(TabHtmlText.Html), analyzer).Parse(pattern));
+                    Highlighter highlighter = new Highlighter(new SimpleHTMLFormatter("<span style=\"background-color: yellow\">", "</span>"), scorer)
+                    {
+                        TextFragmenter = new NullFragmenter()
+                    };
+
+                    using (TokenStream stream = TokenSources.GetAnyTokenStream(reader, docId, nameof(TabHtmlText.Html), analyzer))
+                    {
+                        return highlighter.GetBestFragment(stream, html);
+                    }
+                }
+            }
+            return html;
         }
 
         private string ReplaceLinks(string html, int numId)
