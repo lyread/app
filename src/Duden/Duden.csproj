@@ -9,8 +9,8 @@
     <PackageReference Include="Lucene.Net.Analysis.Common" Version="4.8.0-beta00005" />
     <PackageReference Include="Lucene.Net.Highlighter" Version="4.8.0-beta00005" />
     <PackageReference Include="Lucene.Net.QueryParser" Version="4.8.0-beta00005" />
-    <PackageReference Include="NLog" Version="4.6.6" />
-    <PackageReference Include="SharpZipLib" Version="1.1.0" />
+    <PackageReference Include="NLog" Version="4.6.7" />
+    <PackageReference Include="SharpZipLib" Version="1.2.0" />
     <PackageReference Include="sqlite-net-pcl" Version="1.5.231" />
     <PackageReference Include="SqlKata" Version="1.1.7" />
   </ItemGroup>
