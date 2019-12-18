@@ -21,7 +21,7 @@ namespace Lyread
         {
             if (!(CategoryView.IsVisible ^= true))
             {
-                IndexViewModel.OnPropertyChanged(nameof(IndexViewModel.CategoryItems));
+                //IndexViewModel.OnPropertyChanged(nameof(IndexViewModel.CategoryItems));
                 IndexViewModel.QueryIndexCommand.Execute(null);
             }
         }

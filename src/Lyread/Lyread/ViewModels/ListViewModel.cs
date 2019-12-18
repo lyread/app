@@ -3,7 +3,7 @@ using System.Threading.Tasks;
 using System.Windows.Input;
 using Xamarin.Forms;
 
-namespace Lyread.ViewModel
+namespace Lyread.ViewModels
 {
     public class ListViewModel : BaseViewModel
     {

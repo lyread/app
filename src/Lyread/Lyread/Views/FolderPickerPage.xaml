@@ -3,17 +3,18 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              xmlns:lyread="clr-namespace:Lyread;assembly=Lyread"
              x:Class="Lyread.FolderPickerPage"
+             xmlns:vm="clr-namespace:Lyread.ViewModels"
              Title="{Binding Parent.FullName}">
 
     <ContentPage.Resources>
         <ResourceDictionary>
-            <lyread:FileSystemInfoToNameConverter x:Key="NameConverter"/>
-            <lyread:FileSystemInfoToImageConverter x:Key="ImageConverter"/>
+            <vm:FileSystemInfoToNameConverter x:Key="NameConverter"/>
+            <vm:FileSystemInfoToImageConverter x:Key="ImageConverter"/>
         </ResourceDictionary>
     </ContentPage.Resources>
 
     <ContentPage.BindingContext>
-        <lyread:FolderPickerViewModel x:Name="FolderPickerViewModel"/>
+        <vm:FolderPickerViewModel x:Name="FolderPickerViewModel"/>
     </ContentPage.BindingContext>
 
     <RefreshView Command="{Binding RefreshFolderCommand}" IsRefreshing="{Binding IsRefreshing}">

@@ -5,7 +5,7 @@ using System.Threading.Tasks;
 using System.Windows.Input;
 using Xamarin.Forms;
 
-namespace Lyread
+namespace Lyread.ViewModels
 {
     public class TocViewModel : BookViewModel
     {

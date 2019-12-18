@@ -1,7 +1,7 @@
 ﻿using Book;
 using Book.Item;
 using Lyread.Annotations;
-using Lyread.ViewModel;
+using Lyread.ViewModels;
 using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
@@ -20,7 +20,7 @@ using Xamarin.Essentials;
 using Xamarin.Forms;
 using static Book.Util.BookConstant;
 
-namespace Lyread
+namespace Lyread.ViewModels
 {
     public class LibraryViewModel : ListViewModel
     {

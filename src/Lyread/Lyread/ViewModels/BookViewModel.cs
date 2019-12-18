@@ -1,6 +1,6 @@
 ﻿using Book.Item;
 
-namespace Lyread
+namespace Lyread.ViewModels
 {
     public class BookViewModel : BaseViewModel
     {

@@ -7,7 +7,7 @@ using Xamarin.Essentials;
 using Xamarin.Forms;
 using static Book.LinkType;
 
-namespace Lyread
+namespace Lyread.ViewModels
 {
     public class DocumentViewModel : BookViewModel
     {

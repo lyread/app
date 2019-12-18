@@ -2,7 +2,8 @@
 <ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              xmlns:lyread="clr-namespace:Lyread;assembly=Lyread"
-             x:Class="Lyread.SettingsPage">
+             x:Class="Lyread.SettingsPage"
+             xmlns:vm="clr-namespace:Lyread.ViewModels">
 
     <ContentPage.Icon>
         <OnPlatform x:TypeArguments="FileImageSource" Android="@drawable/ic_settings_white_24dp" WinPhone="Icons\settings.png"/>
@@ -10,13 +11,13 @@
   
     <ContentPage.Resources>
         <ResourceDictionary>
-            <lyread:PublisherToNameConverter x:Key="NameConverter"/>
-            <lyread:PublisherToPathConverter x:Key="PathConverter"/>
+            <vm:PublisherToNameConverter x:Key="NameConverter"/>
+            <vm:PublisherToPathConverter x:Key="PathConverter"/>
         </ResourceDictionary>
     </ContentPage.Resources>
 
     <ContentPage.BindingContext>
-        <lyread:SettingsViewModel x:Name="SettingsViewModel"/>
+        <vm:SettingsViewModel x:Name="SettingsViewModel"/>
     </ContentPage.BindingContext>
 
     <TableView Intent="Settings">

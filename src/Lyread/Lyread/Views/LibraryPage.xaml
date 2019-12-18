@@ -3,7 +3,8 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              xmlns:converter="clr-namespace:Lyread.Converter;assembly=Lyread"
              xmlns:lyread="clr-namespace:Lyread;assembly=Lyread"
-             x:Class="Lyread.LibraryPage">
+             x:Class="Lyread.LibraryPage"
+             xmlns:vm="clr-namespace:Lyread.ViewModels">
 
     <ContentPage.Icon>
         <OnPlatform x:TypeArguments="FileImageSource" Android="@drawable/ic_account_balance_white_24dp" WinPhone="Icons\library.png"/>
@@ -12,12 +13,12 @@
     <ContentPage.Resources>
         <ResourceDictionary>
             <converter:BytesToImageSourceConverter x:Key="ImageConverter"/>
-            <lyread:JobItemsToBooleanConverter x:Key="JobItemsConverter"/>
+            <vm:JobItemsToBooleanConverter x:Key="JobItemsConverter"/>
         </ResourceDictionary>
     </ContentPage.Resources>
 
     <ContentPage.BindingContext>
-        <lyread:LibraryViewModel x:Name="LibraryViewModel"/>
+        <vm:LibraryViewModel x:Name="LibraryViewModel"/>
     </ContentPage.BindingContext>
 
     <AbsoluteLayout Padding="0" HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand">

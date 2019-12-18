@@ -4,7 +4,7 @@ using System.Windows.Input;
 using Xamarin.Forms;
 using static Book.Util.BookConstant;
 
-namespace Lyread
+namespace Lyread.ViewModels
 {
     public class SearchViewModel : BookViewModel
     {

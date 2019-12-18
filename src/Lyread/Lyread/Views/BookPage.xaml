@@ -4,6 +4,7 @@
             xmlns:lyread="clr-namespace:Lyread"
             xmlns:android="clr-namespace:Xamarin.Forms.PlatformConfiguration.AndroidSpecific;assembly=Xamarin.Forms.Core"
             x:Class="Lyread.BookPage"
+            xmlns:vm="clr-namespace:Lyread.ViewModels"
             Title="{Binding Book.Title}"
             BarBackgroundColor="#2F2F2F"
             BarTextColor="White"
@@ -12,7 +13,7 @@
             android:TabbedPage.BarSelectedItemColor="White">
 
     <TabbedPage.BindingContext>
-        <lyread:BookViewModel x:Name="BookViewModel"/>
+        <vm:BookViewModel x:Name="BookViewModel"/>
     </TabbedPage.BindingContext>
 
 </TabbedPage>

@@ -19,7 +19,6 @@ namespace Lyread
         {
             InitializeComponent();
 
-            //MainPage = new NavigationPage(new MainPage());
             DependencyService.Register<MockDataStore>();
             MainPage = new AppShell();
         }

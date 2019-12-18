@@ -4,6 +4,7 @@
              xmlns:converter="clr-namespace:Lyread.Converter;assembly=Lyread"
              xmlns:lyread="clr-namespace:Lyread;assembly=Lyread"
              x:Class="Lyread.MediaPage"
+             xmlns:vm="clr-namespace:Lyread.ViewModels"
              Title="Media">
 
     <ContentPage.Icon>
@@ -18,7 +19,7 @@
     </ContentPage.Resources>
 
     <ContentPage.BindingContext>
-        <lyread:MediaViewModel x:Name="MediaViewModel"/>
+        <vm:MediaViewModel x:Name="MediaViewModel"/>
     </ContentPage.BindingContext>
 
     <CollectionView x:Name="MediaView"

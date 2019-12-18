@@ -1,6 +1,6 @@
 ﻿using Book;
 using Book.Util;
-using Lyread.ViewModel;
+using Lyread.ViewModels;
 using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
@@ -11,7 +11,7 @@ using System.Windows.Input;
 using Xamarin.Essentials;
 using Xamarin.Forms;
 
-namespace Lyread
+namespace Lyread.ViewModels
 {
     public class FolderPickerViewModel : ListViewModel
     {

@@ -3,6 +3,7 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              xmlns:lyread="clr-namespace:Lyread"
              x:Class="Lyread.IndexPage"
+             xmlns:vm="clr-namespace:Lyread.ViewModels"
              Title="Index">
 
     <ContentPage.Icon>
@@ -11,13 +12,13 @@
 
     <ContentPage.Resources>
         <ResourceDictionary>
-            <lyread:CategoryItemsToStringConverter x:Key="StringConverter"/>
-            <lyread:CategoryItemsToBooleanConverter x:Key="BooleanConverter"/>
+            <vm:CategoryItemsToStringConverter x:Key="StringConverter"/>
+            <vm:CategoryItemsToBooleanConverter x:Key="BooleanConverter"/>
         </ResourceDictionary>
     </ContentPage.Resources>
 
     <ContentPage.BindingContext>
-        <lyread:IndexViewModel x:Name="IndexViewModel" />
+        <vm:IndexViewModel x:Name="IndexViewModel" />
     </ContentPage.BindingContext>
 
     <AbsoluteLayout Padding="0" HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand">
