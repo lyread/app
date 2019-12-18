@@ -1,7 +1,7 @@
 ﻿using Book.Item;
+using System.Collections.ObjectModel;
 using System.Windows.Input;
 using Xamarin.Forms;
-using Xamarin.Forms.Extended;
 using static Book.Util.BookConstant;
 
 namespace Lyread
@@ -10,7 +10,7 @@ namespace Lyread
     {
         public string Pattern { get; set; }
 
-        public InfiniteScrollCollection<ISearchItem> SearchItems { get; set; }
+        public ObservableCollection<ISearchItem> SearchItems { get; set; }
 
         public ICommand SearchCommand => new Command(async () =>
         {
@@ -19,20 +19,20 @@ namespace Lyread
                 return;
             }
             SearchItems.Clear();
-            await SearchItems.LoadMoreAsync();
+            //await SearchItems.LoadMoreAsync();
         });
         public ICommand OpenDocumentCommand => new Command<ISearchItem>(async item => await Application.Current.MainPage.Navigation.PushAsync(new DocumentPage(Book, item.Id, Pattern)));
 
         public SearchViewModel()
         {
-            SearchItems = new InfiniteScrollCollection<ISearchItem>
-            {
-                OnLoadMore = async () =>
-                {
-                    int page = (SearchItems.Count + PageSize - 1) / PageSize;
-                    return await Book.Search(Pattern, page);
-                }
-            };
+            SearchItems = new ObservableCollection<ISearchItem>();
+            //{
+            //    OnLoadMore = async () =>
+            //    {
+            //        int page = (SearchItems.Count + PageSize - 1) / PageSize;
+            //        return await Book.Search(Pattern, page);
+            //    }
+            //};
         }
     }
 }

@@ -6,6 +6,6 @@
              mc:Ignorable="d"
              x:Class="Lyread.App">
     <Application.Resources>
-
+        
     </Application.Resources>
 </Application>

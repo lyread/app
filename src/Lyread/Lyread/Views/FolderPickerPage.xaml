@@ -16,10 +16,14 @@
         <lyread:FolderPickerViewModel x:Name="FolderPickerViewModel"/>
     </ContentPage.BindingContext>
 
-    <ListView x:Name="FolderPickerView" ItemsSource="{Binding FileSystemInfos}" IsPullToRefreshEnabled="True" RefreshCommand="{Binding RefreshFolderCommand}" IsRefreshing="{Binding IsRefreshing}" CachingStrategy="RecycleElement">
-        <ListView.ItemTemplate>
-            <DataTemplate>
-                <ViewCell>
+    <RefreshView Command="{Binding RefreshFolderCommand}" IsRefreshing="{Binding IsRefreshing}">
+        <CollectionView x:Name="FolderPickerView"
+                        ItemsSource="{Binding FileSystemInfos}"
+                        SelectionMode="Single"
+                        SelectionChangedCommand="{Binding OpenFolderCommand}"
+                        SelectionChangedCommandParameter="{Binding SelectedItem, Source={x:Reference FolderPickerView}}">
+            <CollectionView.ItemTemplate>
+                <DataTemplate>
                     <Grid VerticalOptions="Center">
                         <Grid.RowDefinitions>
                             <RowDefinition Height="Auto"/>
@@ -31,12 +35,9 @@
                         <Image Grid.Row="0" Grid.Column="0" Source="{Binding Converter={StaticResource ImageConverter}}"/>
                         <Label Grid.Row="0" Grid.Column="1" VerticalOptions="Center" LineBreakMode="TailTruncation" Text="{Binding Converter={StaticResource NameConverter}, ConverterParameter={x:Reference FolderPickerViewModel}}"/>
                     </Grid>
-                </ViewCell>
-            </DataTemplate>
-        </ListView.ItemTemplate>
-        <ListView.Behaviors>
-            <lyread:ItemTappedBehavior Command="{Binding OpenFolderCommand}"/>
-        </ListView.Behaviors>
-    </ListView>
+                </DataTemplate>
+            </CollectionView.ItemTemplate>
+        </CollectionView>
+    </RefreshView>
 
 </ContentPage>

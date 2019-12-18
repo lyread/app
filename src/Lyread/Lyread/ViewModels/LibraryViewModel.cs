@@ -6,6 +6,7 @@ using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.ComponentModel;
+using System.Diagnostics;
 using System.Globalization;
 using System.IO;
 using System.Linq;
@@ -17,7 +18,6 @@ using System.Threading.Tasks;
 using System.Windows.Input;
 using Xamarin.Essentials;
 using Xamarin.Forms;
-using Xamarin.Forms.Extended;
 using static Book.Util.BookConstant;
 
 namespace Lyread
@@ -28,7 +28,8 @@ namespace Lyread
             .Where(p => Preferences.Get(p.GetType().Name, null) != null)
             .Where(p => new DirectoryInfo(Preferences.Get(p.GetType().Name, null)).Exists);
 
-        public InfiniteScrollCollection<IBookItem> Books { get; }
+        public ObservableCollection<IBookItem> Books { get; }
+
         public RangedObservableCollection<IJobItem> Jobs { get; } = new RangedObservableCollection<IJobItem>();
 
         public string Pattern { get; set; }
@@ -37,7 +38,7 @@ namespace Lyread
         public int CoverHeight => Preferences.Get(nameof(SettingsViewModel.CoverSize), 3) * 31;
 
         public ICommand SearchBooksCommand => new Command(Init);
-        public ICommand RefreshBooksCommand => CreateRefreshCommand(Init);
+        public ICommand RefreshBooksCommand { get; set; } // => CreateRefreshCommand(Init);
         public ICommand OpenBookCommand => new Command<IBookItem>(async book =>
         {
             try
@@ -50,21 +51,56 @@ namespace Lyread
             }
         });
 
+        public Command LoadItemsCommand { get; set; }
+        public ICommand RemainingItemsThresholdReachedCommand => new Command(async () =>
+        {
+            if (IsRefreshing)
+                return;
+
+            IsRefreshing = true;
+
+            try
+            {
+                var items = LoadBooks();
+                foreach (var item in items)
+                {
+                    Books.Add(item);
+                }
+                if (items.Count() == 0)
+                {
+                    return;
+                }
+            }
+            catch (Exception ex)
+            {
+                Debug.WriteLine(ex);
+            }
+            finally
+            {
+                IsRefreshing = false;
+            }
+        });
+
         public LibraryViewModel()
         {
-            Books = new InfiniteScrollCollection<IBookItem>
+            Books = new ObservableCollection<IBookItem>();
+            LoadItemsCommand = new Command(async () => await ExecuteLoadItemsCommand());
+            RefreshBooksCommand = new Command(async () =>
             {
-                OnLoadMore = () =>
-                {
-                    bool patternIsNullOrEmpty = string.IsNullOrEmpty(Pattern);
-                    int page = (Books.Count + PageSize - 1) / PageSize;
-                    return Task.FromResult(Publishers
-                        .SelectMany(p => p.QueryBooks(new DirectoryInfo(Preferences.Get(p.GetType().Name, null))))
-                        .Where(b => patternIsNullOrEmpty || Regex.IsMatch(b.Title, Pattern, RegexOptions.IgnoreCase))
-                        .Skip(page * PageSize)
-                        .Take(PageSize));
-                }
-            };
+                await ExecuteLoadItemsCommand();
+                IsRefreshing = false;
+            });
+        }
+
+        private IEnumerable<IBookItem> LoadBooks()
+        {
+            bool patternIsNullOrEmpty = string.IsNullOrEmpty(Pattern);
+            int page = (Books.Count + PageSize - 1) / PageSize;
+            return Publishers
+                .SelectMany(p => p.QueryBooks(new DirectoryInfo(Preferences.Get(p.GetType().Name, null))))
+                .Where(b => patternIsNullOrEmpty || Regex.IsMatch(b.Title, Pattern, RegexOptions.IgnoreCase))
+                .Skip(page * PageSize)
+                .Take(PageSize);
         }
 
         public void Init()
@@ -86,7 +122,7 @@ namespace Lyread
                     Jobs.Clear();
                     OnPropertyChanged(nameof(Jobs));
                     Books.Clear();
-                    await Books.LoadMoreAsync();
+                    LoadItemsCommand.Execute(null);
                 });
             });
 
@@ -97,6 +133,32 @@ namespace Lyread
         public void Clear()
         {
             Books.Clear();
+        }
+
+        async Task ExecuteLoadItemsCommand()
+        {
+            if (IsRefreshing)
+                return;
+
+            IsRefreshing = true;
+
+            try
+            {
+                Books.Clear();
+                var items = LoadBooks();
+                foreach (var item in items)
+                {
+                    Books.Add(item);
+                }
+            }
+            catch (Exception ex)
+            {
+                Debug.WriteLine(ex);
+            }
+            finally
+            {
+                IsRefreshing = false;
+            }
         }
     }
 

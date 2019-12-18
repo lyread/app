@@ -1,10 +1,18 @@
-﻿using LabelHtml.Forms.Plugin.UWP;
-using System;
-using System.Reflection;
+﻿using System;
+using System.Collections.Generic;
+using System.IO;
+using System.Linq;
+using System.Runtime.InteropServices.WindowsRuntime;
 using Windows.ApplicationModel;
 using Windows.ApplicationModel.Activation;
+using Windows.Foundation;
+using Windows.Foundation.Collections;
 using Windows.UI.Xaml;
 using Windows.UI.Xaml.Controls;
+using Windows.UI.Xaml.Controls.Primitives;
+using Windows.UI.Xaml.Data;
+using Windows.UI.Xaml.Input;
+using Windows.UI.Xaml.Media;
 using Windows.UI.Xaml.Navigation;
 
 namespace Lyread.UWP
@@ -44,9 +52,8 @@ namespace Lyread.UWP
 
                 rootFrame.NavigationFailed += OnNavigationFailed;
 
-                var rendererAssemblies = new[] { typeof(HtmlLabelRenderer).GetTypeInfo().Assembly };
-                Xamarin.Forms.Forms.Init(e, rendererAssemblies);
-                HtmlLabelRenderer.Initialize();
+                Xamarin.Forms.Forms.SetFlags("Shell_UWP_Experimental");
+                Xamarin.Forms.Forms.Init(e);
 
                 if (e.PreviousExecutionState == ApplicationExecutionState.Terminated)
                 {

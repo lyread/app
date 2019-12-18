@@ -21,21 +21,23 @@
         <lyread:MediaViewModel x:Name="MediaViewModel"/>
     </ContentPage.BindingContext>
 
-    <ListView x:Name="MediaView" HasUnevenRows="True" ItemsSource="{Binding MediaItems}" CachingStrategy="RecycleElement">
-        <ListView.ItemTemplate>
+    <CollectionView x:Name="MediaView"
+                    ItemsSource="{Binding MediaItems}"
+                    SelectionMode="Single"
+                    SelectionChangedCommand="{Binding OpenMediaItemCommand}"
+                    SelectionChangedCommandParameter="{Binding SelectedItem, Source={x:Reference MediaView}}">
+        <CollectionView.ItemTemplate>
             <DataTemplate>
-                <ViewCell>
-                    <StackLayout HorizontalOptions="CenterAndExpand">
-                        <Image Source="{Binding Thumbnail, Converter={StaticResource ImageConverter}}"/>
-                        <Label Text="{Binding Title}" IsVisible="{Binding Title, Converter={StaticResource StringConverter}}"/>
-                        <Label Text="{Binding Description}" IsVisible="{Binding Description, Converter={StaticResource StringConverter}}" TextColor="Gray"/>
-                    </StackLayout>
-                </ViewCell>
+                <StackLayout HorizontalOptions="CenterAndExpand">
+                    <Image Source="{Binding Thumbnail, Converter={StaticResource ImageConverter}}"/>
+                    <Label Text="{Binding Title}"
+                           IsVisible="{Binding Title, Converter={StaticResource StringConverter}}"/>
+                    <Label Text="{Binding Description}"
+                           IsVisible="{Binding Description, Converter={StaticResource StringConverter}}"
+                           TextColor="Gray"/>
+                </StackLayout>
             </DataTemplate>
-        </ListView.ItemTemplate>
-        <ListView.Behaviors>
-            <lyread:ItemTappedBehavior Command="{Binding OpenMediaItemCommand}"/>
-        </ListView.Behaviors>
-    </ListView>
+        </CollectionView.ItemTemplate>
+    </CollectionView>
 
 </ContentPage>

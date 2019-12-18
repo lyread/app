@@ -1,11 +1,13 @@
 ﻿using Book.Item;
 using System;
+using System.Collections.Generic;
 using System.Collections.ObjectModel;
+using System.Diagnostics;
 using System.Globalization;
 using System.Linq;
+using System.Threading.Tasks;
 using System.Windows.Input;
 using Xamarin.Forms;
-using Xamarin.Forms.Extended;
 using static Book.Util.BookConstant;
 
 namespace Lyread
@@ -13,7 +15,7 @@ namespace Lyread
     public class IndexViewModel : BookViewModel
     {
         public RangedObservableCollection<ICategoryItem> CategoryItems { get; set; } = new RangedObservableCollection<ICategoryItem>();
-        public InfiniteScrollCollection<IIndexItem> IndexItems { get; }
+        public ObservableCollection<IIndexItem> IndexItems { get; }
 
         public ICommand QueryIndexCommand => new Command(async () =>
         {
@@ -27,22 +29,57 @@ namespace Lyread
                 return;
             }
             IndexItems.Clear();
-            await IndexItems.LoadMoreAsync();
+            LoadItemsCommand.Execute(null);
         });
         public ICommand OpenDocumentCommand => new Command<IIndexItem>(async item => await Application.Current.MainPage.Navigation.PushAsync(new DocumentPage(Book, item.Id)));
+
+        public Command LoadItemsCommand { get; set; }
+
+        public ICommand ItemTresholdReachedCommand => new Command(async () => {
+            Debug.WriteLine("ItemTresholdReachedCommand");
+            try
+            {
+                var items = await LoadIIndexItems();
+                foreach (var item in items)
+                {
+                    IndexItems.Add(item);
+                }
+            }
+            catch (Exception ex)
+            {
+                Debug.WriteLine(ex);
+            }
+        });
 
         public string Pattern { get; set; }
 
         public IndexViewModel()
         {
-            IndexItems = new InfiniteScrollCollection<IIndexItem>
+            IndexItems = new ObservableCollection<IIndexItem>();
+            LoadItemsCommand = new Command(async () => await ExecuteLoadItemsCommand());
+        }
+
+        private async Task<IEnumerable<IIndexItem>> LoadIIndexItems()
+        {
+            int page = (IndexItems.Count + PageSize - 1) / PageSize;
+            return await Book.QueryIndex(Pattern, CategoryItems.Where(item => item.Selected), page);
+        }
+
+        async Task ExecuteLoadItemsCommand()
+        {
+            try
             {
-                OnLoadMore = async () =>
+                IndexItems.Clear();
+                var items = await LoadIIndexItems();
+                foreach (var item in items)
                 {
-                    int page = (IndexItems.Count + PageSize - 1) / PageSize;
-                    return await Book.QueryIndex(Pattern, CategoryItems.Where(item => item.Selected), page);
+                    IndexItems.Add(item);
                 }
-            };
+            }
+            catch (Exception ex)
+            {
+                Debug.WriteLine(ex);
+            }
         }
     }
 

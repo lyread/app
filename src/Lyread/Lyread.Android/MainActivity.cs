@@ -1,9 +1,10 @@
 ﻿using Android;
 using Android.App;
 using Android.Content.PM;
-using Android.OS;
 using Android.Runtime;
-using LabelHtml.Forms.Plugin.Droid;
+using Android.Views;
+using Android.Widget;
+using Android.OS;
 using System.Linq;
 
 namespace Lyread.Droid
@@ -19,7 +20,7 @@ namespace Lyread.Droid
 
             base.OnCreate(savedInstanceState);
 
-            HtmlLabelRenderer.Initialize();
+            global::Xamarin.Forms.Forms.SetFlags("CollectionView_Experimental");
             Xamarin.Essentials.Platform.Init(this, savedInstanceState);
             global::Xamarin.Forms.Forms.Init(this, savedInstanceState);
 

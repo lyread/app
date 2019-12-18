@@ -2,7 +2,6 @@
 <ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              xmlns:lyread="clr-namespace:Lyread"
-             xmlns:scroll="clr-namespace:Xamarin.Forms.Extended;assembly=Xamarin.Forms.Extended.InfiniteScrolling"
              x:Class="Lyread.IndexPage"
              Title="Index">
 
@@ -32,16 +31,19 @@
                     </SearchBar.Behaviors>
                 </SearchBar>
             </StackLayout>
-            <ListView x:Name="IndexView" ItemsSource="{Binding IndexItems}" CachingStrategy="RecycleElement">
-                <ListView.ItemTemplate>
+            <CollectionView x:Name="IndexView" 
+                            ItemsSource="{Binding IndexItems}"                      
+                            RemainingItemsThresholdReachedCommand="{Binding ItemTresholdReachedCommand}"
+                            RemainingItemsThreshold="0"
+                            SelectionMode="Single"
+                            SelectionChangedCommand="{Binding OpenDocumentCommand}"
+                            SelectionChangedCommandParameter="{Binding SelectedItem, Source={x:Reference IndexView}}">
+                <CollectionView.ItemTemplate>
                     <DataTemplate>
-                        <TextCell Text="{Binding Title}" Command="{Binding OpenDocumentCommand, Source={x:Reference IndexViewModel}}" CommandParameter="{Binding}" />
+                        <Label Text="{Binding Title}" />
                     </DataTemplate>
-                </ListView.ItemTemplate>
-                <ListView.Behaviors>
-                    <scroll:InfiniteScrollBehavior />
-                </ListView.Behaviors>
-            </ListView>
+                </CollectionView.ItemTemplate>
+            </CollectionView>
         </StackLayout>
         <ContentView x:Name="CategoryView" BackgroundColor="#80808080" Padding="10, 10" IsVisible="false" AbsoluteLayout.LayoutBounds="0, 0, 1, 1" AbsoluteLayout.LayoutFlags="All">
             <StackLayout VerticalOptions="Center" HorizontalOptions="Center" BackgroundColor="White" Padding="10, 10">
