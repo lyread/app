@@ -13,19 +13,19 @@
         <lyread:TocViewModel x:Name="TocViewModel"/>
     </ContentPage.BindingContext>
 
-    <CollectionView x:Name="TocView"
-                    ItemsSource="{Binding TocItems}"
-                    SelectionMode="Single"
-                    SelectionChangedCommand="{Binding OpenTocItemCommand}"
-                    SelectionChangedCommandParameter="{Binding SelectedItem, Source={x:Reference TocView}}">
-        <CollectionView.ItemTemplate>
+    <ListView x:Name="TocView" ItemsSource="{Binding TocItems}" CachingStrategy="RecycleElement">
+        <ListView.ItemTemplate>
             <DataTemplate>
-                <Label Text="{Binding Title}" />
-                <!--<TextCell.ContextActions>
+                <TextCell Text="{Binding Title}" Command="{Binding OpenDocumentCommand, Source={x:Reference TocViewModel}}" CommandParameter="{Binding}" >
+                    <TextCell.ContextActions>
                         <MenuItem Text="Open" Command="{Binding OpenDocumentCommand, Source={x:Reference TocViewModel}}" CommandParameter="{Binding}"/>
-                    </TextCell.ContextActions>-->
+                    </TextCell.ContextActions>
+                </TextCell>
             </DataTemplate>
-        </CollectionView.ItemTemplate>
-    </CollectionView>
+        </ListView.ItemTemplate>
+        <ListView.Behaviors>
+            <lyread:ItemTappedBehavior Command="{Binding OpenTocItemCommand}"/>
+        </ListView.Behaviors>
+    </ListView>
 
 </ContentPage>
