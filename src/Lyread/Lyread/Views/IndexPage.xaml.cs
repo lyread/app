@@ -2,7 +2,7 @@
 using System;
 using Xamarin.Forms;
 
-namespace Lyread
+namespace Lyread.Views
 {
     public partial class IndexPage : ContentPage
     {

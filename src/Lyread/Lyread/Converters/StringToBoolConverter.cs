@@ -2,7 +2,7 @@
 using System.Globalization;
 using Xamarin.Forms;
 
-namespace Lyread.Converter
+namespace Lyread.Converters
 {
     public class StringToBoolConverter : IValueConverter
     {

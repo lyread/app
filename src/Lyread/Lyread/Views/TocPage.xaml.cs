@@ -1,7 +1,7 @@
 ﻿using Book.Item;
 using Xamarin.Forms;
 
-namespace Lyread
+namespace Lyread.Views
 {
     public partial class TocPage : ContentPage
     {

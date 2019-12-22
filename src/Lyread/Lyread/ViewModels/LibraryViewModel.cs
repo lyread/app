@@ -2,6 +2,7 @@
 using Book.Item;
 using Lyread.Annotations;
 using Lyread.ViewModels;
+using Lyread.Views;
 using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
@@ -54,10 +55,10 @@ namespace Lyread.ViewModels
         public Command LoadItemsCommand { get; set; }
         public ICommand RemainingItemsThresholdReachedCommand => new Command(async () =>
         {
-            if (IsRefreshing)
+            if (IsBusy)
                 return;
 
-            IsRefreshing = true;
+            IsBusy = true;
 
             try
             {
@@ -77,7 +78,7 @@ namespace Lyread.ViewModels
             }
             finally
             {
-                IsRefreshing = false;
+                IsBusy = false;
             }
         });
 
@@ -88,7 +89,7 @@ namespace Lyread.ViewModels
             RefreshBooksCommand = new Command(async () =>
             {
                 await ExecuteLoadItemsCommand();
-                IsRefreshing = false;
+                IsBusy = false;
             });
         }
 
@@ -137,10 +138,10 @@ namespace Lyread.ViewModels
 
         async Task ExecuteLoadItemsCommand()
         {
-            if (IsRefreshing)
+            if (IsBusy)
                 return;
 
-            IsRefreshing = true;
+            IsBusy = true;
 
             try
             {
@@ -157,7 +158,7 @@ namespace Lyread.ViewModels
             }
             finally
             {
-                IsRefreshing = false;
+                IsBusy = false;
             }
         }
     }

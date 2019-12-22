@@ -2,7 +2,7 @@
 using System.Text.RegularExpressions;
 using Xamarin.Forms;
 
-namespace Lyread
+namespace Lyread.Behaviors
 {
     class RegexBehavior : Behavior<SearchBar>
     {

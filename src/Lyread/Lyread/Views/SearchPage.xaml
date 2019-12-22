@@ -1,10 +1,13 @@
 ﻿<?xml version="1.0" encoding="utf-8" ?>
 <ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
-             xmlns:lyread="clr-namespace:Lyread;assembly=Lyread"
-             x:Class="Lyread.SearchPage"
+             xmlns:d="http://xamarin.com/schemas/2014/forms/design"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             mc:Ignorable="d"
+             x:Class="Lyread.Views.SearchPage"
              xmlns:vm="clr-namespace:Lyread.ViewModels"
-             Title="Search">
+             xmlns:behaviors="clr-namespace:Lyread.Behaviors"
+             Title="{Binding Title}">
 
     <ContentPage.Icon>
         <OnPlatform x:TypeArguments="FileImageSource" Android="@drawable/ic_search_white_24dp" WinPhone="Icons\search.png"/>
@@ -17,8 +20,8 @@
     <StackLayout>
         <SearchBar Text="{Binding Pattern}" SearchCommand="{Binding SearchCommand}" BackgroundColor="LightGray">
             <SearchBar.Behaviors>
-                <lyread:IncrementalSearchBehavior />
-                <lyread:QueryBehavior />
+                <behaviors:IncrementalSearchBehavior />
+                <behaviors:QueryBehavior />
             </SearchBar.Behaviors>
         </SearchBar>
         <CollectionView x:Name="SearchView"

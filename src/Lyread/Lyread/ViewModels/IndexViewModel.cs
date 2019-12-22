@@ -1,4 +1,6 @@
 ﻿using Book.Item;
+using Lyread.Behaviors;
+using Lyread.Views;
 using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
@@ -55,6 +57,7 @@ namespace Lyread.ViewModels
 
         public IndexViewModel()
         {
+            Title = "Index";
             IndexItems = new ObservableCollection<IIndexItem>();
             LoadItemsCommand = new Command(async () => await ExecuteLoadItemsCommand());
         }

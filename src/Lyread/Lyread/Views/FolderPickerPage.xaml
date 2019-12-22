@@ -1,10 +1,16 @@
 ﻿<?xml version="1.0" encoding="utf-8" ?>
 <ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
-             xmlns:lyread="clr-namespace:Lyread;assembly=Lyread"
-             x:Class="Lyread.FolderPickerPage"
+             xmlns:d="http://xamarin.com/schemas/2014/forms/design"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             mc:Ignorable="d"
+             x:Class="Lyread.Views.FolderPickerPage"
              xmlns:vm="clr-namespace:Lyread.ViewModels"
              Title="{Binding Parent.FullName}">
+
+    <ContentPage.BindingContext>
+        <vm:FolderPickerViewModel x:Name="FolderPickerViewModel"/>
+    </ContentPage.BindingContext>
 
     <ContentPage.Resources>
         <ResourceDictionary>
@@ -13,11 +19,7 @@
         </ResourceDictionary>
     </ContentPage.Resources>
 
-    <ContentPage.BindingContext>
-        <vm:FolderPickerViewModel x:Name="FolderPickerViewModel"/>
-    </ContentPage.BindingContext>
-
-    <RefreshView Command="{Binding RefreshFolderCommand}" IsRefreshing="{Binding IsRefreshing}">
+    <RefreshView Command="{Binding RefreshFolderCommand}" IsRefreshing="{Binding IsBusy}">
         <CollectionView x:Name="FolderPickerView"
                         ItemsSource="{Binding FileSystemInfos}"
                         SelectionMode="Single"

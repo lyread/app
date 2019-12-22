@@ -1,7 +1,8 @@
 ﻿using Book.Item;
+using Lyread.ViewModels;
 using Xamarin.Forms;
 
-namespace Lyread
+namespace Lyread.Views
 {
     public partial class MediaPage : ContentPage
     {

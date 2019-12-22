@@ -1,14 +1,17 @@
 ﻿<?xml version="1.0" encoding="utf-8" ?>
 <ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
-             xmlns:lyread="clr-namespace:Lyread;assembly=Lyread"
-             x:Class="Lyread.SettingsPage"
-             xmlns:vm="clr-namespace:Lyread.ViewModels">
+             xmlns:d="http://xamarin.com/schemas/2014/forms/design"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             mc:Ignorable="d"
+             x:Class="Lyread.Views.SettingsPage"
+             xmlns:vm="clr-namespace:Lyread.ViewModels"
+             Title="{Binding Title}">
 
-    <ContentPage.Icon>
-        <OnPlatform x:TypeArguments="FileImageSource" Android="@drawable/ic_settings_white_24dp" WinPhone="Icons\settings.png"/>
-    </ContentPage.Icon>
-  
+    <ContentPage.BindingContext>
+        <vm:SettingsViewModel x:Name="SettingsViewModel"/>
+    </ContentPage.BindingContext>
+
     <ContentPage.Resources>
         <ResourceDictionary>
             <vm:PublisherToNameConverter x:Key="NameConverter"/>
@@ -16,9 +19,9 @@
         </ResourceDictionary>
     </ContentPage.Resources>
 
-    <ContentPage.BindingContext>
-        <vm:SettingsViewModel x:Name="SettingsViewModel"/>
-    </ContentPage.BindingContext>
+    <ContentPage.Icon>
+        <OnPlatform x:TypeArguments="FileImageSource" Android="@drawable/ic_settings_white_24dp" WinPhone="Icons\settings.png"/>
+    </ContentPage.Icon>
 
     <TableView Intent="Settings">
         <TableRoot>

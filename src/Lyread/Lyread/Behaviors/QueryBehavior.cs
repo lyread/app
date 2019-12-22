@@ -4,7 +4,7 @@ using Lucene.Net.QueryParsers.Classic;
 using Lucene.Net.Util;
 using Xamarin.Forms;
 
-namespace Lyread
+namespace Lyread.Behaviors
 {
     class QueryBehavior : Behavior<SearchBar>
     {

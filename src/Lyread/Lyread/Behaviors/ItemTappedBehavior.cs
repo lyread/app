@@ -2,7 +2,7 @@
 using System.Windows.Input;
 using Xamarin.Forms;
 
-namespace Lyread
+namespace Lyread.Behaviors
 {
     class ItemTappedBehavior : Behavior<ListView>
     {

@@ -2,7 +2,7 @@
 using Xamarin.Forms;
 using static Book.ViewType;
 
-namespace Lyread
+namespace Lyread.Views
 {
     public partial class BookPage : TabbedPage
     {

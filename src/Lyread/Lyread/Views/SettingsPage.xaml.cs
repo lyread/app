@@ -1,6 +1,6 @@
 ﻿using Xamarin.Forms;
 
-namespace Lyread
+namespace Lyread.Views
 {
     public partial class SettingsPage : ContentPage
     {

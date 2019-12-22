@@ -1,4 +1,6 @@
 ﻿using Book.Item;
+using Lyread.Behaviors;
+using Lyread.Views;
 using System.Collections.ObjectModel;
 using System.Windows.Input;
 using Xamarin.Forms;

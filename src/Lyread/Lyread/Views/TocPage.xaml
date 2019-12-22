@@ -1,10 +1,13 @@
 ﻿<?xml version="1.0" encoding="utf-8" ?>
 <ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
-             xmlns:lyread="clr-namespace:Lyread;assembly=Lyread"
-             x:Class="Lyread.TocPage"
+             xmlns:d="http://xamarin.com/schemas/2014/forms/design"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             mc:Ignorable="d"
+             x:Class="Lyread.Views.TocPage"
              xmlns:vm="clr-namespace:Lyread.ViewModels"
-             Title="Contents">
+             xmlns:behaviors="clr-namespace:Lyread.Behaviors"
+             Title="{Binding Title}">
 
     <ContentPage.Icon>
         <OnPlatform x:TypeArguments="FileImageSource" Android="@drawable/ic_toc_white_24dp" WinPhone="Icons\toc.png"/>
@@ -25,7 +28,7 @@
             </DataTemplate>
         </ListView.ItemTemplate>
         <ListView.Behaviors>
-            <lyread:ItemTappedBehavior Command="{Binding OpenTocItemCommand}"/>
+            <behaviors:ItemTappedBehavior Command="{Binding OpenTocItemCommand}"/>
         </ListView.Behaviors>
     </ListView>
 

@@ -3,7 +3,7 @@ using System.Reactive.Linq;
 using System.Threading;
 using Xamarin.Forms;
 
-namespace Lyread
+namespace Lyread.Behaviors
 {
     class IncrementalSearchBehavior : Behavior<SearchBar>
     {

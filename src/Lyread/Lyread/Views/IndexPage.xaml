@@ -1,10 +1,13 @@
 ﻿<?xml version="1.0" encoding="utf-8" ?>
 <ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
-             xmlns:lyread="clr-namespace:Lyread"
-             x:Class="Lyread.IndexPage"
+             xmlns:d="http://xamarin.com/schemas/2014/forms/design"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             mc:Ignorable="d"
+             x:Class="Lyread.Views.IndexPage"
              xmlns:vm="clr-namespace:Lyread.ViewModels"
-             Title="Index">
+             xmlns:behaviors="clr-namespace:Lyread.Behaviors"
+             Title="{Binding Title}">
 
     <ContentPage.Icon>
         <OnPlatform x:TypeArguments="FileImageSource" Android="@drawable/ic_list_white_24dp" WinPhone="Icons\index.png"/>
@@ -27,8 +30,8 @@
                 <Button Text="{Binding CategoryItems, Converter={StaticResource StringConverter}}" IsVisible="{Binding CategoryItems, Converter={StaticResource BooleanConverter}}" Clicked="ToggleCategoryView" BorderColor="LightGray" BackgroundColor="LightGray" FontSize="Medium"/>
                 <SearchBar Text="{Binding Pattern}" SearchCommand="{Binding QueryIndexCommand}" BackgroundColor="LightGray">
                     <SearchBar.Behaviors>
-                        <lyread:IncrementalSearchBehavior />
-                        <lyread:RegexBehavior />
+                        <behaviors:IncrementalSearchBehavior />
+                        <behaviors:RegexBehavior />
                     </SearchBar.Behaviors>
                 </SearchBar>
             </StackLayout>

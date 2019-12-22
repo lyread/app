@@ -1,4 +1,5 @@
 ﻿using Book.Item;
+using Lyread.Views;
 using System.Collections.ObjectModel;
 using System.Linq;
 using System.Threading.Tasks;
@@ -10,6 +11,11 @@ namespace Lyread.ViewModels
     public class TocViewModel : BookViewModel
     {
         public RangedObservableCollection<ITocItem> TocItems { get; set; } = new RangedObservableCollection<ITocItem>();
+
+        public TocViewModel()
+        {
+            Title = "Contents";
+        }
 
         public ICommand OpenTocItemCommand => new Command<ITocItem>(item =>
         {

@@ -14,6 +14,11 @@ namespace Lyread.ViewModels
         public int Id { get; set; }
         public string Pattern { get; set; }
 
+        public DocumentViewModel()
+        {
+            Title = string.Format("Seite {0} ff.", Id);
+        }
+
         public string DocumentUri()
         {
             Uri cacheUri = DependencyService.Get<IPlatformService>().CacheUri;

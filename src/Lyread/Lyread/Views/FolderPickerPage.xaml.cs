@@ -1,7 +1,7 @@
 ﻿using Book;
 using Xamarin.Forms;
 
-namespace Lyread
+namespace Lyread.Views
 {
     public partial class FolderPickerPage : ContentPage
     {
