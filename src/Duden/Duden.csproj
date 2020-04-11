@@ -5,11 +5,11 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <PackageReference Include="Lucene.Net" Version="4.8.0-beta00006" />
-    <PackageReference Include="Lucene.Net.Analysis.Common" Version="4.8.0-beta00006" />
-    <PackageReference Include="Lucene.Net.Highlighter" Version="4.8.0-beta00006" />
-    <PackageReference Include="Lucene.Net.QueryParser" Version="4.8.0-beta00006" />
-    <PackageReference Include="NLog" Version="4.6.8" />
+    <PackageReference Include="Lucene.Net" Version="4.8.0-beta00007" />
+    <PackageReference Include="Lucene.Net.Analysis.Common" Version="4.8.0-beta00007" />
+    <PackageReference Include="Lucene.Net.Highlighter" Version="4.8.0-beta00007" />
+    <PackageReference Include="Lucene.Net.QueryParser" Version="4.8.0-beta00007" />
+    <PackageReference Include="NLog" Version="4.7.0" />
     <PackageReference Include="SharpZipLib" Version="1.2.0" />
     <PackageReference Include="sqlite-net-pcl" Version="1.6.292" />
     <PackageReference Include="SqlKata" Version="1.1.7" />

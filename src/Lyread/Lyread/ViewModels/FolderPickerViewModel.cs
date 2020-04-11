@@ -1,6 +1,5 @@
 ﻿using Book;
 using Book.Util;
-using Lyread.ViewModels;
 using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
@@ -16,36 +15,32 @@ namespace Lyread.ViewModels
     public class FolderPickerViewModel : ListViewModel
     {
         public IPublisher Publisher { get; set; }
-        public DirectoryInfo Parent { get; set; } = new DirectoryInfo(DependencyService.Get<IPlatformService>().ExternalStorageDirectory);
-        public RangedObservableCollection<FileSystemInfo> FileSystemInfos { get; set; } = new RangedObservableCollection<FileSystemInfo>(From(new DirectoryInfo(DependencyService.Get<IPlatformService>().ExternalStorageDirectory)));
+        public DirectoryInfo Parent { get; private set; } = new DirectoryInfo(DependencyService.Get<IPlatformService>().ExternalStorageDirectory);
+        public RangedObservableCollection<FileSystemInfo> FileSystemInfos { get; }
 
         public ICommand OpenFolderCommand => new Command<FileSystemInfo>(OpenFolder);
         public ICommand RefreshFolderCommand => CreateRefreshCommand(() => OpenFolder(Parent));
+
+        public FolderPickerViewModel()
+        {
+            FileSystemInfos = new RangedObservableCollection<FileSystemInfo>(ReadFiles());
+        }
 
         private void OpenFolder(FileSystemInfo info)
         {
             if (info.IsDirectory())
             {
                 DirectoryInfo folder = (DirectoryInfo)info;
-                try
-                {
-                    FileSystemInfos.ReplaceRange(From(folder));
-                }
-                catch (Exception)
-                {
-                    return;
-                }
+                FileSystemInfos.ReplaceRange(ReadFiles());
                 Preferences.Set(Publisher.GetType().Name, folder.FullName);
                 Parent = folder;
                 OnPropertyChanged(nameof(Parent));
             }
         }
 
-        private static IEnumerable<FileSystemInfo> From(DirectoryInfo folder)
+        private IEnumerable<FileSystemInfo> ReadFiles()
         {
-            List<FileSystemInfo> infos = new List<FileSystemInfo>() { folder.Parent ?? folder };
-            infos.AddRange(folder.EnumerateFileSystemInfos().Where(f => f.IsVisible()));
-            return infos;
+            return Enumerable.Repeat(Parent.Parent ?? Parent, 1).Concat(Parent.EnumerateFileSystemInfos().Where(f => f.IsVisible()));
         }
     }
 

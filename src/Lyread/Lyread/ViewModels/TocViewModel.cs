@@ -28,7 +28,14 @@ namespace Lyread.ViewModels
                 OpenDocumentCommand.Execute(item);
             }
         });
-        public ICommand OpenDocumentCommand => new Command<ITocItem>(async item => await Application.Current.MainPage.Navigation.PushAsync(new DocumentPage(Book, item.Id)));
+        public ICommand OpenDocumentCommand => new Command<ITocItem>(async item =>
+        {
+            if(Book == null || item == null)
+            {
+                return;
+            }
+            await Application.Current.MainPage.Navigation.PushAsync(new DocumentPage(Book, item.Id));
+        });
 
         public async Task Init()
         {

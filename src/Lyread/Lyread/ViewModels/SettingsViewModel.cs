@@ -34,6 +34,11 @@ namespace Lyread.ViewModels
             OnPropertyChanged(name);
         });
 
+        public SettingsViewModel()
+        {
+            Title = "Settings";
+        }
+
         public void Refresh()
         {
             OnPropertyChanged(nameof(Directmedia));

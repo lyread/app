@@ -42,14 +42,39 @@ namespace Lyread.ViewModels
         public ICommand RefreshBooksCommand { get; set; } // => CreateRefreshCommand(Init);
         public ICommand OpenBookCommand => new Command<IBookItem>(async book =>
         {
-            try
+            if (book == null)
             {
-                await Application.Current.MainPage.Navigation.PushAsync(new BookPage(book));
+                return;
             }
-            catch (Exception e)
+
+            if (!Shell.Current.Items.Any(item => item.Route == book.Id.ToString()))
             {
-                await Application.Current.MainPage.DisplayAlert("Error", e.Message, "OK");
+                FlyoutItem section = new FlyoutItem()
+                {
+                    Route = book.Id.ToString(),
+                    Title = book.Title,
+                    Icon = ImageSource.FromStream(() => new MemoryStream(book.Cover))
+                };
+                if (book.Has(ViewType.Toc))
+                {
+                    section.Items.Add(new ShellContent() { Title = "Toc", Content = new TocPage(book) });
+                }
+                if (book.Has(ViewType.Index))
+                {
+                    section.Items.Add(new ShellContent() { Title = "Index", Content = new IndexPage(book) });
+                }
+                if (book.Has(ViewType.Search))
+                {
+                    section.Items.Add(new ShellContent() { Title = "Search", Content = new SearchPage(book) });
+                }
+                if (book.Has(ViewType.Images))
+                {
+                    section.Items.Add(new ShellContent() { Title = "Media", Content = new MediaPage(book) });
+                }
+                Shell.Current.Items.Add(section);
             }
+            
+            await Shell.Current.GoToAsync("//" + book.Id.ToString());
         });
 
         public Command LoadItemsCommand { get; set; }
@@ -109,7 +134,7 @@ namespace Lyread.ViewModels
             Jobs.ReplaceRange(Publishers
                 .SelectMany(p => p.QueryJobs(new DirectoryInfo(Preferences.Get(p.GetType().Name, null))))
                 .Select(job => new JobItem(job)));
-            OnPropertyChanged(nameof(Jobs));
+            //OnPropertyChanged(nameof(Jobs));
 
             Task.Run(() =>
             {
@@ -121,7 +146,7 @@ namespace Lyread.ViewModels
                 Device.BeginInvokeOnMainThread(async () =>
                 {
                     Jobs.Clear();
-                    OnPropertyChanged(nameof(Jobs));
+                    //OnPropertyChanged(nameof(Jobs));
                     Books.Clear();
                     LoadItemsCommand.Execute(null);
                 });

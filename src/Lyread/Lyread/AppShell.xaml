@@ -30,14 +30,9 @@
     </Shell.Resources>
 
     <!-- Your Pages -->
-    <TabBar>
-        <Tab Title="Library" Icon="tab_feed.png">
-            <ShellContent ContentTemplate="{DataTemplate local:LibraryPage}" />
-        </Tab>
-        <Tab Title="Settings" Icon="tab_about.png">
-            <ShellContent ContentTemplate="{DataTemplate local:SettingsPage}" />
-        </Tab>
-    </TabBar>
+    <ShellContent Title="Library" ContentTemplate="{DataTemplate local:LibraryPage}" />
+    <ShellContent Title="Settings" ContentTemplate="{DataTemplate local:SettingsPage}" />
+    <ShellContent Title="About" ContentTemplate="{DataTemplate local:AboutPage}" />
 
     <!-- Optional Templates 
     // These may be provided inline as below or as separate classes.
@@ -53,7 +48,7 @@
     <Shell.ItemTemplate>
         <DataTemplate>
             <ContentView>
-                Bindable Properties: Title, Icon
+                <Label Text="{Binding Title}" IsVisible="{Binding IsEnabled}"/>
             </ContentView>
         </DataTemplate>
     </Shell.ItemTemplate>
