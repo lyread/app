@@ -27,15 +27,8 @@
     </ContentPage.BindingContext>
 
     <AbsoluteLayout Padding="0" HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand">
-        <StackLayout AbsoluteLayout.LayoutBounds="0, 0, 1, 1" AbsoluteLayout.LayoutFlags="All">
-            <SearchBar Text="{Binding Pattern}" SearchCommand="{Binding SearchBooksCommand}" BackgroundColor="LightGray">
-                <SearchBar.Behaviors>
-                    <behaviors:IncrementalSearchBehavior />
-                    <behaviors:RegexBehavior />
-                </SearchBar.Behaviors>
-            </SearchBar>
-            <RefreshView Command="{Binding RefreshBooksCommand}" IsRefreshing="{Binding IsBusy}">
-                <CollectionView x:Name="BooksView"
+        <RefreshView Command="{Binding RefreshBooksCommand}" IsRefreshing="{Binding IsBusy}" AbsoluteLayout.LayoutBounds="0, 0, 1, 1" AbsoluteLayout.LayoutFlags="All">
+            <CollectionView x:Name="BooksView"
                                 ItemsSource="{Binding Books}"
                                 RemainingItemsThreshold="0"
                                 RemainingItemsThresholdReachedCommand="{Binding RemainingItemsThresholdReachedCommand}"
@@ -44,24 +37,23 @@
                                 SelectionChangedCommandParameter="{Binding SelectedItem, Source={x:Reference BooksView}}"
                                 AbsoluteLayout.LayoutBounds="0, 0, 1, 1"
                                 AbsoluteLayout.LayoutFlags="All">
-                    <CollectionView.ItemTemplate>
-                        <DataTemplate>
-                            <Grid>
-                                <Grid.RowDefinitions>
-                                    <RowDefinition Height="{Binding CoverHeight, Source={x:Reference LibraryViewModel}}"/>
-                                </Grid.RowDefinitions>
-                                <Grid.ColumnDefinitions>
-                                    <ColumnDefinition Width="{Binding CoverWidth, Source={x:Reference LibraryViewModel}}"/>
-                                    <ColumnDefinition Width="*"/>
-                                </Grid.ColumnDefinitions>
-                                <Image Grid.Row="0" Grid.Column="0" Source="{Binding Cover, Converter={StaticResource ImageConverter}}"/>
-                                <Label Grid.Row="0" Grid.Column="1" Text="{Binding Title}" VerticalOptions="Center"/>
-                            </Grid>
-                        </DataTemplate>
-                    </CollectionView.ItemTemplate>
-                </CollectionView>
-            </RefreshView>
-        </StackLayout>
+                <CollectionView.ItemTemplate>
+                    <DataTemplate>
+                        <Grid>
+                            <Grid.RowDefinitions>
+                                <RowDefinition Height="{Binding CoverHeight, Source={x:Reference LibraryViewModel}}"/>
+                            </Grid.RowDefinitions>
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="{Binding CoverWidth, Source={x:Reference LibraryViewModel}}"/>
+                                <ColumnDefinition Width="*"/>
+                            </Grid.ColumnDefinitions>
+                            <Image Grid.Row="0" Grid.Column="0" Source="{Binding Cover, Converter={StaticResource ImageConverter}}"/>
+                            <Label Grid.Row="0" Grid.Column="1" Text="{Binding Title}" VerticalOptions="Center"/>
+                        </Grid>
+                    </DataTemplate>
+                </CollectionView.ItemTemplate>
+            </CollectionView>
+        </RefreshView>
         <ListView ItemsSource="{Binding Jobs}" CachingStrategy="RecycleElement" IsVisible="{Binding Jobs, Converter={StaticResource JobItemsConverter}}" BackgroundColor="White" AbsoluteLayout.LayoutBounds="0, 0, 1, 1" AbsoluteLayout.LayoutFlags="All">
             <ListView.ItemTemplate>
                 <DataTemplate>
@@ -77,9 +69,7 @@
     </AbsoluteLayout>
 
     <Shell.SearchHandler>
-        <lyread:MonkeySearchHandler Placeholder="Enter search term"
-                                      ShowsResults="true"
-                                      DisplayMemberName="Name" />
+        <SearchHandler x:Name="LibrarySearchHandler" Placeholder="" DisplayMemberName="Name" Command="{Binding SearchBooksCommand}" CommandParameter="{Binding Query, Source={x:Reference LibrarySearchHandler}}" />
     </Shell.SearchHandler>
-    
+
 </ContentPage>

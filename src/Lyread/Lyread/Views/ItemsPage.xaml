@@ -13,12 +13,6 @@
         <ToolbarItem Text="Add" Clicked="AddItem_Clicked" />
     </ContentPage.ToolbarItems>
 
-    <Shell.SearchHandler>
-        <lyread:MonkeySearchHandler Placeholder="Enter search term"
-                                      ShowsResults="true"
-                                      DisplayMemberName="Name" />
-    </Shell.SearchHandler>
-
     <StackLayout>
         <ListView x:Name="ItemsListView"
                 ItemsSource="{Binding Items}"

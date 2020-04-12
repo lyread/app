@@ -38,7 +38,11 @@ namespace Lyread.ViewModels
         public int CoverWidth => Preferences.Get(nameof(SettingsViewModel.CoverSize), 3) * 24;
         public int CoverHeight => Preferences.Get(nameof(SettingsViewModel.CoverSize), 3) * 31;
 
-        public ICommand SearchBooksCommand => new Command(Init);
+        public ICommand SearchBooksCommand => new Command<string>(pattern =>
+        {
+            Pattern = pattern;
+            Init();
+        });
         public ICommand RefreshBooksCommand { get; set; } // => CreateRefreshCommand(Init);
         public ICommand OpenBookCommand => new Command<IBookItem>(async book =>
         {
@@ -73,7 +77,7 @@ namespace Lyread.ViewModels
                 }
                 Shell.Current.Items.Add(section);
             }
-            
+
             await Shell.Current.GoToAsync("//" + book.Id.ToString());
         });
 

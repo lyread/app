@@ -8,7 +8,7 @@ namespace Lyread.ViewModels
 
         public BookViewModel()
         {
-            Title = Book.Title;
+            //Title = Book.Title;
         }
     }
 }
