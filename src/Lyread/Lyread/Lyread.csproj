@@ -11,7 +11,7 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <PackageReference Include="Xamarin.Forms" Version="4.5.0.530" />  
+    <PackageReference Include="Xamarin.Forms" Version="4.5.0.617" />  
     <PackageReference Include="Xamarin.Essentials" Version="1.5.2" />
     <PackageReference Include="Lucene.Net.QueryParser" Version="4.8.0-beta00007" />
     <PackageReference Include="NLog" Version="4.7.0" />

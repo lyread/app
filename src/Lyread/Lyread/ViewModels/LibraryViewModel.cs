@@ -51,7 +51,7 @@ namespace Lyread.ViewModels
                 return;
             }
 
-            if (!Shell.Current.Items.Any(item => item.Route == book.Id.ToString()))
+            if (Shell.Current.Items.All(item => item.Route != book.Id.ToString()))
             {
                 FlyoutItem section = new FlyoutItem()
                 {

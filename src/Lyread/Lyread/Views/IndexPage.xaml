@@ -26,15 +26,7 @@
 
     <AbsoluteLayout Padding="0" HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand">
         <StackLayout AbsoluteLayout.LayoutBounds="0, 0, 1, 1" AbsoluteLayout.LayoutFlags="All">
-            <StackLayout>
-                <Button Text="{Binding CategoryItems, Converter={StaticResource StringConverter}}" IsVisible="{Binding CategoryItems, Converter={StaticResource BooleanConverter}}" Clicked="ToggleCategoryView" BorderColor="LightGray" BackgroundColor="LightGray" FontSize="Medium"/>
-                <SearchBar Text="{Binding Pattern}" SearchCommand="{Binding QueryIndexCommand}" BackgroundColor="LightGray">
-                    <SearchBar.Behaviors>
-                        <behaviors:IncrementalSearchBehavior />
-                        <behaviors:RegexBehavior />
-                    </SearchBar.Behaviors>
-                </SearchBar>
-            </StackLayout>
+            <Button Text="{Binding CategoryItems, Converter={StaticResource StringConverter}}" IsVisible="{Binding CategoryItems, Converter={StaticResource BooleanConverter}}" Clicked="ToggleCategoryView" BorderColor="LightGray" BackgroundColor="LightGray" FontSize="Medium"/>
             <CollectionView x:Name="IndexView" 
                             ItemsSource="{Binding IndexItems}"                      
                             RemainingItemsThresholdReachedCommand="{Binding ItemTresholdReachedCommand}"
@@ -62,5 +54,9 @@
             </StackLayout>
         </ContentView>
     </AbsoluteLayout>
+
+    <Shell.SearchHandler>
+        <SearchHandler x:Name="IndexSearchHandler" Placeholder="" DisplayMemberName="Name" Command="{Binding QueryIndexCommand}" CommandParameter="{Binding Query, Source={x:Reference IndexSearchHandler}}" />
+    </Shell.SearchHandler>
 
 </ContentPage>

@@ -19,8 +19,9 @@ namespace Lyread.ViewModels
         public RangedObservableCollection<ICategoryItem> CategoryItems { get; set; } = new RangedObservableCollection<ICategoryItem>();
         public ObservableCollection<IIndexItem> IndexItems { get; }
 
-        public ICommand QueryIndexCommand => new Command(async () =>
+        public ICommand QueryIndexCommand => new Command<string>(async pattern =>
         {
+            Pattern = pattern;
             if (!CategoryItems.Any())
             {
                 CategoryItems.AddRange(await Book.QueryCategories());
