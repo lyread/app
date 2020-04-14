@@ -9,10 +9,6 @@
              xmlns:behaviors="clr-namespace:Lyread.Behaviors"
              Title="{Binding Title}">
 
-    <ContentPage.Icon>
-        <OnPlatform x:TypeArguments="FileImageSource" Android="@drawable/ic_toc_white_24dp" WinPhone="Icons\toc.png"/>
-    </ContentPage.Icon>
-
     <ContentPage.BindingContext>
         <vm:TocViewModel x:Name="TocViewModel"/>
     </ContentPage.BindingContext>

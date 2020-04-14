@@ -9,10 +9,6 @@
              xmlns:behaviors="clr-namespace:Lyread.Behaviors"
              Title="{Binding Title}">
 
-    <ContentPage.Icon>
-        <OnPlatform x:TypeArguments="FileImageSource" Android="@drawable/ic_list_white_24dp" WinPhone="Icons\index.png"/>
-    </ContentPage.Icon>
-
     <ContentPage.Resources>
         <ResourceDictionary>
             <vm:CategoryItemsToStringConverter x:Key="StringConverter"/>

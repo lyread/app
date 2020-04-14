@@ -9,10 +9,6 @@
              xmlns:behaviors="clr-namespace:Lyread.Behaviors"
              Title="{Binding Title}">
 
-    <ContentPage.Icon>
-        <OnPlatform x:TypeArguments="FileImageSource" Android="@drawable/ic_search_white_24dp" WinPhone="Icons\search.png"/>
-    </ContentPage.Icon>
-
     <ContentPage.BindingContext>
         <vm:SearchViewModel x:Name="SearchViewModel" />
     </ContentPage.BindingContext>

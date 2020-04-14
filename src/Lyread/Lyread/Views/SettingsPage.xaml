@@ -19,10 +19,6 @@
         </ResourceDictionary>
     </ContentPage.Resources>
 
-    <ContentPage.Icon>
-        <OnPlatform x:TypeArguments="FileImageSource" Android="@drawable/ic_settings_white_24dp" WinPhone="Icons\settings.png"/>
-    </ContentPage.Icon>
-
     <TableView Intent="Settings">
         <TableRoot>
             <TableSection>

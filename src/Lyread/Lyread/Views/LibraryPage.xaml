@@ -11,10 +11,6 @@
              xmlns:lyread="clr-namespace:Lyread"
              Title="{Binding Title}">
 
-    <ContentPage.Icon>
-        <OnPlatform x:TypeArguments="FileImageSource" Android="@drawable/ic_account_balance_white_24dp" WinPhone="Icons\library.png"/>
-    </ContentPage.Icon>
-
     <ContentPage.Resources>
         <ResourceDictionary>
             <converters:BytesToImageSourceConverter x:Key="ImageConverter"/>

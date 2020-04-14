@@ -53,7 +53,7 @@ namespace Lyread.ViewModels
 
             if (Shell.Current.Items.All(item => item.Route != book.Id.ToString()))
             {
-                FlyoutItem section = new FlyoutItem()
+                FlyoutItem item = new FlyoutItem()
                 {
                     Route = book.Id.ToString(),
                     Title = book.Title,
@@ -61,21 +61,21 @@ namespace Lyread.ViewModels
                 };
                 if (book.Has(ViewType.Toc))
                 {
-                    section.Items.Add(new ShellContent() { Title = "Toc", Content = new TocPage(book) });
+                    item.Items.Add(new ShellContent() { Title = "Contents", Icon = ImageSource.FromFile(Device.RuntimePlatform == Device.Android ? "@drawable/ic_toc_black_24dp" : "Icons/toc.png"), Content = new TocPage(book) });
                 }
                 if (book.Has(ViewType.Index))
                 {
-                    section.Items.Add(new ShellContent() { Title = "Index", Content = new IndexPage(book) });
+                    item.Items.Add(new ShellContent() { Title = "Index", Icon = ImageSource.FromFile(Device.RuntimePlatform == Device.Android ? "@drawable/ic_list_black_24dp" : "Icons/index.png"), Content = new IndexPage(book) });
                 }
                 if (book.Has(ViewType.Search))
                 {
-                    section.Items.Add(new ShellContent() { Title = "Search", Content = new SearchPage(book) });
+                    item.Items.Add(new ShellContent() { Title = "Search", Icon = ImageSource.FromFile(Device.RuntimePlatform == Device.Android ? "@drawable/ic_search_black_24dp" : "Icons/search.png"), Content = new SearchPage(book) });
                 }
                 if (book.Has(ViewType.Images))
                 {
-                    section.Items.Add(new ShellContent() { Title = "Media", Content = new MediaPage(book) });
+                    item.Items.Add(new ShellContent() { Title = "Media", Icon = ImageSource.FromFile(Device.RuntimePlatform == Device.Android ? "@drawable/ic_image_black_24dp" : "Icons/media.png"), Content = new MediaPage(book) });
                 }
-                Shell.Current.Items.Add(section);
+                Shell.Current.Items.Add(item);
             }
 
             await Shell.Current.GoToAsync("//" + book.Id.ToString());
