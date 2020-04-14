@@ -30,16 +30,20 @@
     </Shell.Resources>
 
     <!-- Your Pages -->
-    <ShellContent Title="Library" ContentTemplate="{DataTemplate local:LibraryPage}">
-        <ShellContent.Icon>
-            <OnPlatform x:TypeArguments="FileImageSource" Android="@drawable/ic_account_balance_black_24dp" WinPhone="Icons\library.png"/>
-        </ShellContent.Icon>
-    </ShellContent>
-    <ShellContent Title="Settings" ContentTemplate="{DataTemplate local:SettingsPage}">
-        <ShellContent.Icon>
-            <OnPlatform x:TypeArguments="FileImageSource" Android="@drawable/ic_settings_black_24dp" WinPhone="Icons\settings.png"/>
-        </ShellContent.Icon>
-    </ShellContent>
+    <FlyoutItem FlyoutDisplayOptions="AsMultipleItems">
+        <ShellContent Title="Library" ContentTemplate="{DataTemplate local:LibraryPage}">
+            <ShellContent.Icon>
+                <OnPlatform x:TypeArguments="FileImageSource" Android="@drawable/ic_account_balance_black_24dp" WinPhone="Icons\library.png"/>
+            </ShellContent.Icon>
+        </ShellContent>
+    </FlyoutItem>
+    <FlyoutItem FlyoutDisplayOptions="AsMultipleItems">
+        <ShellContent Title="Settings" ContentTemplate="{DataTemplate local:SettingsPage}">
+            <ShellContent.Icon>
+                <OnPlatform x:TypeArguments="FileImageSource" Android="@drawable/ic_settings_black_24dp" WinPhone="Icons\settings.png"/>
+            </ShellContent.Icon>
+        </ShellContent>
+    </FlyoutItem>
 
     <!-- Optional Templates 
     // These may be provided inline as below or as separate classes.
