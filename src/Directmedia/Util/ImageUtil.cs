@@ -69,14 +69,14 @@ namespace Directmedia.Util
             string filename = ReadLibId(reader);
             bool hidden = reader.ReadByte() != 0;
             int pagenumber = reader.ReadInt32() >> 4; // in text
-            LibLocation title = ReadLibLocation(reader, textOffset);
-            LibLocation description = ReadLibLocation(reader, textOffset);
-            LibLocation thumbnail = null, huge = null;
+            ImageLibOffset title = ReadLibLocation(reader, textOffset);
+            ImageLibOffset description = ReadLibLocation(reader, textOffset);
+            ImageLibOffset thumbnail = null, huge = null;
             for (int i = 0; i < 5; i++)
             {
                 int width = reader.ReadUInt16();
                 int height = reader.ReadUInt16();
-                LibLocation image = ReadLibLocation(reader, 0);
+                ImageLibOffset image = ReadLibLocation(reader, 0);
                 reader.ReadByte(); // type: jpeg (2), png (3, 10)
                 if (width > 0 && height > 0)
                 {
@@ -85,11 +85,10 @@ namespace Directmedia.Util
                         switch (i)
                         {
                             case 0:
-                                thumbnail = image;
-                                huge = image;
+                                thumbnail = huge = image;
                                 break;
                             case 1:
-                                huge = image;
+                                thumbnail = huge = image;
                                 break;
                             case 2:
                                 huge = image;
@@ -112,17 +111,17 @@ namespace Directmedia.Util
             return Encoding.GetEncoding(1252).GetString(name, 0, length);
         }
 
-        private static LibLocation ReadLibLocation(BinaryReader reader, int additionalOffset)
+        private static ImageLibOffset ReadLibLocation(BinaryReader reader, int additionalOffset)
         {
             int offset = reader.ReadInt32();
             int length = reader.ReadInt32();
-            return length > 0 ? new LibLocation(additionalOffset + offset, length) : null;
+            return length > 0 ? new ImageLibOffset(additionalOffset + offset, length) : null;
         }
 
         private static IEnumerable<ImageFileItem> LoadAllFiles(DirectoryInfo imagesFolder, bool includeHidden)
         {
             IEnumerable<ImageFileItem> images = Enumerable.Empty<ImageFileItem>();
-            DirectoryInfo thumbnailFolder = imagesFolder.GetSubdirectory(NameOf(ImageSize.Thumbnail));
+            DirectoryInfo thumbnailFolder = imagesFolder.GetSubdirectory(NameOf(ImageSize.Small));
             if (thumbnailFolder.Exists)
             {
                 images = images.Concat(LoadFiles(thumbnailFolder, false));

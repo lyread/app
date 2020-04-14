@@ -44,15 +44,11 @@
                         <Label Text="{Binding Title}"
                                IsVisible="{Binding Title, Converter={StaticResource StringConverter}}"
                                VerticalOptions="Center"
-                               FontAttributes="Bold"
-                               LineBreakMode="WordWrap"
-                               MaxLines="3" />
+                               FontAttributes="Bold" />
                         <Label Text="{Binding Description}"
                                IsVisible="{Binding Description, Converter={StaticResource StringConverter}}"
                                VerticalOptions="Start"
-                               FontAttributes="Italic"
-                               LineBreakMode="WordWrap"
-                               MaxLines="3" />
+                               FontAttributes="Italic" />
                     </StackLayout>
                 </Grid>
             </DataTemplate>
