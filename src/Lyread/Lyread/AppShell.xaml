@@ -31,9 +31,9 @@
 
     <!-- Your Pages -->
     <FlyoutItem FlyoutDisplayOptions="AsMultipleItems">
-        <ShellContent Title="Library" ContentTemplate="{DataTemplate local:LibraryPage}">
+        <ShellContent Title="Home" ContentTemplate="{DataTemplate local:LibraryPage}">
             <ShellContent.Icon>
-                <OnPlatform x:TypeArguments="FileImageSource" Android="@drawable/ic_account_balance_black_24dp" WinPhone="Icons\library.png"/>
+                <OnPlatform x:TypeArguments="FileImageSource" Android="@drawable/ic_home_black_24dp" WinPhone="Icons\library.png"/>
             </ShellContent.Icon>
         </ShellContent>
     </FlyoutItem>

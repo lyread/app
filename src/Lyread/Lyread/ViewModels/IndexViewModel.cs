@@ -1,5 +1,6 @@
 ﻿using Book.Item;
 using Lyread.Behaviors;
+using Lyread.Models;
 using Lyread.Views;
 using System;
 using System.Collections.Generic;
@@ -25,7 +26,7 @@ namespace Lyread.ViewModels
             if (!CategoryItems.Any())
             {
                 CategoryItems.AddRange(await Book.QueryCategories());
-                OnPropertyChanged(nameof(CategoryItems));
+                CategoryItemsChanged();
             }
             if (!RegexBehavior.IsValid(Pattern))
             {
@@ -38,7 +39,8 @@ namespace Lyread.ViewModels
 
         public Command LoadItemsCommand { get; set; }
 
-        public ICommand ItemTresholdReachedCommand => new Command(async () => {
+        public ICommand ItemTresholdReachedCommand => new Command(async () =>
+        {
             Debug.WriteLine("ItemTresholdReachedCommand");
             try
             {
@@ -85,25 +87,33 @@ namespace Lyread.ViewModels
                 Debug.WriteLine(ex);
             }
         }
+
+        public void CategoryItemsChanged()
+        {
+            OnPropertyChanged(nameof(CategoryItems));
+        }
     }
 
-    class CategoryItemsToStringConverter : IValueConverter
+    class CategoryItemsToImageConverter : IValueConverter
     {
         public object Convert(object value, Type targetType, object parameter, CultureInfo culture)
         {
             if (value is ObservableCollection<ICategoryItem> items)
             {
-                if (!items.Any(item => item.Selected))
+                if (items.All(item => !item.Selected) || items.All(item => item.Selected))
                 {
-                    return "None";
+                    return ImageSource.FromFile(Device.RuntimePlatform == Device.Android ? "@drawable/ic_filter_none_white_24dp" : "Icons/filter.png");
                 }
-                else if (items.All(item => item.Selected))
+                else if (items.Count(item => item.Selected) > 9)
                 {
-                    return "All";
+                    return ImageSource.FromFile(Device.RuntimePlatform == Device.Android ? "@drawable/ic_filter_9_plus_white_24dp.png" : "Icons/filter.png");
                 }
-                return string.Join(", ", items.Where(item => item.Selected).Select(item => item.Title));
+                else
+                {
+                    return ImageSource.FromFile(Device.RuntimePlatform == Device.Android ? string.Format("@drawable/ic_filter_{0}_white_24dp.png", items.Count(item => item.Selected)) : "Icons/filter.png");
+                }
             }
-            return string.Empty;
+            return null;
         }
 
         public object ConvertBack(object value, Type targetType, object parameter, CultureInfo culture)
@@ -112,15 +122,15 @@ namespace Lyread.ViewModels
         }
     }
 
-    class CategoryItemsToBooleanConverter : IValueConverter
+    class CategoryItemsToVisibilityConverter : IValueConverter
     {
         public object Convert(object value, Type targetType, object parameter, CultureInfo culture)
         {
-            if (value is ObservableCollection<ICategoryItem> items)
+            if (value is ObservableCollection<ICategoryItem> items && items.Any())
             {
-                return items.Any();
+                return SearchBoxVisibility.Collapsible;
             }
-            return false;
+            return SearchBoxVisibility.Expanded;
         }
 
         public object ConvertBack(object value, Type targetType, object parameter, CultureInfo culture)

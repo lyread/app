@@ -11,8 +11,8 @@
 
     <ContentPage.Resources>
         <ResourceDictionary>
-            <vm:CategoryItemsToStringConverter x:Key="StringConverter"/>
-            <vm:CategoryItemsToBooleanConverter x:Key="BooleanConverter"/>
+            <vm:CategoryItemsToImageConverter x:Key="ImageConverter"/>
+            <vm:CategoryItemsToVisibilityConverter x:Key="VisibilityConverter"/>
         </ResourceDictionary>
     </ContentPage.Resources>
 
@@ -21,22 +21,20 @@
     </ContentPage.BindingContext>
 
     <AbsoluteLayout Padding="0" HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand">
-        <StackLayout AbsoluteLayout.LayoutBounds="0, 0, 1, 1" AbsoluteLayout.LayoutFlags="All">
-            <Button Text="{Binding CategoryItems, Converter={StaticResource StringConverter}}" IsVisible="{Binding CategoryItems, Converter={StaticResource BooleanConverter}}" Clicked="ToggleCategoryView" BorderColor="LightGray" BackgroundColor="LightGray" FontSize="Medium"/>
-            <CollectionView x:Name="IndexView" 
-                            ItemsSource="{Binding IndexItems}"                      
-                            RemainingItemsThresholdReachedCommand="{Binding ItemTresholdReachedCommand}"
-                            RemainingItemsThreshold="0"
-                            SelectionMode="Single"
-                            SelectionChangedCommand="{Binding OpenDocumentCommand}"
-                            SelectionChangedCommandParameter="{Binding SelectedItem, Source={x:Reference IndexView}}">
-                <CollectionView.ItemTemplate>
-                    <DataTemplate>
-                        <Label Text="{Binding Title}" />
-                    </DataTemplate>
-                </CollectionView.ItemTemplate>
-            </CollectionView>
-        </StackLayout>
+        <CollectionView x:Name="IndexView"
+                        ItemsSource="{Binding IndexItems}"
+                        RemainingItemsThresholdReachedCommand="{Binding ItemTresholdReachedCommand}"
+                        RemainingItemsThreshold="0"
+                        SelectionMode="Single"
+                        SelectionChangedCommand="{Binding OpenDocumentCommand}"
+                        SelectionChangedCommandParameter="{Binding SelectedItem, Source={x:Reference IndexView}}"
+                        AbsoluteLayout.LayoutBounds="0, 0, 1, 1" AbsoluteLayout.LayoutFlags="All">
+            <CollectionView.ItemTemplate>
+                <DataTemplate>
+                    <Label Text="{Binding Title}" />
+                </DataTemplate>
+            </CollectionView.ItemTemplate>
+        </CollectionView>
         <ContentView x:Name="CategoryView" BackgroundColor="#80808080" Padding="10, 10" IsVisible="false" AbsoluteLayout.LayoutBounds="0, 0, 1, 1" AbsoluteLayout.LayoutFlags="All">
             <StackLayout VerticalOptions="Center" HorizontalOptions="Center" BackgroundColor="White" Padding="10, 10">
                 <ListView x:Name="CategoryListView" ItemsSource="{Binding CategoryItems}" CachingStrategy="RecycleElement">
@@ -51,8 +49,20 @@
         </ContentView>
     </AbsoluteLayout>
 
+    <Shell.TitleView>
+        <Grid>
+            <ImageButton Source="{Binding CategoryItems, Converter={StaticResource ImageConverter}}"
+                         IsVisible="{Binding CategoryItems, Converter={StaticResource VisibilityConverter}}"
+                         Clicked="ToggleCategoryView"
+                         HorizontalOptions="End"
+                         VerticalOptions="Center"
+                         BackgroundColor="Transparent"
+                         Padding="18" />
+        </Grid>
+    </Shell.TitleView>
+
     <Shell.SearchHandler>
-        <SearchHandler x:Name="IndexSearchHandler" Placeholder="" DisplayMemberName="Name" Command="{Binding QueryIndexCommand}" CommandParameter="{Binding Query, Source={x:Reference IndexSearchHandler}}" />
+        <SearchHandler x:Name="IndexSearchHandler" Placeholder="" DisplayMemberName="Name" Command="{Binding QueryIndexCommand}" CommandParameter="{Binding Query, Source={x:Reference IndexSearchHandler}}" SearchBoxVisibility="Collapsible" />
     </Shell.SearchHandler>
 
 </ContentPage>

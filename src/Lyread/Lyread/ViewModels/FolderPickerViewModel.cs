@@ -67,7 +67,7 @@ namespace Lyread.ViewModels
         {
             if (value is FileSystemInfo info)
             {
-                return ImageSource.FromFile(Device.RuntimePlatform == Device.Android ? info.IsDirectory() ? "@drawable/ic_folder_black_24dp" : "@drawable/ic_note_black_24dp" : info.IsDirectory() ? "Icons/folder.png" : "Icons/file.png");
+                return ImageSource.FromFile(Device.RuntimePlatform == Device.Android ? info.IsDirectory() ? "@drawable/ic_folder_black_24dp" : "@drawable/ic_insert_drive_file_black_24dp" : info.IsDirectory() ? "Icons/folder.png" : "Icons/file.png");
             }
             return null;
         }
