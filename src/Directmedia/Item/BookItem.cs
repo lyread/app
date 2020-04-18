@@ -182,9 +182,14 @@ namespace Directmedia.Item
             }
         }
 
-        public Task<byte[]> ExternalFile(string name)
+        public async Task<byte[]> ExternalFile(string filename)
         {
-            throw new NotImplementedException();
+            string name = Path.GetFileNameWithoutExtension(filename);
+            DirectoryInfo imagesFolder = ImagesFolder;
+            return ImageUtil.LoadImages(imagesFolder, false)
+                .Where(image => image.Filename == name)
+                .Select(image => image.Huge)
+                .FirstOrDefault();
         }
 
         public bool Has(ViewType view)

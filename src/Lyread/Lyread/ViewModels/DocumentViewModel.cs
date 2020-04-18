@@ -42,7 +42,8 @@ namespace Lyread.ViewModels
         public async Task<bool> Local(Uri uri)
         {
             string filename = Path.GetFileName(uri.AbsolutePath);
-            if (Enum.TryParse(Path.GetExtension(filename).Replace(".", string.Empty), out LinkType type))
+            string extension = Path.GetExtension(filename).Replace(".", string.Empty);
+            if (Enum.TryParse(extension, out LinkType type))
             {
                 switch (type)
                 {
@@ -71,6 +72,18 @@ namespace Lyread.ViewModels
                                 player.Play();
                             }
                         });
+                        break;
+                    case jpg:
+                    case tif:
+                    case png:
+                    case gif:
+                        byte[] imageData = await Book.ExternalFile(filename);
+                        if (imageData != null)
+                        {
+                            string imagePath = Path.Combine(FileSystem.CacheDirectory, filename);
+                            File.WriteAllBytes(imagePath, imageData);
+                            await DependencyService.Get<IPlatformService>().LaunchImage(new FileInfo(imagePath));
+                        }
                         break;
                 }
             }
