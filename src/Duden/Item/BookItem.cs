@@ -130,7 +130,7 @@ namespace Duden.Item
             return Task.FromResult(Query<CategoryItem>(query).AsEnumerable<ICategoryItem>());
         }
 
-        public Task<IEnumerable<IImageItem>> QueryImages()
+        public Task<IEnumerable<IImageItem>> QueryImages(string pattern, int page)
         {
             Query query = new Query(nameof(TabGUIBitmaps))
                 .Select(nameof(ImageItem.Filename), nameof(ImageItem.RowId))

@@ -8,6 +8,7 @@ using System.Collections.ObjectModel;
 using System.Diagnostics;
 using System.Globalization;
 using System.Linq;
+using System.Text.RegularExpressions;
 using System.Threading.Tasks;
 using System.Windows.Input;
 using Xamarin.Forms;
@@ -28,7 +29,7 @@ namespace Lyread.ViewModels
                 CategoryItems.AddRange(await Book.QueryCategories());
                 CategoryItemsChanged();
             }
-            if (!RegexBehavior.IsValid(Pattern))
+            if (!QueryUtil.IsValidRegex(Pattern))
             {
                 return;
             }

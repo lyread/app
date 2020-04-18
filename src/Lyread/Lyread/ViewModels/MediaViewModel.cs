@@ -13,6 +13,14 @@ namespace Lyread.ViewModels
     {
         public RangedObservableCollection<IImageItem> MediaItems { get; set; } = new RangedObservableCollection<IImageItem>();
 
+        public ICommand QueryIndexCommand => new Command<string>(async pattern =>
+        {
+            Pattern = pattern;
+
+        });
+
+        public string Pattern { get; set; }
+
         public ICommand OpenMediaItemCommand => new Command<IImageItem>(async item =>
         {
             try
@@ -28,9 +36,14 @@ namespace Lyread.ViewModels
             }
         });
 
+        public MediaViewModel()
+        {
+            Title = "Media";
+        }
+
         public async Task Init()
         {
-            MediaItems.ReplaceRange(await Book.QueryImages());
+            MediaItems.ReplaceRange(await Book.QueryImages(null, 0));
         }
     }
 }

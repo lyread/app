@@ -6,7 +6,8 @@
        mc:Ignorable="d"
        xmlns:local="clr-namespace:Lyread.Views"
        Title="Lyread"
-       x:Class="Lyread.AppShell">
+       x:Class="Lyread.AppShell"
+       FlyoutHeaderBehavior="CollapseOnScroll">
 
     <!-- 
         Styles and Resources 
@@ -45,16 +46,23 @@
         </ShellContent>
     </FlyoutItem>
 
-    <!-- Optional Templates 
+    <!-- Optional Templates  
     // These may be provided inline as below or as separate classes.
 
     // This header appears at the top of the Flyout.
+    -->
     <Shell.FlyoutHeaderTemplate>
         <DataTemplate>
-            <Grid>ContentHere</Grid>
+            <Grid>
+                <Image Aspect="AspectFill">
+                    <Image.Source>
+                        <OnPlatform x:TypeArguments="FileImageSource" Android="@mipmap/icon" WinPhone="Icons\library.png"/>
+                    </Image.Source>
+                </Image>
+            </Grid>
         </DataTemplate>
     </Shell.FlyoutHeaderTemplate>
-
+    <!-- 
     // ItemTemplate is for ShellItems as displayed in a Flyout
     <Shell.ItemTemplate>
         <DataTemplate>

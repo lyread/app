@@ -16,7 +16,7 @@ namespace Lyread.ViewModels
 
         public ICommand SearchCommand => new Command(async () =>
         {
-            if (!QueryBehavior.IsValid(Pattern))
+            if (!QueryUtil.IsValidLucene(Pattern))
             {
                 return;
             }
@@ -27,6 +27,7 @@ namespace Lyread.ViewModels
 
         public SearchViewModel()
         {
+            Title = "Search";
             SearchItems = new ObservableCollection<ISearchItem>();
             //{
             //    OnLoadMore = async () =>

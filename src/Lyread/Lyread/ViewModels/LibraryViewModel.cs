@@ -113,6 +113,7 @@ namespace Lyread.ViewModels
 
         public LibraryViewModel()
         {
+            Title = "Home";
             Books = new ObservableCollection<IBookItem>();
             LoadItemsCommand = new Command(async () => await ExecuteLoadItemsCommand());
             RefreshBooksCommand = new Command(async () =>

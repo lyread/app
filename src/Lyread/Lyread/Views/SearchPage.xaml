@@ -17,7 +17,6 @@
         <SearchBar Text="{Binding Pattern}" SearchCommand="{Binding SearchCommand}" BackgroundColor="LightGray">
             <SearchBar.Behaviors>
                 <behaviors:IncrementalSearchBehavior />
-                <behaviors:QueryBehavior />
             </SearchBar.Behaviors>
         </SearchBar>
         <CollectionView x:Name="SearchView"

@@ -51,7 +51,19 @@
 
     <Shell.TitleView>
         <Grid>
-            <ImageButton Source="{Binding CategoryItems, Converter={StaticResource ImageConverter}}"
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="Auto" />
+                <ColumnDefinition Width="*" />
+            </Grid.ColumnDefinitions>
+            <Label Grid.Column="0"
+                   Text="{Binding Title}"
+                   HorizontalOptions="Start"
+                   VerticalOptions="Center"
+                   TextColor="White"
+                   FontSize="20"
+                   FontAttributes="Bold" />
+            <ImageButton Grid.Column="1"
+                         Source="{Binding CategoryItems, Converter={StaticResource ImageConverter}}"
                          IsVisible="{Binding CategoryItems, Converter={StaticResource VisibilityConverter}}"
                          Clicked="ToggleCategoryView"
                          HorizontalOptions="End"

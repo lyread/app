@@ -114,7 +114,7 @@ namespace Directmedia.Item
             return Task.FromResult(Enumerable.Empty<ICategoryItem>());
         }
 
-        public Task<IEnumerable<IImageItem>> QueryImages()
+        public Task<IEnumerable<IImageItem>> QueryImages(string pattern, int page)
         {
             DirectoryInfo imagesFolder = ImagesFolder;
             if (imagesFolder.Exists)

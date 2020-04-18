@@ -147,7 +147,7 @@ namespace Epub.Item
             return Task.FromResult(Enumerable.Empty<ICategoryItem>());
         }
 
-        public Task<IEnumerable<IImageItem>> QueryImages()
+        public Task<IEnumerable<IImageItem>> QueryImages(string pattern, int page)
         {
             //Read(_bookFile.FullName);
             //return Task.FromResult(epub.Resources.Images.Select(file => new ImageItem(Path.GetFileName(file.AbsolutePath), file.Content)).AsEnumerable<IImageItem>());
