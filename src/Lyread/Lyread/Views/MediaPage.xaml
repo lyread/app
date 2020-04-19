@@ -56,7 +56,7 @@
     </CollectionView>
 
     <Shell.SearchHandler>
-        <SearchHandler x:Name="MediaSearchHandler" Placeholder="" DisplayMemberName="Name" Command="{Binding QueryIndexCommand}" CommandParameter="{Binding Query, Source={x:Reference MediaSearchHandler}}" SearchBoxVisibility="Collapsible" />
+        <SearchHandler x:Name="MediaSearchHandler" Placeholder="" DisplayMemberName="Name" Command="{Binding QueryIndexCommand}" CommandParameter="{Binding Query, Source={x:Reference MediaSearchHandler}}" />
     </Shell.SearchHandler>
 
 </ContentPage>

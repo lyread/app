@@ -65,7 +65,7 @@
     </AbsoluteLayout>
 
     <Shell.SearchHandler>
-        <SearchHandler x:Name="LibrarySearchHandler" Placeholder="" DisplayMemberName="Name" Command="{Binding SearchBooksCommand}" CommandParameter="{Binding Query, Source={x:Reference LibrarySearchHandler}}" SearchBoxVisibility="Collapsible" />
+        <SearchHandler x:Name="LibrarySearchHandler" Placeholder="" DisplayMemberName="Name" Command="{Binding SearchBooksCommand}" CommandParameter="{Binding Query, Source={x:Reference LibrarySearchHandler}}" />
     </Shell.SearchHandler>
 
 </ContentPage>

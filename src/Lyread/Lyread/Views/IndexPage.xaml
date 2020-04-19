@@ -12,7 +12,6 @@
     <ContentPage.Resources>
         <ResourceDictionary>
             <vm:CategoryItemsToImageConverter x:Key="ImageConverter"/>
-            <vm:CategoryItemsToVisibilityConverter x:Key="VisibilityConverter"/>
         </ResourceDictionary>
     </ContentPage.Resources>
 
@@ -49,32 +48,13 @@
         </ContentView>
     </AbsoluteLayout>
 
-    <Shell.TitleView>
-        <Grid>
-            <Grid.ColumnDefinitions>
-                <ColumnDefinition Width="Auto" />
-                <ColumnDefinition Width="*" />
-            </Grid.ColumnDefinitions>
-            <Label Grid.Column="0"
-                   Text="{Binding Title}"
-                   HorizontalOptions="Start"
-                   VerticalOptions="Center"
-                   TextColor="White"
-                   FontSize="20"
-                   FontAttributes="Bold" />
-            <ImageButton Grid.Column="1"
-                         Source="{Binding CategoryItems, Converter={StaticResource ImageConverter}}"
-                         IsVisible="{Binding CategoryItems, Converter={StaticResource VisibilityConverter}}"
-                         Clicked="ToggleCategoryView"
-                         HorizontalOptions="End"
-                         VerticalOptions="Center"
-                         BackgroundColor="Transparent"
-                         Padding="18" />
-        </Grid>
-    </Shell.TitleView>
+    <ContentPage.ToolbarItems>
+        <ToolbarItem IconImageSource="{Binding CategoryItems, Converter={StaticResource ImageConverter}}"
+                     Clicked="ToggleCategoryView" />
+    </ContentPage.ToolbarItems>
 
     <Shell.SearchHandler>
-        <SearchHandler x:Name="IndexSearchHandler" Placeholder="" DisplayMemberName="Name" Command="{Binding QueryIndexCommand}" CommandParameter="{Binding Query, Source={x:Reference IndexSearchHandler}}" SearchBoxVisibility="Collapsible" />
+        <SearchHandler x:Name="IndexSearchHandler" Placeholder="" DisplayMemberName="Name" Command="{Binding QueryIndexCommand}" CommandParameter="{Binding Query, Source={x:Reference IndexSearchHandler}}" />
     </Shell.SearchHandler>
 
 </ContentPage>

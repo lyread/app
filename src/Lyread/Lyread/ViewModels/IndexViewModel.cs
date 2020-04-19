@@ -122,21 +122,4 @@ namespace Lyread.ViewModels
             throw new NotImplementedException();
         }
     }
-
-    class CategoryItemsToVisibilityConverter : IValueConverter
-    {
-        public object Convert(object value, Type targetType, object parameter, CultureInfo culture)
-        {
-            if (value is ObservableCollection<ICategoryItem> items && items.Any())
-            {
-                return SearchBoxVisibility.Collapsible;
-            }
-            return SearchBoxVisibility.Expanded;
-        }
-
-        public object ConvertBack(object value, Type targetType, object parameter, CultureInfo culture)
-        {
-            throw new NotImplementedException();
-        }
-    }
 }
