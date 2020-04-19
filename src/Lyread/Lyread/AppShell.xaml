@@ -46,7 +46,7 @@
         </ShellContent>
     </FlyoutItem>
 
-    <!-- Optional Templates  
+    <!-- Optional Templates 
     // These may be provided inline as below or as separate classes.
 
     // This header appears at the top of the Flyout.
@@ -67,7 +67,7 @@
     <Shell.ItemTemplate>
         <DataTemplate>
             <ContentView>
-                <Label Text="{Binding Title}" IsVisible="{Binding IsEnabled}"/>
+                Bindable Properties: Title, Icon
             </ContentView>
         </DataTemplate>
     </Shell.ItemTemplate>
