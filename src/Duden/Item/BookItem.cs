@@ -392,7 +392,7 @@ namespace Duden.Item
 
         private void Regexp(sqlite3_context ctx, object user_data, sqlite3_value[] args)
         {
-            bool IsMatch = Regex.IsMatch(raw.sqlite3_value_text(args[1]), raw.sqlite3_value_text(args[0]), RegexOptions.IgnoreCase);
+            bool IsMatch = Regex.IsMatch(raw.sqlite3_value_text(args[1]).utf8_to_string(), raw.sqlite3_value_text(args[0]).utf8_to_string(), RegexOptions.IgnoreCase);
             raw.sqlite3_result_int(ctx, Convert.ToInt32(IsMatch));
         }
     }
