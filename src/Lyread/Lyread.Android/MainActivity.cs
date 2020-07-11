@@ -26,8 +26,7 @@ namespace Lyread.Droid
             global::Xamarin.Forms.Forms.SetFlags("CollectionView_Experimental");
             Xamarin.Essentials.Platform.Init(this, savedInstanceState);
             global::Xamarin.Forms.Forms.Init(this, savedInstanceState);
-
-            PermissionStatus status = await CheckAndRequestReadWriteStoragePermission();
+            PermissionStatus status = await CheckAndRequestStorageWritePermission();
             if (status != PermissionStatus.Granted)
             {
                 Finish();
@@ -35,12 +34,12 @@ namespace Lyread.Droid
             LoadApplication(new App());
         }
 
-        public async Task<PermissionStatus> CheckAndRequestReadWriteStoragePermission()
+        public async Task<PermissionStatus> CheckAndRequestStorageWritePermission()
         {
-            var status = await Permissions.CheckStatusAsync<ReadWriteStoragePermission>();
+            var status = await Permissions.CheckStatusAsync<Permissions.StorageWrite>();
             if (status != PermissionStatus.Granted)
             {
-                status = await Permissions.RequestAsync<ReadWriteStoragePermission>();
+                status = await Permissions.RequestAsync<Permissions.StorageWrite>();
             }
             return status;
         }
@@ -50,14 +49,5 @@ namespace Lyread.Droid
             Xamarin.Essentials.Platform.OnRequestPermissionsResult(requestCode, permissions, grantResults);
             base.OnRequestPermissionsResult(requestCode, permissions, grantResults);
         }
-    }
-
-    public partial class ReadWriteStoragePermission : Xamarin.Essentials.Permissions.BasePlatformPermission
-    {
-        public override (string androidPermission, bool isRuntime)[] RequiredPermissions => new List<(string androidPermission, bool isRuntime)>
-        {
-            (Android.Manifest.Permission.ReadExternalStorage, true),
-            (Android.Manifest.Permission.WriteExternalStorage, true)
-        }.ToArray();
     }
 }
