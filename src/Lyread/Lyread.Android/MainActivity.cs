@@ -26,22 +26,11 @@ namespace Lyread.Droid
             global::Xamarin.Forms.Forms.SetFlags("CollectionView_Experimental");
             Xamarin.Essentials.Platform.Init(this, savedInstanceState);
             global::Xamarin.Forms.Forms.Init(this, savedInstanceState);
-            PermissionStatus status = await CheckAndRequestStorageWritePermission();
-            if (status != PermissionStatus.Granted)
+            if (await Permissions.CheckStatusAsync<Permissions.StorageWrite>() != PermissionStatus.Granted && await Permissions.RequestAsync<Permissions.StorageWrite>() != PermissionStatus.Granted)
             {
                 Finish();
             }
             LoadApplication(new App());
-        }
-
-        public async Task<PermissionStatus> CheckAndRequestStorageWritePermission()
-        {
-            var status = await Permissions.CheckStatusAsync<Permissions.StorageWrite>();
-            if (status != PermissionStatus.Granted)
-            {
-                status = await Permissions.RequestAsync<Permissions.StorageWrite>();
-            }
-            return status;
         }
 
         public override void OnRequestPermissionsResult(int requestCode, string[] permissions, Android.Content.PM.Permission[] grantResults)
