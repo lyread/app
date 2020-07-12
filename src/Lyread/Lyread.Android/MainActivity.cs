@@ -1,14 +1,7 @@
-﻿using Android;
-using Android.App;
+﻿using Android.App;
 using Android.Content.PM;
-using Android.Runtime;
-using Android.Views;
-using Android.Widget;
 using Android.OS;
-using System.Linq;
-using System.Collections.Generic;
 using Xamarin.Essentials;
-using System.Threading.Tasks;
 
 namespace Lyread.Droid
 {

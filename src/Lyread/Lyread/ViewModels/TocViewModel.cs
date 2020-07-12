@@ -34,7 +34,7 @@ namespace Lyread.ViewModels
             {
                 return;
             }
-            await Application.Current.MainPage.Navigation.PushAsync(new DocumentPage(Book, item.Id));
+            await Application.Current.MainPage.Navigation.PushModalAsync(new NavigationPage(new DocumentPage(Book, item.Id)));
         });
 
         public async Task Init()

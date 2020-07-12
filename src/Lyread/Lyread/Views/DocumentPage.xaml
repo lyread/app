@@ -12,6 +12,10 @@
         <vm:DocumentViewModel x:Name="DocumentViewModel"/>
     </ContentPage.BindingContext>
 
+    <ContentPage.ToolbarItems>
+        <ToolbarItem Text="Close" Clicked="Close_Clicked" />
+    </ContentPage.ToolbarItems>
+
     <WebView x:Name="webView" HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand" Navigating="WebView_Navigating"/>
 
 </ContentPage>

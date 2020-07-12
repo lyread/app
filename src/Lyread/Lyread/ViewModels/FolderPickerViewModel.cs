@@ -7,7 +7,6 @@ using System.Globalization;
 using System.IO;
 using System.Linq;
 using System.Windows.Input;
-using Xamarin.Essentials;
 using Xamarin.Forms;
 
 namespace Lyread.ViewModels
@@ -32,7 +31,6 @@ namespace Lyread.ViewModels
             {
                 DirectoryInfo folder = (DirectoryInfo)info;
                 FileSystemInfos.ReplaceRange(ReadFiles());
-                Preferences.Set(Publisher.GetType().Name, folder.FullName);
                 Parent = folder;
                 OnPropertyChanged(nameof(Parent));
             }

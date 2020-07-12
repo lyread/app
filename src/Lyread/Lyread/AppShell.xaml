@@ -57,7 +57,7 @@
                   HeightRequest="200">
                 <Image Aspect="AspectFill">
                     <Image.Source>
-                        <OnPlatform x:TypeArguments="FileImageSource" Android="@drawable/icon" WinPhone="Icons\library.png"/>
+                        <OnPlatform x:TypeArguments="FileImageSource" Android="@drawable/icon" WinPhone="Assets\LargeTile.scale-400.png"/>
                     </Image.Source>
                 </Image>
             </Grid>

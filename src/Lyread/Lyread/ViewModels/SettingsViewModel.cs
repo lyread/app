@@ -26,7 +26,7 @@ namespace Lyread.ViewModels
             }
         }
 
-        public ICommand PickFolderCommand => new Command<IPublisher>(async publisher => await Application.Current.MainPage.Navigation.PushAsync(new FolderPickerPage(publisher)));
+        public ICommand PickFolderCommand => new Command<IPublisher>(async publisher => await Application.Current.MainPage.Navigation.PushModalAsync(new NavigationPage(new FolderPickerPage(publisher))));
         public ICommand ResetFolderCommand => new Command<IPublisher>(publisher =>
         {
             string name = publisher.GetType().Name;

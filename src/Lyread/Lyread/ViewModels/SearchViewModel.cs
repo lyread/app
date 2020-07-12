@@ -23,7 +23,7 @@ namespace Lyread.ViewModels
             SearchItems.Clear();
             //await SearchItems.LoadMoreAsync();
         });
-        public ICommand OpenDocumentCommand => new Command<ISearchItem>(async item => await Application.Current.MainPage.Navigation.PushAsync(new DocumentPage(Book, item.Id, Pattern)));
+        public ICommand OpenDocumentCommand => new Command<ISearchItem>(async item => await Application.Current.MainPage.Navigation.PushModalAsync(new NavigationPage(new DocumentPage(Book, item.Id, Pattern))));
 
         public SearchViewModel()
         {

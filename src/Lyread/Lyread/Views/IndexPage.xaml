@@ -19,6 +19,11 @@
         <vm:IndexViewModel x:Name="IndexViewModel" />
     </ContentPage.BindingContext>
 
+    <ContentPage.ToolbarItems>
+        <ToolbarItem IconImageSource="{Binding CategoryItems, Converter={StaticResource ImageConverter}}"
+                     Clicked="Toggle_Clicked" />
+    </ContentPage.ToolbarItems>
+
     <AbsoluteLayout Padding="0" HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand">
         <CollectionView x:Name="IndexView"
                         ItemsSource="{Binding IndexItems}"
@@ -43,15 +48,10 @@
                         </DataTemplate>
                     </ListView.ItemTemplate>
                 </ListView>
-                <Button Text="OK" HorizontalOptions="Center" Clicked="ToggleCategoryView"/>
+                <Button Text="OK" HorizontalOptions="Center" Clicked="Toggle_Clicked"/>
             </StackLayout>
         </ContentView>
     </AbsoluteLayout>
-
-    <ContentPage.ToolbarItems>
-        <ToolbarItem IconImageSource="{Binding CategoryItems, Converter={StaticResource ImageConverter}}"
-                     Clicked="ToggleCategoryView" />
-    </ContentPage.ToolbarItems>
 
     <Shell.SearchHandler>
         <SearchHandler x:Name="IndexSearchHandler" Placeholder="" DisplayMemberName="Name" Command="{Binding QueryIndexCommand}" CommandParameter="{Binding Query, Source={x:Reference IndexSearchHandler}}" />

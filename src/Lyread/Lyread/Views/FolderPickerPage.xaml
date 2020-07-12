@@ -19,6 +19,11 @@
         </ResourceDictionary>
     </ContentPage.Resources>
 
+    <ContentPage.ToolbarItems>
+        <ToolbarItem Text="Cancel" Clicked="Cancel_Clicked" />
+        <ToolbarItem Text="Save" Clicked="Save_Clicked" />
+    </ContentPage.ToolbarItems>
+
     <RefreshView Command="{Binding RefreshFolderCommand}" IsRefreshing="{Binding IsBusy}">
         <CollectionView x:Name="FolderPickerView"
                         ItemsSource="{Binding FileSystemInfos}"

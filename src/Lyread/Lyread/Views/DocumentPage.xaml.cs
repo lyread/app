@@ -33,5 +33,10 @@ namespace Lyread.Views
         {
             e.Cancel = await DocumentViewModel.CancelNavigation(new Uri(e.Url));
         }
+
+        private async void Close_Clicked(object sender, EventArgs e)
+        {
+            await Navigation.PopModalAsync();
+        }
     }
 }

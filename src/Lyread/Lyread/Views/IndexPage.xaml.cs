@@ -17,7 +17,7 @@ namespace Lyread.Views
             IndexViewModel.QueryIndexCommand.Execute(null);
         }
 
-        private void ToggleCategoryView(object sender, EventArgs e)
+        private void Toggle_Clicked(object sender, EventArgs e)
         {
             if (!(CategoryView.IsVisible ^= true))
             {

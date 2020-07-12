@@ -36,7 +36,7 @@ namespace Lyread.ViewModels
             IndexItems.Clear();
             LoadItemsCommand.Execute(null);
         });
-        public ICommand OpenDocumentCommand => new Command<IIndexItem>(async item => await Application.Current.MainPage.Navigation.PushAsync(new DocumentPage(Book, item.Id)));
+        public ICommand OpenDocumentCommand => new Command<IIndexItem>(async item => await Application.Current.MainPage.Navigation.PushModalAsync(new NavigationPage(new DocumentPage(Book, item.Id))));
 
         public Command LoadItemsCommand { get; set; }
 
