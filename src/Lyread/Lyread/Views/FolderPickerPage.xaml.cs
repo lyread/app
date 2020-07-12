@@ -16,7 +16,7 @@ namespace Lyread.Views
 
         private async void Save_Clicked(object sender, EventArgs e)
         {
-            Preferences.Set(FolderPickerViewModel.Publisher.GetType().Name, FolderPickerViewModel.Parent.FullName);
+            Preferences.Set(FolderPickerViewModel.Publisher.Title, FolderPickerViewModel.Parent.FullName);
             await Navigation.PopModalAsync();
         }
 

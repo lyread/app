@@ -33,7 +33,7 @@ namespace Lyread.ViewModels
         public ICommand PickFolderCommand => new Command<IPublisherItem>(async publisher => await Application.Current.MainPage.Navigation.PushModalAsync(new NavigationPage(new FolderPickerPage(publisher))));
         public ICommand ResetFolderCommand => new Command<IPublisherItem>(publisher =>
         {
-            string name = publisher.GetType().Name;
+            string name = publisher.Title;
             Preferences.Remove(name);
             OnPropertyChanged(name);
         });
@@ -51,30 +51,13 @@ namespace Lyread.ViewModels
         }
     }
 
-    class PublisherToNameConverter : IValueConverter
-    {
-        public object Convert(object value, Type targetType, object parameter, CultureInfo culture)
-        {
-            if (value is IPublisherItem publisher)
-            {
-                return publisher.GetType().Name;
-            }
-            return null;
-        }
-
-        public object ConvertBack(object value, Type targetType, object parameter, CultureInfo culture)
-        {
-            throw new NotImplementedException();
-        }
-    }
-
     class PublisherToPathConverter : IValueConverter
     {
         public object Convert(object value, Type targetType, object parameter, CultureInfo culture)
         {
             if (value is IPublisherItem publisher)
             {
-                return Preferences.Get(publisher.GetType().Name, null) ?? "Select...";
+                return Preferences.Get(publisher.Title, null) ?? "Select...";
             }
             return null;
         }

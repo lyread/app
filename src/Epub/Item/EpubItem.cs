@@ -15,7 +15,7 @@ namespace Epub.Item
     {
         public int Id => Title.GetHashCode();
 
-        public string Title => "Epub";
+        public string Title => "EPUB";
 
         public IEnumerable<IBookItem> QueryBooks(DirectoryInfo folder)
         {

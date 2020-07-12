@@ -14,7 +14,6 @@
 
     <ContentPage.Resources>
         <ResourceDictionary>
-            <vm:PublisherToNameConverter x:Key="NameConverter"/>
             <vm:PublisherToPathConverter x:Key="PathConverter"/>
         </ResourceDictionary>
     </ContentPage.Resources>
@@ -22,17 +21,17 @@
     <TableView Intent="Settings">
         <TableRoot>
             <TableSection>
-                <TextCell Text="{Binding Directmedia, Converter={StaticResource NameConverter}}" Detail="{Binding Directmedia, Converter={StaticResource PathConverter}}" Command="{Binding PickFolderCommand}" CommandParameter="{Binding Directmedia}">
+                <TextCell Text="{Binding Directmedia.Title}" Detail="{Binding Directmedia, Converter={StaticResource PathConverter}}" Command="{Binding PickFolderCommand}" CommandParameter="{Binding Directmedia}">
                     <TextCell.ContextActions>
                         <MenuItem Text="Reset" Command="{Binding ResetFolderCommand}" CommandParameter="{Binding Directmedia}"/>
                     </TextCell.ContextActions>
                 </TextCell>
-                <TextCell Text="{Binding Duden, Converter={StaticResource NameConverter}}" Detail="{Binding Duden, Converter={StaticResource PathConverter}}" Command="{Binding PickFolderCommand}" CommandParameter="{Binding Duden}">
+                <TextCell Text="{Binding Duden.Title}" Detail="{Binding Duden, Converter={StaticResource PathConverter}}" Command="{Binding PickFolderCommand}" CommandParameter="{Binding Duden}">
                     <TextCell.ContextActions>
                         <MenuItem Text="Reset" Command="{Binding ResetFolderCommand}" CommandParameter="{Binding Duden}"/>
                     </TextCell.ContextActions>
                 </TextCell>
-                <TextCell Text="{Binding Epub, Converter={StaticResource NameConverter}}" Detail="{Binding Epub, Converter={StaticResource PathConverter}}" Command="{Binding PickFolderCommand}" CommandParameter="{Binding Epub}">
+                <TextCell Text="{Binding Epub.Title}" Detail="{Binding Epub, Converter={StaticResource PathConverter}}" Command="{Binding PickFolderCommand}" CommandParameter="{Binding Epub}">
                     <TextCell.ContextActions>
                         <MenuItem Text="Reset" Command="{Binding ResetFolderCommand}" CommandParameter="{Binding Epub}"/>
                     </TextCell.ContextActions>

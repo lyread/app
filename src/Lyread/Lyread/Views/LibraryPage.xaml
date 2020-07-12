@@ -23,11 +23,11 @@
     </ContentPage.BindingContext>
 
     <AbsoluteLayout Padding="0" HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand">
-        <RefreshView Command="{Binding RefreshBooksCommand}" IsRefreshing="{Binding IsBusy}" AbsoluteLayout.LayoutBounds="0, 0, 1, 1" AbsoluteLayout.LayoutFlags="All">
+        <RefreshView IsRefreshing="{Binding IsBusy, Mode=TwoWay}" Command="{Binding LoadBooksCommand}" AbsoluteLayout.LayoutBounds="0, 0, 1, 1" AbsoluteLayout.LayoutFlags="All">
             <CollectionView x:Name="BooksView"
                                 ItemsSource="{Binding Books}"
                                 RemainingItemsThreshold="0"
-                                RemainingItemsThresholdReachedCommand="{Binding RemainingItemsThresholdReachedCommand}"
+                                RemainingItemsThresholdReachedCommand="{Binding LoadMoreBooksCommand}"
                                 SelectionMode="Single"
                                 SelectionChangedCommand="{Binding OpenBookCommand}"
                                 SelectionChangedCommandParameter="{Binding SelectedItem, Source={x:Reference BooksView}}"

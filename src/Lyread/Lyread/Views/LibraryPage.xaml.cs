@@ -1,4 +1,5 @@
-﻿using Xamarin.Forms;
+﻿using System.Linq;
+using Xamarin.Forms;
 
 namespace Lyread.Views
 {
@@ -11,12 +12,12 @@ namespace Lyread.Views
 
         protected override void OnAppearing()
         {
-            LibraryViewModel.Init();
-        }
+            base.OnAppearing();
 
-        protected override void OnDisappearing()
-        {
-            LibraryViewModel.Clear();
+            if (!LibraryViewModel.Books.Any())
+            {
+                LibraryViewModel.IsBusy = true;
+            }
         }
     }
 }

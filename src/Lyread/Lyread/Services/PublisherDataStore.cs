@@ -34,9 +34,9 @@ namespace Lyread.Services
 
         public async Task<IEnumerable<IPublisherItem>> GetItemsAsync(bool forceRefresh = false)
         {
-            return items
-                .Where(p => Preferences.Get(p.GetType().Name, null) != null)
-                .Where(p => new DirectoryInfo(Preferences.Get(p.GetType().Name, null)).Exists);
+            return await Task.FromResult(items
+                .Where(p => Preferences.ContainsKey(p.Title))
+                .Where(p => Directory.Exists(Preferences.Get(p.Title, null))));
         }
     }
 }
