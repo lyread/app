@@ -5,10 +5,14 @@ using System.Collections.Generic;
 using System.IO;
 using System.Linq;
 
-namespace Duden
+namespace Duden.Item
 {
-    public class Duden : IPublisher
+    public class DudenItem : IPublisherItem
     {
+        public int Id => Title.GetHashCode();
+
+        public string Title => "Duden";
+
         public IEnumerable<IBookItem> QueryBooks(DirectoryInfo folder)
         {
             return folder.EnumerateFiles("*.sqlite3")

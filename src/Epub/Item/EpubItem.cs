@@ -6,13 +6,17 @@ using System.IO;
 using System.Linq;
 using Book.Util;
 
-namespace Epub
+namespace Epub.Item
 {
     /// <summary>
     /// http://idpf.github.io/epub3-samples/30/samples.html
     /// </summary>
-    public class Epub : IPublisher
+    public class EpubItem : IPublisherItem
     {
+        public int Id => Title.GetHashCode();
+
+        public string Title => "Epub";
+
         public IEnumerable<IBookItem> QueryBooks(DirectoryInfo folder)
         {
             return folder.EnumerateDirectories()

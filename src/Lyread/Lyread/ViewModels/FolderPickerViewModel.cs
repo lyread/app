@@ -1,4 +1,5 @@
 ﻿using Book;
+using Book.Item;
 using Book.Util;
 using System;
 using System.Collections.Generic;
@@ -13,7 +14,7 @@ namespace Lyread.ViewModels
 {
     public class FolderPickerViewModel : ListViewModel
     {
-        public IPublisher Publisher { get; set; }
+        public IPublisherItem Publisher { get; set; }
         public DirectoryInfo Parent { get; private set; } = new DirectoryInfo(DependencyService.Get<IPlatformService>().ExternalStorageDirectory);
         public RangedObservableCollection<FileSystemInfo> FileSystemInfos { get; }
 

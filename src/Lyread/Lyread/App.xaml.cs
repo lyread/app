@@ -19,7 +19,7 @@ namespace Lyread
         {
             InitializeComponent();
 
-            DependencyService.Register<MockDataStore>();
+            DependencyService.Register<PublisherDataStore>();
             MainPage = new AppShell();
         }
 

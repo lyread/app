@@ -25,10 +25,6 @@ namespace Lyread.ViewModels
 {
     public class LibraryViewModel : ListViewModel
     {
-        public static IEnumerable<IPublisher> Publishers => new List<IPublisher> { new Directmedia.Directmedia(), new Duden.Duden(), new Epub.Epub() }
-            .Where(p => Preferences.Get(p.GetType().Name, null) != null)
-            .Where(p => new DirectoryInfo(Preferences.Get(p.GetType().Name, null)).Exists);
-
         public ObservableCollection<IBookItem> Books { get; }
 
         public RangedObservableCollection<IJobItem> Jobs { get; } = new RangedObservableCollection<IJobItem>();
@@ -91,7 +87,7 @@ namespace Lyread.ViewModels
 
             try
             {
-                var items = LoadBooks();
+                var items = await LoadBooks();
                 foreach (var item in items)
                 {
                     Books.Add(item);
@@ -123,20 +119,22 @@ namespace Lyread.ViewModels
             });
         }
 
-        private IEnumerable<IBookItem> LoadBooks()
+        private async Task<IEnumerable<IBookItem>> LoadBooks()
         {
             bool patternIsNullOrEmpty = string.IsNullOrEmpty(Pattern);
             int page = (Books.Count + PageSize - 1) / PageSize;
-            return Publishers
+            IEnumerable<IPublisherItem> publishers = await DataStore.GetItemsAsync(true);
+            return publishers
                 .SelectMany(p => p.QueryBooks(new DirectoryInfo(Preferences.Get(p.GetType().Name, null))))
                 .Where(b => patternIsNullOrEmpty || Regex.IsMatch(b.Title, Pattern, RegexOptions.IgnoreCase))
                 .Skip(page * PageSize)
                 .Take(PageSize);
         }
 
-        public void Init()
+        public async void Init()
         {
-            Jobs.ReplaceRange(Publishers
+            IEnumerable<IPublisherItem> publishers = await DataStore.GetItemsAsync(true);
+            Jobs.ReplaceRange(publishers
                 .SelectMany(p => p.QueryJobs(new DirectoryInfo(Preferences.Get(p.GetType().Name, null))))
                 .Select(job => new JobItem(job)));
             //OnPropertyChanged(nameof(Jobs));
@@ -176,7 +174,7 @@ namespace Lyread.ViewModels
             try
             {
                 Books.Clear();
-                var items = LoadBooks();
+                var items = await LoadBooks();
                 foreach (var item in items)
                 {
                     Books.Add(item);

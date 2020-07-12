@@ -7,12 +7,13 @@ using Xamarin.Forms;
 
 using Lyread.Models;
 using Lyread.Services;
+using Book.Item;
 
 namespace Lyread.ViewModels
 {
     public class BaseViewModel : INotifyPropertyChanged
     {
-        public IDataStore<Item> DataStore => DependencyService.Get<IDataStore<Item>>();
+        public IDataStore<IPublisherItem> DataStore => DependencyService.Get<IDataStore<IPublisherItem>>();
 
         bool isBusy = false;
         public bool IsBusy

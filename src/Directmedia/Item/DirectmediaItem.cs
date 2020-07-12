@@ -8,10 +8,14 @@ using System.IO;
 using System.Linq;
 using static Directmedia.Util.Constants;
 
-namespace Directmedia
+namespace Directmedia.Item
 {
-    public class Directmedia : IPublisher
+    public class DirectmediaItem : IPublisherItem
     {
+        public int Id => Title.GetHashCode();
+
+        public string Title => "Directmedia";
+
         public IEnumerable<IBookItem> QueryBooks(DirectoryInfo folder)
         {
             return folder.EnumerateDirectories()

@@ -1,4 +1,8 @@
 ﻿using Book;
+using Book.Item;
+using Directmedia.Item;
+using Duden.Item;
+using Epub.Item;
 using Lyread.Views;
 using System;
 using System.Globalization;
@@ -10,9 +14,9 @@ namespace Lyread.ViewModels
 {
     public class SettingsViewModel : BaseViewModel
     {
-        public IPublisher Directmedia => new Directmedia.Directmedia();
-        public IPublisher Duden => new Duden.Duden();
-        public IPublisher Epub => new Epub.Epub();
+        public IPublisherItem Directmedia => new DirectmediaItem();
+        public IPublisherItem Duden => new DudenItem();
+        public IPublisherItem Epub => new EpubItem();
         public int CoverSize
         {
             get
@@ -26,8 +30,8 @@ namespace Lyread.ViewModels
             }
         }
 
-        public ICommand PickFolderCommand => new Command<IPublisher>(async publisher => await Application.Current.MainPage.Navigation.PushModalAsync(new NavigationPage(new FolderPickerPage(publisher))));
-        public ICommand ResetFolderCommand => new Command<IPublisher>(publisher =>
+        public ICommand PickFolderCommand => new Command<IPublisherItem>(async publisher => await Application.Current.MainPage.Navigation.PushModalAsync(new NavigationPage(new FolderPickerPage(publisher))));
+        public ICommand ResetFolderCommand => new Command<IPublisherItem>(publisher =>
         {
             string name = publisher.GetType().Name;
             Preferences.Remove(name);
@@ -51,7 +55,7 @@ namespace Lyread.ViewModels
     {
         public object Convert(object value, Type targetType, object parameter, CultureInfo culture)
         {
-            if (value is IPublisher publisher)
+            if (value is IPublisherItem publisher)
             {
                 return publisher.GetType().Name;
             }
@@ -68,7 +72,7 @@ namespace Lyread.ViewModels
     {
         public object Convert(object value, Type targetType, object parameter, CultureInfo culture)
         {
-            if (value is IPublisher publisher)
+            if (value is IPublisherItem publisher)
             {
                 return Preferences.Get(publisher.GetType().Name, null) ?? "Select...";
             }

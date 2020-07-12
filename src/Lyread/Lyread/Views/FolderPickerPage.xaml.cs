@@ -1,4 +1,5 @@
 ﻿using Book;
+using Book.Item;
 using System;
 using Xamarin.Essentials;
 using Xamarin.Forms;
@@ -7,7 +8,7 @@ namespace Lyread.Views
 {
     public partial class FolderPickerPage : ContentPage
     {
-        public FolderPickerPage(IPublisher publisher)
+        public FolderPickerPage(IPublisherItem publisher)
         {
             InitializeComponent();
             FolderPickerViewModel.Publisher = publisher;
