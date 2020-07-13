@@ -47,12 +47,11 @@ namespace Lyread.ViewModels
                     Jobs.AddRange(jobs);
                     OnPropertyChanged(nameof(Jobs));
 
-                    //await Task.WhenAll(jobs.Select(job => job.Run()))
-                    await Task.Run(() =>
+                    await Task.Run(async () =>
                     {
                         foreach (IJobItem jobItem in Jobs)
                         {
-                            jobItem.Run();
+                            await jobItem.Run();
                         }
                     }).ContinueWith(task => Device.BeginInvokeOnMainThread(() =>
                     {
