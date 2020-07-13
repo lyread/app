@@ -15,6 +15,7 @@ using SqlKata;
 using SqlKata.Compilers;
 using System;
 using System.IO;
+using System.Threading.Tasks;
 using static Lucene.Net.Util.PagedBytes;
 
 namespace Duden.Item
@@ -34,7 +35,7 @@ namespace Duden.Item
         }
 
         [Obsolete]
-        public bool Run()
+        public Task<bool> Run()
         {
             using (Analyzer analyzer = new HTMLStripCharAnalyzer())
             using (Lucene.Net.Store.Directory index = new SimpleFSDirectory(Path.ChangeExtension(_file.FullName, string.Empty)))
@@ -55,7 +56,7 @@ namespace Duden.Item
                     Report((double)++position / length);
                 }
             }
-            return true;
+            return Task.FromResult(true);
         }
 
         private string Compile(Query query)

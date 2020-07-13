@@ -3,6 +3,7 @@ using Book.Util;
 using ICSharpCode.SharpZipLib.Zip;
 using System;
 using System.IO;
+using System.Threading.Tasks;
 
 namespace Epub.Item
 {
@@ -20,7 +21,7 @@ namespace Epub.Item
             _file = file;
         }
 
-        public bool Run()
+        public Task<bool> Run()
         {
             try
             {
@@ -28,11 +29,11 @@ namespace Epub.Item
                 {
                     zipStream.UnpackAll(_file.Directory.CreateSubdirectory(Path.GetFileNameWithoutExtension(_file.Name)));
                 }
-                return true;
+                return Task.FromResult(true);
             }
             catch (Exception e)
             {
-                return false;
+                return Task.FromResult(false);
             }
         }
 

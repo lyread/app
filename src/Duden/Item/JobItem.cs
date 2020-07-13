@@ -3,6 +3,7 @@ using Book.Util;
 using System;
 using System.IO;
 using System.Security.Cryptography;
+using System.Threading.Tasks;
 
 namespace Duden.Item
 {
@@ -20,7 +21,7 @@ namespace Duden.Item
             _file = file;
         }
 
-        public bool Run()
+        public Task<bool> Run()
         {
             try
             {
@@ -29,11 +30,11 @@ namespace Duden.Item
                 {
                     inStream.CopyTo(outStream);
                 }
-                return true;
+                return Task.FromResult(true);
             }
             catch (Exception)
             {
-                return false;
+                return Task.FromResult(false);
             }
         }
 

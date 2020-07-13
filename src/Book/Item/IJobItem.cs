@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Threading.Tasks;
 
 namespace Book.Item
 {
@@ -6,7 +7,7 @@ namespace Book.Item
     {
         event EventHandler<ProgressEventArgs> ProgressChanged;
 
-        bool Run();
+        Task<bool> Run();
     }
 
     public class ProgressEventArgs : EventArgs

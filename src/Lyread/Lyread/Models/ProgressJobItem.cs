@@ -5,6 +5,7 @@ using System.ComponentModel;
 using System.Linq;
 using System.Reactive.Linq;
 using System.Runtime.CompilerServices;
+using System.Threading.Tasks;
 using Xamarin.Forms;
 
 namespace Lyread.Models
@@ -27,7 +28,7 @@ namespace Lyread.Models
         private Color _color = Color.Black;
         public Color Color { get { return _color; } set { _color = value; OnPropertyChanged(); } }
 
-        public bool Run()
+        public async Task<bool> Run()
         {
             using (Observable.FromEventPattern<ProgressEventArgs>(handler => _wrappedJobItem.ProgressChanged += handler, handler => _wrappedJobItem.ProgressChanged -= handler)
                 .Sample(TimeSpan.FromMilliseconds(250))
@@ -35,7 +36,7 @@ namespace Lyread.Models
                 .Finally(() => Device.BeginInvokeOnMainThread(() => { Progress = 1; }))
                 .Subscribe(progress => Device.BeginInvokeOnMainThread(() => { Progress = progress; })))
             {
-                bool success = _wrappedJobItem.Run();
+                bool success = await _wrappedJobItem.Run();
                 Device.BeginInvokeOnMainThread(() => { Color = success ? Color.Green : Color.Red; });
                 return success;
             }

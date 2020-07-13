@@ -3,6 +3,7 @@ using Book.Util;
 using ICSharpCode.SharpZipLib.Zip;
 using System;
 using System.IO;
+using System.Threading.Tasks;
 
 namespace Directmedia.Item
 {
@@ -20,7 +21,7 @@ namespace Directmedia.Item
             _file = file;
         }
 
-        public bool Run()
+        public Task<bool> Run()
         {
             try
             {
@@ -29,11 +30,11 @@ namespace Directmedia.Item
                 {
                     zipStream.UnpackAll(_file.Directory);
                 }
-                return true;
+                return Task.FromResult(true);
             }
             catch (Exception)
             {
-                return false;
+                return Task.FromResult(false);
             }
         }
 
