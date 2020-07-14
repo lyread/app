@@ -18,75 +18,76 @@ namespace Lyread.ViewModels
 {
     public class IndexViewModel : BookViewModel
     {
-        public RangedObservableCollection<ICategoryItem> CategoryItems { get; set; } = new RangedObservableCollection<ICategoryItem>();
-        public ObservableCollection<IIndexItem> IndexItems { get; }
+        public RangedObservableCollection<ICategoryItem> CategoryItems { get; } = new RangedObservableCollection<ICategoryItem>();
+        public RangedObservableCollection<IIndexItem> IndexItems { get; } = new RangedObservableCollection<IIndexItem>();
 
-        public ICommand QueryIndexCommand => new Command<string>(async pattern =>
+        public ICommand LoadIndexItemsCommand => new Command(async () =>
         {
-            Pattern = pattern;
-            if (!CategoryItems.Any())
-            {
-                CategoryItems.AddRange(await Book.QueryCategories());
-                CategoryItemsChanged();
-            }
-            if (!QueryUtil.IsValidRegex(Pattern))
-            {
-                return;
-            }
-            IndexItems.Clear();
-            LoadItemsCommand.Execute(null);
-        });
-        public ICommand OpenDocumentCommand => new Command<IIndexItem>(async item => await Application.Current.MainPage.Navigation.PushModalAsync(new NavigationPage(new DocumentPage(Book, item.Id))));
+            IsBusy = true;
 
-        public Command LoadItemsCommand { get; set; }
-
-        public ICommand ItemTresholdReachedCommand => new Command(async () =>
-        {
-            Debug.WriteLine("ItemTresholdReachedCommand");
             try
             {
-                var items = await LoadIIndexItems();
-                foreach (var item in items)
+                if (!CategoryItems.Any())
                 {
-                    IndexItems.Add(item);
+                    CategoryItems.AddRange(await Book.QueryCategories());
+                    CategoryItemsChanged();
                 }
+
+                IndexItems.Clear();
+                IEnumerable<IIndexItem> items = await GetIndexItemsAsync();
+                IndexItems.AddRange(items);
             }
             catch (Exception ex)
             {
                 Debug.WriteLine(ex);
             }
+            finally
+            {
+                IsBusy = false;
+            }
         });
+
+        public ICommand LoadMoreIndexItemsCommand => new Command(async () =>
+        {
+            IsBusy = true;
+
+            try
+            {
+                IEnumerable<IIndexItem> items = await GetIndexItemsAsync();
+                IndexItems.AddRange(items);
+            }
+            catch (Exception ex)
+            {
+                Debug.WriteLine(ex);
+            }
+            finally
+            {
+                IsBusy = false;
+            }
+        });
+
+        public ICommand QueryIndexItemsCommand => new Command<string>(pattern =>
+        {
+            Pattern = pattern;
+            if (QueryUtil.IsValidRegex(Pattern))
+            {
+                LoadIndexItemsCommand.Execute(null);
+            }
+        });
+
+        public ICommand OpenDocumentCommand => new Command<IIndexItem>(async item => await Application.Current.MainPage.Navigation.PushModalAsync(new NavigationPage(new DocumentPage(Book, item.Id))));
 
         public string Pattern { get; set; }
 
         public IndexViewModel()
         {
             Title = "Index";
-            IndexItems = new ObservableCollection<IIndexItem>();
-            LoadItemsCommand = new Command(async () => await ExecuteLoadItemsCommand());
         }
 
-        private async Task<IEnumerable<IIndexItem>> LoadIIndexItems()
+        private async Task<IEnumerable<IIndexItem>> GetIndexItemsAsync()
         {
             int page = (IndexItems.Count + PageSize - 1) / PageSize;
             return await Book.QueryIndex(Pattern, CategoryItems.Where(item => item.Selected), page);
-        }
-
-        async Task ExecuteLoadItemsCommand()
-        {
-            try
-            {
-                IndexItems.Clear();
-                var items = await LoadIIndexItems();
-                foreach (var item in items)
-                {
-                    IndexItems.Add(item);
-                }
-            }
-            catch (Exception ex)
-            {
-                Debug.WriteLine(ex);
-            }
         }
 
         public void CategoryItemsChanged()

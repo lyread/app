@@ -1,6 +1,5 @@
 ﻿using Book;
 using Book.Item;
-using Lucene.Net.Util;
 using Lyread.Models;
 using Lyread.Views;
 using System;
@@ -12,7 +11,6 @@ using System.IO;
 using System.Linq;
 using System.Reactive.Linq;
 using System.Text.RegularExpressions;
-using System.Threading;
 using System.Threading.Tasks;
 using System.Windows.Input;
 using Xamarin.Essentials;
@@ -24,7 +22,6 @@ namespace Lyread.ViewModels
     public class LibraryViewModel : ListViewModel
     {
         public RangedObservableCollection<IBookItem> Books { get; } = new RangedObservableCollection<IBookItem>();
-
         public RangedObservableCollection<IJobItem> Jobs { get; } = new RangedObservableCollection<IJobItem>();
 
         public string Pattern { get; set; }

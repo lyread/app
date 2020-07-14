@@ -14,16 +14,15 @@ namespace Lyread.Views
 
         protected override void OnAppearing()
         {
-            IndexViewModel.QueryIndexCommand.Execute(null);
+            base.OnAppearing();
+            IndexViewModel.IsBusy |= IndexViewModel.IndexItems.Count == 0;
         }
 
         private void Toggle_Clicked(object sender, EventArgs e)
         {
-            if (!(CategoryView.IsVisible ^= true))
-            {
-                IndexViewModel.CategoryItemsChanged();
-                IndexViewModel.QueryIndexCommand.Execute(null);
-            }
+            IndexViewModel.IsBusy |= CategoryView.IsVisible;
+            CategoryView.IsVisible ^= true;
+            IndexViewModel.CategoryItemsChanged();
         }
     }
 }
