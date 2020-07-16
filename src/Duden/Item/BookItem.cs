@@ -171,8 +171,8 @@ namespace Duden.Item
                     Document doc = searcher.Doc(scoreDoc.Doc);
                     string html = doc.Get(nameof(TabHtmlText.Html));
                     TokenStream stream = TokenSources.GetAnyTokenStream(reader, scoreDoc.Doc, nameof(TabHtmlText.Html), analyzer);
-                    string[] fragments = highlighter.GetBestFragments(stream, html, 10);
-                    //String[] fragments = highlighter.GetBestFragments(new HTMLStripCharAnalyzer(), nameof(TabHtmlText.Html), html, 10);
+                    //string[] fragments = highlighter.GetBestFragments(stream, html, 10);
+                    string[] fragments = highlighter.GetBestFragments(new HTMLStripCharAnalyzer(), nameof(TabHtmlText.Html), html, 10);
 
                     //string s = "";
                     //ICharTermAttribute cattr = stream.AddAttribute<ICharTermAttribute>();

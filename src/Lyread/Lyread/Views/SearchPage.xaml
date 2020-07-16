@@ -13,23 +13,27 @@
         <vm:SearchViewModel x:Name="SearchViewModel" />
     </ContentPage.BindingContext>
 
-    <StackLayout>
-        <SearchBar Text="{Binding Pattern}" SearchCommand="{Binding SearchCommand}" BackgroundColor="LightGray">
-            <SearchBar.Behaviors>
-                <behaviors:IncrementalSearchBehavior />
-            </SearchBar.Behaviors>
-        </SearchBar>
-        <CollectionView x:Name="SearchView"
-                        ItemsSource="{Binding SearchItems}"
-                        SelectionMode="Single"
-                        SelectionChangedCommand="{Binding OpenDocumentCommand}"
-                        SelectionChangedCommandParameter="{Binding SelectedItem, Source={x:Reference SearchView}}">
-            <CollectionView.ItemTemplate>
-                <DataTemplate>
-                    <!--<htmlLabel:HtmlLabel Text="{Binding Title}" htmlLabel:HtmlLabel.MaxLines="2"/>-->
-                </DataTemplate>
-            </CollectionView.ItemTemplate>
-        </CollectionView>
-    </StackLayout>
+    <CollectionView x:Name="SearchView"
+                    ItemsSource="{Binding SearchItems}"
+                    RemainingItemsThresholdReachedCommand="{Binding LoadMoreSearchItemsCommand}"
+                    RemainingItemsThreshold="0"
+                    SelectionMode="Single"
+                    SelectionChangedCommand="{Binding OpenDocumentCommand}"
+                    SelectionChangedCommandParameter="{Binding SelectedItem, Source={x:Reference SearchView}}">
+        <CollectionView.ItemTemplate>
+            <DataTemplate>
+                <Label Text="{Binding Title}" TextType="Html" MaxLines="2"/>
+            </DataTemplate>
+        </CollectionView.ItemTemplate>
+    </CollectionView>
+
+    <Shell.SearchHandler>
+        <SearchHandler
+            x:Name="SearchHandler"
+            Placeholder=""
+            DisplayMemberName="Name"
+            Command="{Binding SearchCommand}"
+            CommandParameter="{Binding Query, Source={x:Reference SearchHandler}}" />
+    </Shell.SearchHandler>
 
 </ContentPage>

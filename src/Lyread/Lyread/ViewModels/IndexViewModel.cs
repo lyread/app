@@ -1,6 +1,4 @@
 ﻿using Book.Item;
-using Lyread.Behaviors;
-using Lyread.Models;
 using Lyread.Views;
 using System;
 using System.Collections.Generic;
@@ -8,7 +6,6 @@ using System.Collections.ObjectModel;
 using System.Diagnostics;
 using System.Globalization;
 using System.Linq;
-using System.Text.RegularExpressions;
 using System.Threading.Tasks;
 using System.Windows.Input;
 using Xamarin.Forms;
@@ -78,11 +75,6 @@ namespace Lyread.ViewModels
         public ICommand OpenDocumentCommand => new Command<IIndexItem>(async item => await Application.Current.MainPage.Navigation.PushModalAsync(new NavigationPage(new DocumentPage(Book, item.Id))));
 
         public string Pattern { get; set; }
-
-        public IndexViewModel()
-        {
-            Title = "Index";
-        }
 
         private async Task<IEnumerable<IIndexItem>> GetIndexItemsAsync()
         {

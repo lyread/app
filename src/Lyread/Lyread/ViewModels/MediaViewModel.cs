@@ -36,11 +36,6 @@ namespace Lyread.ViewModels
             }
         });
 
-        public MediaViewModel()
-        {
-            Title = "Media";
-        }
-
         public async Task Init()
         {
             MediaItems.ReplaceRange(await Book.QueryImages(null, 0));

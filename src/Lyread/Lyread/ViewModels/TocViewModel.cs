@@ -12,11 +12,6 @@ namespace Lyread.ViewModels
     {
         public RangedObservableCollection<ITocItem> TocItems { get; set; } = new RangedObservableCollection<ITocItem>();
 
-        public TocViewModel()
-        {
-            Title = "Contents";
-        }
-
         public ICommand OpenTocItemCommand => new Command<ITocItem>(item =>
         {
             if (item.HasChildren)
@@ -28,9 +23,10 @@ namespace Lyread.ViewModels
                 OpenDocumentCommand.Execute(item);
             }
         });
+
         public ICommand OpenDocumentCommand => new Command<ITocItem>(async item =>
         {
-            if(Book == null || item == null)
+            if (Book == null || item == null)
             {
                 return;
             }
