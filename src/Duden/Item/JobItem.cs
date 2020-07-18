@@ -10,7 +10,7 @@ namespace Duden.Item
     public class JobItem : IJobItem, IProgress<double>
     {
         public int Id => Title.GetHashCode();
-        public string Title => _file.Name;
+        public string Title => "Unpacking " + _file.Name;
 
         public event EventHandler<ProgressEventArgs> ProgressChanged;
 

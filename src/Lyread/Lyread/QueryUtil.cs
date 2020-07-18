@@ -29,9 +29,9 @@ namespace Lyread
         {
             try
             {
-                using (Analyzer analyzer = new StandardAnalyzer(LuceneVersion.LUCENE_48))
+                using (Analyzer analyzer = new StandardAnalyzer(LuceneVersion.LUCENE_CURRENT))
                 {
-                    new QueryParser(LuceneVersion.LUCENE_48, string.Empty, analyzer).Parse(query);
+                    new QueryParser(LuceneVersion.LUCENE_CURRENT, string.Empty, analyzer).Parse(query);
                 }
             }
             catch (ArgumentNullException)

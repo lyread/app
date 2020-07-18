@@ -23,7 +23,7 @@ namespace Duden.Item
     public class LuceneItem : IJobItem, IProgress<double>
     {
         public int Id => Title.GetHashCode();
-        public string Title => _file.Name;
+        public string Title => "Indexing " + _file.Name;
 
         public event EventHandler<ProgressEventArgs> ProgressChanged;
 
@@ -38,8 +38,8 @@ namespace Duden.Item
         public Task<bool> Run()
         {
             using (Analyzer analyzer = new HTMLStripCharAnalyzer())
-            using (Lucene.Net.Store.Directory index = new SimpleFSDirectory(Path.ChangeExtension(_file.FullName, string.Empty)))
-            using (IndexWriter writer = new IndexWriter(index, new IndexWriterConfig(LuceneVersion.LUCENE_48, analyzer)))
+            using (Lucene.Net.Store.Directory index = new SimpleFSDirectory(Path.ChangeExtension(_file.FullName, Convert.ToInt32(LuceneVersion.LUCENE_CURRENT).ToString())))
+            using (IndexWriter writer = new IndexWriter(index, new IndexWriterConfig(LuceneVersion.LUCENE_CURRENT, analyzer)))
             using (SQLiteConnection connection = new SQLiteConnection(_file.FullName))
             {
                 int position = 0, length = connection.FindWithQuery<int>(Compile(new Query(nameof(TabHtmlText)).AsCount()));
@@ -53,7 +53,10 @@ namespace Duden.Item
                     };
                     writer.AddDocument(doc);
 
-                    Report((double)++position / length);
+                    if (position % 1024 == 0 || position == length - 1)
+                    {
+                        Report((double)++position / length);
+                    }
                 }
             }
             return Task.FromResult(true);
@@ -74,10 +77,10 @@ namespace Duden.Item
     {
         protected override TokenStreamComponents CreateComponents(string fieldName, TextReader reader)
         {
-            StandardTokenizer tokenizer = new StandardTokenizer(LuceneVersion.LUCENE_48, reader);
-            TokenStream stream = new StandardFilter(LuceneVersion.LUCENE_48, tokenizer);
-            stream = new LowerCaseFilter(LuceneVersion.LUCENE_48, stream);
-            stream = new StopFilter(LuceneVersion.LUCENE_48, stream, StopAnalyzer.ENGLISH_STOP_WORDS_SET);
+            StandardTokenizer tokenizer = new StandardTokenizer(LuceneVersion.LUCENE_CURRENT, reader);
+            TokenStream stream = new StandardFilter(LuceneVersion.LUCENE_CURRENT, tokenizer);
+            stream = new LowerCaseFilter(LuceneVersion.LUCENE_CURRENT, stream);
+            stream = new StopFilter(LuceneVersion.LUCENE_CURRENT, stream, StopAnalyzer.ENGLISH_STOP_WORDS_SET);
             return new TokenStreamComponents(tokenizer, stream);
         }
 
