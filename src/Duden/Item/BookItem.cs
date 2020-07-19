@@ -170,21 +170,8 @@ namespace Duden.Item
                 {
                     Document doc = searcher.Doc(scoreDoc.Doc);
                     string html = doc.Get(nameof(TabHtmlText.Html));
-                    TokenStream stream = TokenSources.GetAnyTokenStream(reader, scoreDoc.Doc, nameof(TabHtmlText.Html), analyzer);
-                    //string[] fragments = highlighter.GetBestFragments(stream, html, 10);
-                    string[] fragments = highlighter.GetBestFragments(new HTMLStripCharAnalyzer(), nameof(TabHtmlText.Html), html, 10);
-
-                    //string s = "";
-                    //ICharTermAttribute cattr = stream.AddAttribute<ICharTermAttribute>();
-                    //stream.Reset();
-                    //while (stream.IncrementToken())
-                    //{
-                    //    s += cattr.ToString() + " ";
-                    //}
-                    //stream.End();
-                    //stream.Dispose();
-
-                    return new SearchItem(int.Parse(doc.Get(nameof(TabHtmlText.NumId))), string.Join(";", fragments));
+                    string[] fragments = highlighter.GetBestFragments(new HTMLStripCharAnalyzer(), nameof(TabHtmlText.Html), html, 3);
+                    return new SearchItem(int.Parse(doc.Get(nameof(TabHtmlText.NumId))), string.Join("\n", fragments));
                 });
 
                 return Task.FromResult(items.ToList().AsEnumerable());

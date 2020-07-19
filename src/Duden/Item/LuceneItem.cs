@@ -55,7 +55,7 @@ namespace Duden.Item
 
                     if (position % 1024 == 0 || position == length - 1)
                     {
-                        Report((double)++position / length);
+                        Report((double)++position / (double)length);
                     }
                 }
             }

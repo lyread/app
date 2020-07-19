@@ -7,8 +7,6 @@
              x:Class="Lyread.Views.LibraryPage"
              xmlns:vm="clr-namespace:Lyread.ViewModels"
              xmlns:converters="clr-namespace:Lyread.Converters"
-             xmlns:behaviors="clr-namespace:Lyread.Behaviors"
-             xmlns:lyread="clr-namespace:Lyread"
              Title="{Binding Title}">
 
     <ContentPage.Resources>
