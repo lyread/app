@@ -8,6 +8,7 @@ using System.Globalization;
 using System.Linq;
 using System.Threading.Tasks;
 using System.Windows.Input;
+using Xamarin.CommunityToolkit.ObjectModel;
 using Xamarin.Forms;
 using static Book.Util.BookConstant;
 
@@ -15,8 +16,8 @@ namespace Lyread.ViewModels
 {
     public class IndexViewModel : BookViewModel
     {
-        public RangedObservableCollection<ICategoryItem> CategoryItems { get; } = new RangedObservableCollection<ICategoryItem>();
-        public RangedObservableCollection<IIndexItem> IndexItems { get; } = new RangedObservableCollection<IIndexItem>();
+        public ObservableRangeCollection<ICategoryItem> CategoryItems { get; } = new ObservableRangeCollection<ICategoryItem>();
+        public ObservableRangeCollection<IIndexItem> IndexItems { get; } = new ObservableRangeCollection<IIndexItem>();
 
         public ICommand LoadIndexItemsCommand => new Command(async () =>
         {

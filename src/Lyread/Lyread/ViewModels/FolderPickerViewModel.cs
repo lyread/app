@@ -8,6 +8,7 @@ using System.Globalization;
 using System.IO;
 using System.Linq;
 using System.Windows.Input;
+using Xamarin.CommunityToolkit.ObjectModel;
 using Xamarin.Forms;
 
 namespace Lyread.ViewModels
@@ -16,14 +17,14 @@ namespace Lyread.ViewModels
     {
         public IPublisherItem Publisher { get; set; }
         public DirectoryInfo Parent { get; private set; } = new DirectoryInfo(DependencyService.Get<IPlatformService>().ExternalStorageDirectory);
-        public RangedObservableCollection<FileSystemInfo> FileSystemInfos { get; }
+        public ObservableRangeCollection<FileSystemInfo> FileSystemInfos { get; }
 
         public ICommand OpenFolderCommand => new Command<FileSystemInfo>(OpenFolder);
         public ICommand RefreshFolderCommand => CreateRefreshCommand(() => OpenFolder(Parent));
 
         public FolderPickerViewModel()
         {
-            FileSystemInfos = new RangedObservableCollection<FileSystemInfo>(ReadFiles());
+            FileSystemInfos = new ObservableRangeCollection<FileSystemInfo>(ReadFiles());
         }
 
         private void OpenFolder(FileSystemInfo info)

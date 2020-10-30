@@ -4,6 +4,7 @@ using System.Collections.ObjectModel;
 using System.IO;
 using System.Threading.Tasks;
 using System.Windows.Input;
+using Xamarin.CommunityToolkit.ObjectModel;
 using Xamarin.Essentials;
 using Xamarin.Forms;
 
@@ -11,7 +12,7 @@ namespace Lyread.ViewModels
 {
     public class MediaViewModel : BookViewModel
     {
-        public RangedObservableCollection<IImageItem> MediaItems { get; set; } = new RangedObservableCollection<IImageItem>();
+        public ObservableRangeCollection<IImageItem> MediaItems { get; set; } = new ObservableRangeCollection<IImageItem>();
 
         public ICommand QueryIndexCommand => new Command<string>(async pattern =>
         {

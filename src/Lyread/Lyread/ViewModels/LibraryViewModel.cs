@@ -13,6 +13,7 @@ using System.Reactive.Linq;
 using System.Text.RegularExpressions;
 using System.Threading.Tasks;
 using System.Windows.Input;
+using Xamarin.CommunityToolkit.ObjectModel;
 using Xamarin.Essentials;
 using Xamarin.Forms;
 using static Book.Util.BookConstant;
@@ -21,8 +22,8 @@ namespace Lyread.ViewModels
 {
     public class LibraryViewModel : ListViewModel
     {
-        public RangedObservableCollection<IBookItem> Books { get; } = new RangedObservableCollection<IBookItem>();
-        public RangedObservableCollection<IJobItem> Jobs { get; } = new RangedObservableCollection<IJobItem>();
+        public ObservableRangeCollection<IBookItem> Books { get; } = new ObservableRangeCollection<IBookItem>();
+        public ObservableRangeCollection<IJobItem> Jobs { get; } = new ObservableRangeCollection<IJobItem>();
 
         public string Pattern { get; set; }
 

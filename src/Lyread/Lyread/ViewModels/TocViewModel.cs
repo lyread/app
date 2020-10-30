@@ -4,13 +4,14 @@ using System.Collections.ObjectModel;
 using System.Linq;
 using System.Threading.Tasks;
 using System.Windows.Input;
+using Xamarin.CommunityToolkit.ObjectModel;
 using Xamarin.Forms;
 
 namespace Lyread.ViewModels
 {
     public class TocViewModel : BookViewModel
     {
-        public RangedObservableCollection<ITocItem> TocItems { get; set; } = new RangedObservableCollection<ITocItem>();
+        public ObservableRangeCollection<ITocItem> TocItems { get; set; } = new ObservableRangeCollection<ITocItem>();
 
         public ICommand OpenTocItemCommand => new Command<ITocItem>(item =>
         {

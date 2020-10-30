@@ -73,5 +73,10 @@ namespace Directmedia.Search
         {
             return _hashTable.Hash(x.Utf8ToString()) - _hashTable.Hash(y.Utf8ToString());
         }
+
+        public override bool MoveNext()
+        {
+            throw new System.NotImplementedException();
+        }
     }
 }

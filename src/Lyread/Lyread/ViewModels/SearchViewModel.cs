@@ -6,6 +6,7 @@ using System.Collections.ObjectModel;
 using System.Diagnostics;
 using System.Threading.Tasks;
 using System.Windows.Input;
+using Xamarin.CommunityToolkit.ObjectModel;
 using Xamarin.Forms;
 using static Book.Util.BookConstant;
 
@@ -13,7 +14,7 @@ namespace Lyread.ViewModels
 {
     public class SearchViewModel : BookViewModel
     {
-        public RangedObservableCollection<ISearchItem> SearchItems { get; } = new RangedObservableCollection<ISearchItem>();
+        public ObservableRangeCollection<ISearchItem> SearchItems { get; } = new ObservableRangeCollection<ISearchItem>();
 
         public string Pattern { get; set; }
 

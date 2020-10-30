@@ -104,6 +104,11 @@ namespace Directmedia.Search
 
         public override TermsEnum GetIterator(TermsEnum reuse) { return new WordsEnum(_hashTable, _wordList, _pagenumberList, _textTable); }
 
+        public override TermsEnum GetEnumerator()
+        {
+            throw new NotImplementedException();
+        }
+
         public override long Count => throw new NotImplementedException();
         public override bool HasFreqs => throw new NotImplementedException();
         public override IComparer<BytesRef> Comparer => throw new NotImplementedException();
