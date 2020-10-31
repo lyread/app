@@ -6,13 +6,13 @@
              mc:Ignorable="d"
              x:Class="Lyread.Views.MediaPage"
              xmlns:vm="clr-namespace:Lyread.ViewModels"
-             xmlns:converters="clr-namespace:Lyread.Converters"
+             xmlns:converters="clr-namespace:Xamarin.CommunityToolkit.Converters;assembly=Xamarin.CommunityToolkit"
              Title="{Binding Title}">
 
     <ContentPage.Resources>
         <ResourceDictionary>
-            <converters:BytesToImageSourceConverter x:Key="ImageConverter"/>
-            <converters:StringToBoolConverter x:Key="StringConverter"/>
+            <converters:ByteArrayToImageSourceConverter x:Key="ImageConverter"/>
+            <converters:IsNotNullOrEmptyConverter x:Key="StringConverter"/>
         </ResourceDictionary>
     </ContentPage.Resources>
 
