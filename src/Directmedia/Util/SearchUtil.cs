@@ -21,10 +21,10 @@ namespace Directmedia.Util
 
         public static IEnumerable<ISearchItem> Search(string pattern, DirectoryInfo dataFolder, int page)
         {
-            using (Analyzer analyzer = new SimpleAnalyzer(LuceneVersion.LUCENE_CURRENT))
+            using (Analyzer analyzer = new SimpleAnalyzer(LuceneVersion.LUCENE_48))
             using (IndexReader reader = new PagesReader(dataFolder))
             {
-                Query query = new QueryParser(LuceneVersion.LUCENE_CURRENT, string.Empty, analyzer).Parse(pattern);
+                Query query = new QueryParser(LuceneVersion.LUCENE_48, string.Empty, analyzer).Parse(pattern);
                 IndexSearcher searcher = new IndexSearcher(reader);
                 TopFieldCollector collector = TopFieldCollector.Create(Sort.INDEXORDER, NumHits, false, false, false, false);
                 searcher.Search(query, collector);
@@ -53,10 +53,10 @@ namespace Directmedia.Util
 
         public static ISet<int> HighlightedOffsets(int pagenumber, string pattern, DirectoryInfo dataFolder)
         {
-            using (Analyzer analyzer = new SimpleAnalyzer(LuceneVersion.LUCENE_CURRENT))
+            using (Analyzer analyzer = new SimpleAnalyzer(LuceneVersion.LUCENE_48))
             using (IndexReader reader = new PagesReader(dataFolder))
             {
-                Query query = new QueryParser(LuceneVersion.LUCENE_CURRENT, string.Empty, analyzer).Parse(pattern);
+                Query query = new QueryParser(LuceneVersion.LUCENE_48, string.Empty, analyzer).Parse(pattern);
                 TermsEnum termsEnum = reader.GetTermVector(pagenumber, string.Empty).GetIterator(TermsEnum.EMPTY);
                 IEnumerable<int> highlightOffsets = ExtractTerms(query).SelectMany(term =>
                 {

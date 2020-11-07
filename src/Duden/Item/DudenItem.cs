@@ -34,7 +34,7 @@ namespace Duden.Item
             }
             IEnumerable<IJobItem> index = folder.EnumerateFiles("*.sqlite3")
                 .Where(file => file.Name != "dbmedia.sqlite3")
-                .Where(file => !Directory.Exists(Path.ChangeExtension(file.FullName, Convert.ToInt32(LuceneVersion.LUCENE_CURRENT).ToString())))
+                .Where(file => !Directory.Exists(Path.ChangeExtension(file.FullName, Convert.ToInt32(LuceneVersion.LUCENE_48).ToString())))
                 .Select(file => new LuceneItem(file));
             return index;
         }

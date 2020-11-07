@@ -150,11 +150,11 @@ namespace Duden.Item
 
         public Task<IEnumerable<ISearchItem>> Search(string pattern, int page)
         {
-            using (Analyzer analyzer = new StandardAnalyzer(LuceneVersion.LUCENE_CURRENT))
-            using (Lucene.Net.Store.Directory index = new SimpleFSDirectory(Path.ChangeExtension(_bookFile.FullName, Convert.ToInt32(LuceneVersion.LUCENE_CURRENT).ToString())))
+            using (Analyzer analyzer = new StandardAnalyzer(LuceneVersion.LUCENE_48))
+            using (Lucene.Net.Store.Directory index = new SimpleFSDirectory(Path.ChangeExtension(_bookFile.FullName, Convert.ToInt32(LuceneVersion.LUCENE_48).ToString())))
             using (IndexReader reader = DirectoryReader.Open(index))
             {
-                Lucene.Net.Search.Query query = new QueryParser(LuceneVersion.LUCENE_CURRENT, nameof(TabHtmlText.Html), analyzer).Parse(pattern);
+                Lucene.Net.Search.Query query = new QueryParser(LuceneVersion.LUCENE_48, nameof(TabHtmlText.Html), analyzer).Parse(pattern);
                 Lucene.Net.Search.TopScoreDocCollector collector = Lucene.Net.Search.TopScoreDocCollector.Create(512, true);
                 Lucene.Net.Search.IndexSearcher searcher = new Lucene.Net.Search.IndexSearcher(reader);
                 searcher.Search(query, collector);
@@ -213,8 +213,8 @@ namespace Duden.Item
         {
             if (!string.IsNullOrWhiteSpace(pattern))
             {
-                using (Analyzer analyzer = new StandardAnalyzer(LuceneVersion.LUCENE_CURRENT))
-                using (Lucene.Net.Store.Directory index = new SimpleFSDirectory(Path.ChangeExtension(_bookFile.FullName, Convert.ToInt32(LuceneVersion.LUCENE_CURRENT).ToString())))
+                using (Analyzer analyzer = new StandardAnalyzer(LuceneVersion.LUCENE_48))
+                using (Lucene.Net.Store.Directory index = new SimpleFSDirectory(Path.ChangeExtension(_bookFile.FullName, Convert.ToInt32(LuceneVersion.LUCENE_48).ToString())))
                 using (IndexReader reader = DirectoryReader.Open(index))
                 {
                     Lucene.Net.Search.IndexSearcher searcher = new Lucene.Net.Search.IndexSearcher(reader);
@@ -222,7 +222,7 @@ namespace Duden.Item
 
                     int docId = docs.ScoreDocs.First().Doc;
 
-                    QueryScorer scorer = new QueryScorer(new QueryParser(LuceneVersion.LUCENE_CURRENT, nameof(TabHtmlText.Html), analyzer).Parse(pattern));
+                    QueryScorer scorer = new QueryScorer(new QueryParser(LuceneVersion.LUCENE_48, nameof(TabHtmlText.Html), analyzer).Parse(pattern));
                     Highlighter highlighter = new Highlighter(new SimpleHTMLFormatter("<span style=\"background-color: yellow\">", "</span>"), scorer)
                     {
                         TextFragmenter = new NullFragmenter()

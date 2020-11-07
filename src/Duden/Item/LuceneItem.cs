@@ -38,8 +38,8 @@ namespace Duden.Item
         public Task<bool> Run()
         {
             using (Analyzer analyzer = new HTMLStripCharAnalyzer())
-            using (Lucene.Net.Store.Directory index = new SimpleFSDirectory(Path.ChangeExtension(_file.FullName, Convert.ToInt32(LuceneVersion.LUCENE_CURRENT).ToString())))
-            using (IndexWriter writer = new IndexWriter(index, new IndexWriterConfig(LuceneVersion.LUCENE_CURRENT, analyzer)))
+            using (Lucene.Net.Store.Directory index = new SimpleFSDirectory(Path.ChangeExtension(_file.FullName, Convert.ToInt32(LuceneVersion.LUCENE_48).ToString())))
+            using (IndexWriter writer = new IndexWriter(index, new IndexWriterConfig(LuceneVersion.LUCENE_48, analyzer)))
             using (SQLiteConnection connection = new SQLiteConnection(_file.FullName))
             {
                 int position = 0, length = connection.FindWithQuery<int>(Compile(new Query(nameof(TabHtmlText)).AsCount()));
@@ -77,10 +77,10 @@ namespace Duden.Item
     {
         protected override TokenStreamComponents CreateComponents(string fieldName, TextReader reader)
         {
-            StandardTokenizer tokenizer = new StandardTokenizer(LuceneVersion.LUCENE_CURRENT, reader);
-            TokenStream stream = new StandardFilter(LuceneVersion.LUCENE_CURRENT, tokenizer);
-            stream = new LowerCaseFilter(LuceneVersion.LUCENE_CURRENT, stream);
-            stream = new StopFilter(LuceneVersion.LUCENE_CURRENT, stream, StopAnalyzer.ENGLISH_STOP_WORDS_SET);
+            StandardTokenizer tokenizer = new StandardTokenizer(LuceneVersion.LUCENE_48, reader);
+            TokenStream stream = new StandardFilter(LuceneVersion.LUCENE_48, tokenizer);
+            stream = new LowerCaseFilter(LuceneVersion.LUCENE_48, stream);
+            stream = new StopFilter(LuceneVersion.LUCENE_48, stream, StopAnalyzer.ENGLISH_STOP_WORDS_SET);
             return new TokenStreamComponents(tokenizer, stream);
         }
 
