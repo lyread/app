@@ -1,7 +1,7 @@
 ﻿using Book.Item;
 using Book.Util;
 using Directmedia.Item;
-using IniFileParser.Model;
+using IniParser.Model;
 using System;
 using System.Collections.Generic;
 using System.IO;

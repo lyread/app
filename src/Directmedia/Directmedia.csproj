@@ -13,7 +13,7 @@
   </ItemGroup>
 
   <ItemGroup>
-    <PackageReference Include="IniFileParserStandard" Version="1.0.1" />
+    <PackageReference Include="INIFileParserDotNetCore.Signed" Version="2.5.2" />
     <PackageReference Include="Lucene.Net" Version="4.8.0-beta00012" />
     <PackageReference Include="Lucene.Net.Analysis.Common" Version="4.8.0-beta00012" />
     <PackageReference Include="Lucene.Net.Highlighter" Version="4.8.0-beta00012" />

@@ -3,9 +3,9 @@ using Book.Item;
 using Book.Util;
 using Directmedia.Text;
 using Directmedia.Util;
-using IniFileParser;
-using IniFileParser.Model;
-using IniFileParser.Model.Configuration;
+using IniParser;
+using IniParser.Model;
+using IniParser.Model.Configuration;
 using Lyread.Text;
 using System;
 using System.Collections.Generic;
@@ -14,6 +14,7 @@ using System.Linq;
 using System.Text;
 using System.Text.RegularExpressions;
 using System.Threading.Tasks;
+using IniParser.Parser;
 using static Book.LinkType;
 using static Directmedia.Util.Constants;
 
@@ -29,7 +30,7 @@ namespace Directmedia.Item
         private readonly DirectoryInfo _bookFolder;
         private DirectoryInfo DataFolder => _bookFolder.GetSubdirectoryIgnoreCase(Constants.DataFolder);
         private DirectoryInfo ImagesFolder => _bookFolder.GetSubdirectoryIgnoreCase(Constants.ImagesFolder);
-        private IniData Ini => new IniFileParser.IniFileParser(new IniStringParser(new IniParserConfiguration { AllowDuplicateSections = true, AllowDuplicateKeys = true })).ReadFile(DataFolder.GetFileIgnoreCase(DigibibTxt).FullName, Encoding.GetEncoding(1252));
+        private IniData Ini => new FileIniDataParser(new IniDataParser(new IniParserConfiguration { AllowDuplicateSections = true, AllowDuplicateKeys = true })).ReadFile(DataFolder.GetFileIgnoreCase(DigibibTxt).FullName, Encoding.GetEncoding(1252));
 
         public BookItem(DirectoryInfo bookFolder)
         {
