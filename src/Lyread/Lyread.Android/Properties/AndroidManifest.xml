@@ -1,10 +1,14 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
-<manifest xmlns:android="http://schemas.android.com/apk/res/android" android:versionCode="1" android:versionName="1.0" package="io.github.lyread">
-	<uses-sdk android:minSdkVersion="21" android:targetSdkVersion="29" />
-	<application android:label="Lyread" android:icon="@mipmap/icon">
-		<provider android:name="android.support.v4.content.FileProvider" android:authorities="io.github.lyread.fileprovider" android:exported="false" android:grantUriPermissions="true">
-			<meta-data android:name="android.support.FILE_PROVIDER_PATHS" android:resource="@xml/file_paths"></meta-data>
-		</provider>
-	</application>
-	<uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
+<manifest xmlns:android="http://schemas.android.com/apk/res/android" android:versionCode="1" android:versionName="1.0"
+          package="io.github.lyread">
+    <uses-sdk android:minSdkVersion="21" android:targetSdkVersion="29"/>
+    <application android:label="Lyread" android:icon="@mipmap/icon">
+        <provider android:name="android.support.v4.content.FileProvider"
+                  android:authorities="io.github.lyread.fileprovider" android:exported="false"
+                  android:grantUriPermissions="true">
+            <meta-data android:name="android.support.FILE_PROVIDER_PATHS"
+                       android:resource="@xml/file_paths"></meta-data>
+        </provider>
+    </application>
+    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE"/>
 </manifest>

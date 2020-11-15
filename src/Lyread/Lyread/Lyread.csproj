@@ -1,24 +1,28 @@
 ﻿<Project Sdk="Microsoft.NET.Sdk">
 
-  <PropertyGroup>
-    <TargetFramework>netstandard2.0</TargetFramework>
-    <ProduceReferenceAssembly>true</ProduceReferenceAssembly>
-  </PropertyGroup>
+    <PropertyGroup>
+        <TargetFramework>netstandard2.0</TargetFramework>
+    </PropertyGroup>
 
-  <ItemGroup>
-    <PackageReference Include="Xamarin.CommunityToolkit" Version="1.0.0-pre4" />
-    <PackageReference Include="Xamarin.Forms" Version="4.8.0.1560" />  
-    <PackageReference Include="Xamarin.Essentials" Version="1.5.3.2" />
-    <PackageReference Include="Lucene.Net.QueryParser" Version="4.8.0-beta00012" />
-    <PackageReference Include="NLog" Version="4.7.5" />
-    <PackageReference Include="System.Reactive" Version="4.4.1" />
-    <PackageReference Include="Xam.Plugin.SimpleAudioPlayer" Version="1.4.0" />
-  </ItemGroup>
-  
-  <ItemGroup>
-    <ProjectReference Include="..\..\Book\Book.csproj" />
-    <ProjectReference Include="..\..\Directmedia\Directmedia.csproj" />
-    <ProjectReference Include="..\..\Duden\Duden.csproj" />
-    <ProjectReference Include="..\..\Epub\Epub.csproj" />
-  </ItemGroup>
+    <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|AnyCPU'">
+        <DebugType>pdbonly</DebugType>
+        <DebugSymbols>true</DebugSymbols>
+    </PropertyGroup>
+
+    <ItemGroup>
+        <PackageReference Include="Xamarin.CommunityToolkit" Version="1.0.0-pre4" />
+        <PackageReference Include="Xamarin.Forms" Version="4.8.0.1560" />
+        <PackageReference Include="Xamarin.Essentials" Version="1.5.3.2" />
+        <PackageReference Include="Lucene.Net.QueryParser" Version="4.8.0-beta00012" />
+        <PackageReference Include="NLog" Version="4.7.5" />
+        <PackageReference Include="System.Reactive" Version="4.4.1" />
+        <PackageReference Include="Xam.Plugin.SimpleAudioPlayer" Version="1.4.0" />
+    </ItemGroup>
+
+    <ItemGroup>
+        <ProjectReference Include="..\..\Book\Book.csproj" />
+        <ProjectReference Include="..\..\Directmedia\Directmedia.csproj" />
+        <ProjectReference Include="..\..\Duden\Duden.csproj" />
+        <ProjectReference Include="..\..\Epub\Epub.csproj" />
+    </ItemGroup>
 </Project>

@@ -86,14 +86,14 @@
     <FlyoutItem FlyoutDisplayOptions="AsMultipleItems">
         <ShellContent Title="Home" ContentTemplate="{DataTemplate local:LibraryPage}">
             <ShellContent.Icon>
-                <OnPlatform x:TypeArguments="FileImageSource" Android="@drawable/ic_home_black_24dp" WinPhone="Icons\library.png"/>
+                <OnPlatform x:TypeArguments="FileImageSource" Android="@drawable/ic_home_black_24dp"/>
             </ShellContent.Icon>
         </ShellContent>
     </FlyoutItem>
     <FlyoutItem FlyoutDisplayOptions="AsMultipleItems">
         <ShellContent Title="Settings" ContentTemplate="{DataTemplate local:SettingsPage}">
             <ShellContent.Icon>
-                <OnPlatform x:TypeArguments="FileImageSource" Android="@drawable/ic_settings_black_24dp" WinPhone="Icons\settings.png"/>
+                <OnPlatform x:TypeArguments="FileImageSource" Android="@drawable/ic_settings_black_24dp"/>
             </ShellContent.Icon>
         </ShellContent>
     </FlyoutItem>

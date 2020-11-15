@@ -97,15 +97,15 @@ namespace Lyread.ViewModels
             {
                 if (items.All(item => !item.Selected) || items.All(item => item.Selected))
                 {
-                    return ImageSource.FromFile(Device.RuntimePlatform == Device.Android ? "@drawable/ic_filter_none_white_24dp" : "Icons/filter.png");
+                    return ImageSource.FromFile(Device.RuntimePlatform == Device.Android ? "@drawable/ic_filter_none_white_24dp" : null);
                 }
                 else if (items.Count(item => item.Selected) > 9)
                 {
-                    return ImageSource.FromFile(Device.RuntimePlatform == Device.Android ? "@drawable/ic_filter_9_plus_white_24dp.png" : "Icons/filter.png");
+                    return ImageSource.FromFile(Device.RuntimePlatform == Device.Android ? "@drawable/ic_filter_9_plus_white_24dp.png" : null);
                 }
                 else
                 {
-                    return ImageSource.FromFile(Device.RuntimePlatform == Device.Android ? string.Format("@drawable/ic_filter_{0}_white_24dp.png", items.Count(item => item.Selected)) : "Icons/filter.png");
+                    return ImageSource.FromFile(Device.RuntimePlatform == Device.Android ? $"@drawable/ic_filter_{items.Count(item => item.Selected)}_white_24dp.png" : null);
                 }
             }
             return null;

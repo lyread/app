@@ -1,731 +1,733 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <Project DefaultTargets="Build" ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
-  <PropertyGroup>
-    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
-    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
-    <ProjectGuid>{57C54AF6-67C6-4627-9210-C830373DD92D}</ProjectGuid>
-    <ProjectTypeGuids>{EFBA0AD7-5A72-4C68-AF49-83D382785DCF};{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}</ProjectTypeGuids>
-    <TemplateGuid>{c9e5eea5-ca05-42a1-839b-61506e0a37df}</TemplateGuid>
-    <OutputType>Library</OutputType>
-    <RootNamespace>Lyread.Droid</RootNamespace>
-    <AssemblyName>Lyread.Android</AssemblyName>
-    <AndroidApplication>True</AndroidApplication>
-    <AndroidResgenFile>Resources\Resource.designer.cs</AndroidResgenFile>
-    <AndroidResgenClass>Resource</AndroidResgenClass>
-    <AndroidManifest>Properties\AndroidManifest.xml</AndroidManifest>
-    <MonoAndroidResourcePrefix>Resources</MonoAndroidResourcePrefix>
-    <MonoAndroidAssetsPrefix>Assets</MonoAndroidAssetsPrefix>
-    <AndroidUseLatestPlatformSdk>false</AndroidUseLatestPlatformSdk>
-    <TargetFrameworkVersion>v10.0</TargetFrameworkVersion>
-    <AndroidEnableSGenConcurrent>true</AndroidEnableSGenConcurrent>
-    <AndroidUseAapt2>true</AndroidUseAapt2>
-    <AndroidHttpClientHandlerType>Xamarin.Android.Net.AndroidClientHandler</AndroidHttpClientHandlerType>
-    <NuGetPackageImportStamp>
-    </NuGetPackageImportStamp>
-  </PropertyGroup>
-  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
-    <DebugSymbols>true</DebugSymbols>
-    <DebugType>portable</DebugType>
-    <Optimize>false</Optimize>
-    <OutputPath>bin\Debug</OutputPath>
-    <DefineConstants>DEBUG;</DefineConstants>
-    <ErrorReport>prompt</ErrorReport>
-    <WarningLevel>4</WarningLevel>
-    <AndroidLinkMode>None</AndroidLinkMode>
-    <AotAssemblies>false</AotAssemblies>
-    <EnableLLVM>false</EnableLLVM>
-    <BundleAssemblies>false</BundleAssemblies>
-    <EmbedAssembliesIntoApk>false</EmbedAssembliesIntoApk>
-    <AndroidUseSharedRuntime>true</AndroidUseSharedRuntime>
-    <MandroidI18n>West</MandroidI18n>
-    <AndroidEnableProfiledAot>false</AndroidEnableProfiledAot>
-  </PropertyGroup>
-  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
-    <DebugSymbols>false</DebugSymbols>
-    <DebugType>pdbonly</DebugType>
-    <Optimize>true</Optimize>
-    <OutputPath>bin\Release</OutputPath>
-    <ErrorReport>prompt</ErrorReport>
-    <WarningLevel>4</WarningLevel>
-    <AndroidManagedSymbols>true</AndroidManagedSymbols>
-    <AndroidUseSharedRuntime>false</AndroidUseSharedRuntime>
-    <AotAssemblies>false</AotAssemblies>
-    <EnableLLVM>false</EnableLLVM>
-    <BundleAssemblies>false</BundleAssemblies>
-    <EmbedAssembliesIntoApk>true</EmbedAssembliesIntoApk>
-    <AndroidLinkMode>SdkOnly</AndroidLinkMode>
-    <MandroidI18n>West</MandroidI18n>
-  </PropertyGroup>
-  <ItemGroup>
-    <Reference Include="Mono.Android" />
-    <Reference Include="System" />
-    <Reference Include="System.Core" />
-    <Reference Include="System.Numerics" />
-    <Reference Include="System.Numerics.Vectors" />
-    <Reference Include="System.Xml.Linq" />
-    <Reference Include="System.Xml" />
-  </ItemGroup>
-  <ItemGroup>
-    <PackageReference Include="Xamarin.AndroidX.MediaRouter">
-      <Version>1.1.0.5</Version>
-    </PackageReference>
-    <PackageReference Include="Xamarin.CommunityToolkit">
-      <Version>1.0.0-pre4</Version>
-    </PackageReference>
-    <PackageReference Include="Xamarin.Forms" Version="4.8.0.1560" />
-    <PackageReference Include="Xamarin.Android.Support.Design" Version="28.0.0.3" />
-    <PackageReference Include="Xamarin.Android.Support.v7.AppCompat" Version="28.0.0.3" />
-    <PackageReference Include="Xamarin.Android.Support.v4" Version="28.0.0.3" />
-    <PackageReference Include="Xamarin.Android.Support.v7.CardView" Version="28.0.0.3" />
-    <PackageReference Include="Xamarin.Android.Support.v7.MediaRouter" Version="28.0.0.3" />
-    <PackageReference Include="Xamarin.Android.Support.Core.Utils" Version="28.0.0.3" />
-    <PackageReference Include="Xamarin.Android.Support.CustomTabs" Version="28.0.0.3" />
-    <PackageReference Include="Xamarin.Essentials" Version="1.5.3.2" />
-    <PackageReference Include="NLog">
-      <Version>4.7.5</Version>
-    </PackageReference>
-  </ItemGroup>
-  <ItemGroup>
-    <Compile Include="AndroidPlatformService.cs" />
-    <Compile Include="MainActivity.cs" />
-    <Compile Include="Resources\Resource.designer.cs" />
-    <Compile Include="Properties\AssemblyInfo.cs" />
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="Properties\AndroidManifest.xml" />
-  </ItemGroup>
-  <ItemGroup>
-    <AndroidResource Include="Resources\layout\Tabbar.xml" />
-    <AndroidResource Include="Resources\layout\Toolbar.xml" />
-    <AndroidResource Include="Resources\values\styles.xml" />
-    <AndroidResource Include="Resources\values\colors.xml" />
-    <AndroidResource Include="Resources\mipmap-anydpi-v26\icon.xml" />
-    <AndroidResource Include="Resources\mipmap-hdpi\icon.png" />
-    <AndroidResource Include="Resources\mipmap-mdpi\icon.png" />
-    <AndroidResource Include="Resources\mipmap-xhdpi\icon.png" />
-    <AndroidResource Include="Resources\mipmap-xxhdpi\icon.png" />
-    <AndroidResource Include="Resources\mipmap-xxxhdpi\icon.png" />
-  </ItemGroup>
-  <ItemGroup>
-    <Folder Include="Assets\" />
-  </ItemGroup>
-  <ItemGroup>
-    <ProjectReference Include="..\Lyread\Lyread.csproj">
-      <Project>{226C6890-EE4A-41FD-8896-CA0E648B05FF}</Project>
-      <Name>Lyread</Name>
-    </ProjectReference>
-  </ItemGroup>
-  <ItemGroup>
-    <AndroidResource Include="Resources\drawable\ic_insert_drive_file_white_24dp.xml" />
-  </ItemGroup>
-  <ItemGroup>
-    <AndroidResource Include="Resources\drawable\ic_settings_white_24dp.xml" />
-  </ItemGroup>
-  <ItemGroup>
-    <AndroidResource Include="Resources\drawable\ic_folder_white_24dp.xml" />
-  </ItemGroup>
-  <ItemGroup>
-    <AndroidResource Include="Resources\drawable-hdpi\ic_folder_white_24dp.png" />
-  </ItemGroup>
-  <ItemGroup>
-    <AndroidResource Include="Resources\drawable-hdpi\ic_insert_drive_file_white_24dp.png" />
-  </ItemGroup>
-  <ItemGroup>
-    <AndroidResource Include="Resources\drawable-hdpi\ic_settings_white_24dp.png" />
-  </ItemGroup>
-  <ItemGroup>
-    <AndroidResource Include="Resources\drawable-xhdpi\ic_folder_white_24dp.png" />
-  </ItemGroup>
-  <ItemGroup>
-    <AndroidResource Include="Resources\drawable-xhdpi\ic_insert_drive_file_white_24dp.png" />
-  </ItemGroup>
-  <ItemGroup>
-    <AndroidResource Include="Resources\drawable-xhdpi\ic_settings_white_24dp.png" />
-  </ItemGroup>
-  <ItemGroup>
-    <AndroidResource Include="Resources\drawable-xxhdpi\ic_insert_drive_file_white_24dp.png" />
-  </ItemGroup>
-  <ItemGroup>
-    <AndroidResource Include="Resources\drawable-xxhdpi\ic_settings_white_24dp.png" />
-  </ItemGroup>
-  <ItemGroup>
-    <AndroidResource Include="Resources\drawable-xxhdpi\ic_folder_white_24dp.png" />
-  </ItemGroup>
-  <ItemGroup>
-    <AndroidResource Include="Resources\drawable-xxxhdpi\ic_folder_white_24dp.png" />
-  </ItemGroup>
-  <ItemGroup>
-    <AndroidResource Include="Resources\drawable-xxxhdpi\ic_insert_drive_file_white_24dp.png" />
-  </ItemGroup>
-  <ItemGroup>
-    <AndroidResource Include="Resources\drawable-xxxhdpi\ic_settings_white_24dp.png" />
-  </ItemGroup>
-  <ItemGroup>
-    <AndroidResource Include="Resources\drawable\splash.xml" />
-  </ItemGroup>
-  <ItemGroup>
-    <AndroidResource Include="Resources\xml\file_paths.xml" />
-  </ItemGroup>
-  <ItemGroup>
-    <AndroidResource Include="Resources\drawable\ic_filter_1_black_24dp.xml" />
-  </ItemGroup>
-  <ItemGroup>
-    <AndroidResource Include="Resources\drawable\icon.xml" />
-  </ItemGroup>
-  <ItemGroup>
-    <AndroidResource Include="Resources\drawable\ic_folder_black_24dp.xml" />
-  </ItemGroup>
-  <ItemGroup>
-    <AndroidResource Include="Resources\drawable-hdpi\ic_folder_black_24dp.png" />
-  </ItemGroup>
-  <ItemGroup>
-    <AndroidResource Include="Resources\drawable-xhdpi\ic_folder_black_24dp.png" />
-  </ItemGroup>
-  <ItemGroup>
-    <AndroidResource Include="Resources\drawable-xxhdpi\ic_folder_black_24dp.png" />
-  </ItemGroup>
-  <ItemGroup>
-    <AndroidResource Include="Resources\drawable-xxxhdpi\ic_folder_black_24dp.png" />
-  </ItemGroup>
-  <ItemGroup>
-    <AndroidResource Include="Resources\drawable\ic_insert_drive_file_black_24dp.xml" />
-  </ItemGroup>
-  <ItemGroup>
-    <AndroidResource Include="Resources\drawable-hdpi\ic_insert_drive_file_black_24dp.png" />
-  </ItemGroup>
-  <ItemGroup>
-    <AndroidResource Include="Resources\drawable-xhdpi\ic_insert_drive_file_black_24dp.png" />
-  </ItemGroup>
-  <ItemGroup>
-    <AndroidResource Include="Resources\drawable-xxhdpi\ic_insert_drive_file_black_24dp.png" />
-  </ItemGroup>
-  <ItemGroup>
-    <AndroidResource Include="Resources\drawable-xxxhdpi\ic_insert_drive_file_black_24dp.png" />
-  </ItemGroup>
-  <ItemGroup>
-    <AndroidResource Include="Resources\drawable-hdpi\ic_settings_black_24dp.png" />
-  </ItemGroup>
-  <ItemGroup>
-    <AndroidResource Include="Resources\drawable-xhdpi\ic_settings_black_24dp.png" />
-  </ItemGroup>
-  <ItemGroup>
-    <AndroidResource Include="Resources\drawable-xxhdpi\ic_settings_black_24dp.png" />
-  </ItemGroup>
-  <ItemGroup>
-    <AndroidResource Include="Resources\drawable-xxxhdpi\ic_settings_black_24dp.png" />
-  </ItemGroup>
-  <ItemGroup>
-    <AndroidResource Include="Resources\drawable\ic_settings_black_24dp.xml" />
-  </ItemGroup>
-  <ItemGroup>
-    <AndroidResource Include="Resources\drawable\ic_toc_black_24dp.xml" />
-  </ItemGroup>
-  <ItemGroup>
-    <AndroidResource Include="Resources\drawable-xxxhdpi\ic_toc_black_24dp.png" />
-  </ItemGroup>
-  <ItemGroup>
-    <AndroidResource Include="Resources\drawable-xxhdpi\ic_toc_black_24dp.png" />
-  </ItemGroup>
-  <ItemGroup>
-    <AndroidResource Include="Resources\drawable-xhdpi\ic_toc_black_24dp.png" />
-  </ItemGroup>
-  <ItemGroup>
-    <AndroidResource Include="Resources\drawable-hdpi\ic_toc_black_24dp.png" />
-  </ItemGroup>
-  <ItemGroup>
-    <AndroidResource Include="Resources\drawable-hdpi\ic_toc_white_24dp.png" />
-  </ItemGroup>
-  <ItemGroup>
-    <AndroidResource Include="Resources\drawable-xhdpi\ic_toc_white_24dp.png" />
-  </ItemGroup>
-  <ItemGroup>
-    <AndroidResource Include="Resources\drawable-xxhdpi\ic_toc_white_24dp.png" />
-  </ItemGroup>
-  <ItemGroup>
-    <AndroidResource Include="Resources\drawable-xxxhdpi\ic_toc_white_24dp.png" />
-  </ItemGroup>
-  <ItemGroup>
-    <AndroidResource Include="Resources\drawable-xxxhdpi\ic_list_black_24dp.png" />
-  </ItemGroup>
-  <ItemGroup>
-    <AndroidResource Include="Resources\drawable-xxhdpi\ic_list_black_24dp.png" />
-  </ItemGroup>
-  <ItemGroup>
-    <AndroidResource Include="Resources\drawable-xhdpi\ic_list_black_24dp.png" />
-  </ItemGroup>
-  <ItemGroup>
-    <AndroidResource Include="Resources\drawable-hdpi\ic_list_black_24dp.png" />
-  </ItemGroup>
-  <ItemGroup>
-    <AndroidResource Include="Resources\drawable\ic_list_black_24dp.xml" />
-  </ItemGroup>
-  <ItemGroup>
-    <AndroidResource Include="Resources\drawable-xxxhdpi\ic_list_white_24dp.png" />
-  </ItemGroup>
-  <ItemGroup>
-    <AndroidResource Include="Resources\drawable-xxhdpi\ic_list_white_24dp.png" />
-  </ItemGroup>
-  <ItemGroup>
-    <AndroidResource Include="Resources\drawable-xhdpi\ic_list_white_24dp.png" />
-  </ItemGroup>
-  <ItemGroup>
-    <AndroidResource Include="Resources\drawable-hdpi\ic_list_white_24dp.png" />
-  </ItemGroup>
-  <ItemGroup>
-    <AndroidResource Include="Resources\drawable\ic_image_black_24dp.xml" />
-  </ItemGroup>
-  <ItemGroup>
-    <AndroidResource Include="Resources\drawable\ic_search_black_24dp.xml" />
-  </ItemGroup>
-  <ItemGroup>
-    <AndroidResource Include="Resources\drawable\ic_note_black_24dp.xml" />
-  </ItemGroup>
-  <ItemGroup>
-    <AndroidResource Include="Resources\drawable-hdpi\ic_image_black_24dp.png" />
-  </ItemGroup>
-  <ItemGroup>
-    <AndroidResource Include="Resources\drawable-hdpi\ic_image_white_24dp.png" />
-  </ItemGroup>
-  <ItemGroup>
-    <AndroidResource Include="Resources\drawable-hdpi\ic_note_black_24dp.png" />
-  </ItemGroup>
-  <ItemGroup>
-    <AndroidResource Include="Resources\drawable-hdpi\ic_note_white_24dp.png" />
-  </ItemGroup>
-  <ItemGroup>
-    <AndroidResource Include="Resources\drawable-hdpi\ic_search_black_24dp.png" />
-  </ItemGroup>
-  <ItemGroup>
-    <AndroidResource Include="Resources\drawable-hdpi\ic_search_white_24dp.png" />
-  </ItemGroup>
-  <ItemGroup>
-    <AndroidResource Include="Resources\drawable-xhdpi\ic_image_black_24dp.png" />
-  </ItemGroup>
-  <ItemGroup>
-    <AndroidResource Include="Resources\drawable-xhdpi\ic_image_white_24dp.png" />
-  </ItemGroup>
-  <ItemGroup>
-    <AndroidResource Include="Resources\drawable-xhdpi\ic_note_black_24dp.png" />
-  </ItemGroup>
-  <ItemGroup>
-    <AndroidResource Include="Resources\drawable-xhdpi\ic_note_white_24dp.png" />
-  </ItemGroup>
-  <ItemGroup>
-    <AndroidResource Include="Resources\drawable-xhdpi\ic_search_black_24dp.png" />
-  </ItemGroup>
-  <ItemGroup>
-    <AndroidResource Include="Resources\drawable-xhdpi\ic_search_white_24dp.png" />
-  </ItemGroup>
-  <ItemGroup>
-    <AndroidResource Include="Resources\drawable-xxhdpi\ic_image_black_24dp.png" />
-  </ItemGroup>
-  <ItemGroup>
-    <AndroidResource Include="Resources\drawable-xxhdpi\ic_image_white_24dp.png" />
-  </ItemGroup>
-  <ItemGroup>
-    <AndroidResource Include="Resources\drawable-xxhdpi\ic_note_white_24dp.png" />
-  </ItemGroup>
-  <ItemGroup>
-    <AndroidResource Include="Resources\drawable-xxhdpi\ic_note_black_24dp.png" />
-  </ItemGroup>
-  <ItemGroup>
-    <AndroidResource Include="Resources\drawable-xxhdpi\ic_search_black_24dp.png" />
-  </ItemGroup>
-  <ItemGroup>
-    <AndroidResource Include="Resources\drawable-xxhdpi\ic_search_white_24dp.png" />
-  </ItemGroup>
-  <ItemGroup>
-    <AndroidResource Include="Resources\drawable-xxxhdpi\ic_image_black_24dp.png" />
-  </ItemGroup>
-  <ItemGroup>
-    <AndroidResource Include="Resources\drawable-xxxhdpi\ic_image_white_24dp.png" />
-  </ItemGroup>
-  <ItemGroup>
-    <AndroidResource Include="Resources\drawable-xxxhdpi\ic_note_white_24dp.png" />
-  </ItemGroup>
-  <ItemGroup>
-    <AndroidResource Include="Resources\drawable-xxxhdpi\ic_note_black_24dp.png" />
-  </ItemGroup>
-  <ItemGroup>
-    <AndroidResource Include="Resources\drawable-xxxhdpi\ic_search_black_24dp.png" />
-  </ItemGroup>
-  <ItemGroup>
-    <AndroidResource Include="Resources\drawable-xxxhdpi\ic_search_white_24dp.png" />
-  </ItemGroup>
-  <ItemGroup>
-    <AndroidResource Include="Resources\drawable\ic_image_white_24dp.xml" />
-  </ItemGroup>
-  <ItemGroup>
-    <AndroidResource Include="Resources\drawable\ic_list_white_24dp.xml" />
-  </ItemGroup>
-  <ItemGroup>
-    <AndroidResource Include="Resources\drawable\ic_note_white_24dp.xml" />
-  </ItemGroup>
-  <ItemGroup>
-    <AndroidResource Include="Resources\drawable\ic_search_white_24dp.xml" />
-  </ItemGroup>
-  <ItemGroup>
-    <AndroidResource Include="Resources\drawable\ic_toc_white_24dp.xml">
-      <Generator>MSBuild:UpdateGeneratedFiles</Generator>
-      <SubType>Designer</SubType>
-    </AndroidResource>
-  </ItemGroup>
-  <ItemGroup>
-    <AndroidResource Include="Resources\drawable\ic_filter_1_white_24dp.xml" />
-  </ItemGroup>
-  <ItemGroup>
-    <AndroidResource Include="Resources\drawable\ic_filter_2_black_24dp.xml" />
-  </ItemGroup>
-  <ItemGroup>
-    <AndroidResource Include="Resources\drawable\ic_filter_2_white_24dp.xml" />
-  </ItemGroup>
-  <ItemGroup>
-    <AndroidResource Include="Resources\drawable\ic_filter_3_black_24dp.xml" />
-  </ItemGroup>
-  <ItemGroup>
-    <AndroidResource Include="Resources\drawable\ic_filter_3_white_24dp.xml" />
-  </ItemGroup>
-  <ItemGroup>
-    <AndroidResource Include="Resources\drawable\ic_filter_4_black_24dp.xml" />
-  </ItemGroup>
-  <ItemGroup>
-    <AndroidResource Include="Resources\drawable\ic_filter_4_white_24dp.xml" />
-  </ItemGroup>
-  <ItemGroup>
-    <AndroidResource Include="Resources\drawable\ic_filter_5_black_24dp.xml" />
-  </ItemGroup>
-  <ItemGroup>
-    <AndroidResource Include="Resources\drawable\ic_filter_5_white_24dp.xml" />
-  </ItemGroup>
-  <ItemGroup>
-    <AndroidResource Include="Resources\drawable\ic_filter_6_black_24dp.xml" />
-  </ItemGroup>
-  <ItemGroup>
-    <AndroidResource Include="Resources\drawable\ic_filter_6_white_24dp.xml" />
-  </ItemGroup>
-  <ItemGroup>
-    <AndroidResource Include="Resources\drawable\ic_filter_7_black_24dp.xml" />
-  </ItemGroup>
-  <ItemGroup>
-    <AndroidResource Include="Resources\drawable\ic_filter_7_white_24dp.xml" />
-  </ItemGroup>
-  <ItemGroup>
-    <AndroidResource Include="Resources\drawable\ic_filter_8_black_24dp.xml" />
-  </ItemGroup>
-  <ItemGroup>
-    <AndroidResource Include="Resources\drawable\ic_filter_8_white_24dp.xml" />
-  </ItemGroup>
-  <ItemGroup>
-    <AndroidResource Include="Resources\drawable\ic_filter_9_black_24dp.xml" />
-  </ItemGroup>
-  <ItemGroup>
-    <AndroidResource Include="Resources\drawable\ic_filter_9_plus_black_24dp.xml" />
-  </ItemGroup>
-  <ItemGroup>
-    <AndroidResource Include="Resources\drawable\ic_filter_9_plus_white_24dp.xml" />
-  </ItemGroup>
-  <ItemGroup>
-    <AndroidResource Include="Resources\drawable\ic_filter_9_white_24dp.xml" />
-  </ItemGroup>
-  <ItemGroup>
-    <AndroidResource Include="Resources\drawable\ic_filter_none_black_24dp.xml" />
-  </ItemGroup>
-  <ItemGroup>
-    <AndroidResource Include="Resources\drawable\ic_filter_none_white_24dp.xml" />
-  </ItemGroup>
-  <ItemGroup>
-    <AndroidResource Include="Resources\drawable\ic_home_black_24dp.xml" />
-  </ItemGroup>
-  <ItemGroup>
-    <AndroidResource Include="Resources\drawable\ic_home_white_24dp.xml" />
-  </ItemGroup>
-  <ItemGroup>
-    <AndroidResource Include="Resources\drawable-hdpi\ic_filter_1_black_24dp.png" />
-  </ItemGroup>
-  <ItemGroup>
-    <AndroidResource Include="Resources\drawable-hdpi\ic_filter_1_white_24dp.png" />
-  </ItemGroup>
-  <ItemGroup>
-    <AndroidResource Include="Resources\drawable-hdpi\ic_filter_2_black_24dp.png" />
-  </ItemGroup>
-  <ItemGroup>
-    <AndroidResource Include="Resources\drawable-hdpi\ic_filter_2_white_24dp.png" />
-  </ItemGroup>
-  <ItemGroup>
-    <AndroidResource Include="Resources\drawable-hdpi\ic_filter_3_black_24dp.png" />
-  </ItemGroup>
-  <ItemGroup>
-    <AndroidResource Include="Resources\drawable-hdpi\ic_filter_3_white_24dp.png" />
-  </ItemGroup>
-  <ItemGroup>
-    <AndroidResource Include="Resources\drawable-hdpi\ic_filter_4_black_24dp.png" />
-  </ItemGroup>
-  <ItemGroup>
-    <AndroidResource Include="Resources\drawable-hdpi\ic_filter_4_white_24dp.png" />
-  </ItemGroup>
-  <ItemGroup>
-    <AndroidResource Include="Resources\drawable-hdpi\ic_filter_5_black_24dp.png" />
-  </ItemGroup>
-  <ItemGroup>
-    <AndroidResource Include="Resources\drawable-hdpi\ic_filter_5_white_24dp.png" />
-  </ItemGroup>
-  <ItemGroup>
-    <AndroidResource Include="Resources\drawable-hdpi\ic_filter_6_black_24dp.png" />
-  </ItemGroup>
-  <ItemGroup>
-    <AndroidResource Include="Resources\drawable-hdpi\ic_filter_6_white_24dp.png" />
-  </ItemGroup>
-  <ItemGroup>
-    <AndroidResource Include="Resources\drawable-hdpi\ic_filter_7_black_24dp.png" />
-  </ItemGroup>
-  <ItemGroup>
-    <AndroidResource Include="Resources\drawable-hdpi\ic_filter_7_white_24dp.png" />
-  </ItemGroup>
-  <ItemGroup>
-    <AndroidResource Include="Resources\drawable-hdpi\ic_filter_8_black_24dp.png" />
-  </ItemGroup>
-  <ItemGroup>
-    <AndroidResource Include="Resources\drawable-hdpi\ic_filter_8_white_24dp.png" />
-  </ItemGroup>
-  <ItemGroup>
-    <AndroidResource Include="Resources\drawable-hdpi\ic_filter_9_black_24dp.png" />
-  </ItemGroup>
-  <ItemGroup>
-    <AndroidResource Include="Resources\drawable-hdpi\ic_filter_9_plus_black_24dp.png" />
-  </ItemGroup>
-  <ItemGroup>
-    <AndroidResource Include="Resources\drawable-hdpi\ic_filter_9_plus_white_24dp.png" />
-  </ItemGroup>
-  <ItemGroup>
-    <AndroidResource Include="Resources\drawable-hdpi\ic_filter_9_white_24dp.png" />
-  </ItemGroup>
-  <ItemGroup>
-    <AndroidResource Include="Resources\drawable-hdpi\ic_filter_none_black_24dp.png" />
-  </ItemGroup>
-  <ItemGroup>
-    <AndroidResource Include="Resources\drawable-hdpi\ic_filter_none_white_24dp.png" />
-  </ItemGroup>
-  <ItemGroup>
-    <AndroidResource Include="Resources\drawable-hdpi\ic_home_black_24dp.png" />
-  </ItemGroup>
-  <ItemGroup>
-    <AndroidResource Include="Resources\drawable-hdpi\ic_home_white_24dp.png" />
-  </ItemGroup>
-  <ItemGroup>
-    <AndroidResource Include="Resources\drawable-xhdpi\ic_filter_1_black_24dp.png" />
-  </ItemGroup>
-  <ItemGroup>
-    <AndroidResource Include="Resources\drawable-xhdpi\ic_filter_1_white_24dp.png" />
-  </ItemGroup>
-  <ItemGroup>
-    <AndroidResource Include="Resources\drawable-xhdpi\ic_filter_2_black_24dp.png" />
-  </ItemGroup>
-  <ItemGroup>
-    <AndroidResource Include="Resources\drawable-xhdpi\ic_filter_2_white_24dp.png" />
-  </ItemGroup>
-  <ItemGroup>
-    <AndroidResource Include="Resources\drawable-xhdpi\ic_filter_3_black_24dp.png" />
-  </ItemGroup>
-  <ItemGroup>
-    <AndroidResource Include="Resources\drawable-xhdpi\ic_filter_3_white_24dp.png" />
-  </ItemGroup>
-  <ItemGroup>
-    <AndroidResource Include="Resources\drawable-xhdpi\ic_filter_4_black_24dp.png" />
-  </ItemGroup>
-  <ItemGroup>
-    <AndroidResource Include="Resources\drawable-xhdpi\ic_filter_4_white_24dp.png" />
-  </ItemGroup>
-  <ItemGroup>
-    <AndroidResource Include="Resources\drawable-xhdpi\ic_filter_5_black_24dp.png" />
-  </ItemGroup>
-  <ItemGroup>
-    <AndroidResource Include="Resources\drawable-xhdpi\ic_filter_5_white_24dp.png" />
-  </ItemGroup>
-  <ItemGroup>
-    <AndroidResource Include="Resources\drawable-xhdpi\ic_filter_6_black_24dp.png" />
-  </ItemGroup>
-  <ItemGroup>
-    <AndroidResource Include="Resources\drawable-xhdpi\ic_filter_6_white_24dp.png" />
-  </ItemGroup>
-  <ItemGroup>
-    <AndroidResource Include="Resources\drawable-xhdpi\ic_filter_7_black_24dp.png" />
-  </ItemGroup>
-  <ItemGroup>
-    <AndroidResource Include="Resources\drawable-xhdpi\ic_filter_7_white_24dp.png" />
-  </ItemGroup>
-  <ItemGroup>
-    <AndroidResource Include="Resources\drawable-xhdpi\ic_filter_8_black_24dp.png" />
-  </ItemGroup>
-  <ItemGroup>
-    <AndroidResource Include="Resources\drawable-xhdpi\ic_filter_8_white_24dp.png" />
-  </ItemGroup>
-  <ItemGroup>
-    <AndroidResource Include="Resources\drawable-xhdpi\ic_filter_9_black_24dp.png" />
-  </ItemGroup>
-  <ItemGroup>
-    <AndroidResource Include="Resources\drawable-xhdpi\ic_filter_9_plus_black_24dp.png" />
-  </ItemGroup>
-  <ItemGroup>
-    <AndroidResource Include="Resources\drawable-xhdpi\ic_filter_9_plus_white_24dp.png" />
-  </ItemGroup>
-  <ItemGroup>
-    <AndroidResource Include="Resources\drawable-xhdpi\ic_filter_9_white_24dp.png" />
-  </ItemGroup>
-  <ItemGroup>
-    <AndroidResource Include="Resources\drawable-xhdpi\ic_filter_none_black_24dp.png" />
-  </ItemGroup>
-  <ItemGroup>
-    <AndroidResource Include="Resources\drawable-xhdpi\ic_filter_none_white_24dp.png" />
-  </ItemGroup>
-  <ItemGroup>
-    <AndroidResource Include="Resources\drawable-xhdpi\ic_home_black_24dp.png" />
-  </ItemGroup>
-  <ItemGroup>
-    <AndroidResource Include="Resources\drawable-xhdpi\ic_home_white_24dp.png" />
-  </ItemGroup>
-  <ItemGroup>
-    <AndroidResource Include="Resources\drawable-xxhdpi\ic_filter_1_black_24dp.png" />
-  </ItemGroup>
-  <ItemGroup>
-    <AndroidResource Include="Resources\drawable-xxhdpi\ic_filter_1_white_24dp.png" />
-  </ItemGroup>
-  <ItemGroup>
-    <AndroidResource Include="Resources\drawable-xxhdpi\ic_filter_2_black_24dp.png" />
-  </ItemGroup>
-  <ItemGroup>
-    <AndroidResource Include="Resources\drawable-xxhdpi\ic_filter_2_white_24dp.png" />
-  </ItemGroup>
-  <ItemGroup>
-    <AndroidResource Include="Resources\drawable-xxhdpi\ic_filter_3_black_24dp.png" />
-  </ItemGroup>
-  <ItemGroup>
-    <AndroidResource Include="Resources\drawable-xxhdpi\ic_filter_3_white_24dp.png" />
-  </ItemGroup>
-  <ItemGroup>
-    <AndroidResource Include="Resources\drawable-xxhdpi\ic_filter_4_black_24dp.png" />
-  </ItemGroup>
-  <ItemGroup>
-    <AndroidResource Include="Resources\drawable-xxhdpi\ic_filter_4_white_24dp.png" />
-  </ItemGroup>
-  <ItemGroup>
-    <AndroidResource Include="Resources\drawable-xxhdpi\ic_filter_5_black_24dp.png" />
-  </ItemGroup>
-  <ItemGroup>
-    <AndroidResource Include="Resources\drawable-xxhdpi\ic_filter_5_white_24dp.png" />
-  </ItemGroup>
-  <ItemGroup>
-    <AndroidResource Include="Resources\drawable-xxhdpi\ic_filter_6_black_24dp.png" />
-  </ItemGroup>
-  <ItemGroup>
-    <AndroidResource Include="Resources\drawable-xxhdpi\ic_filter_6_white_24dp.png" />
-  </ItemGroup>
-  <ItemGroup>
-    <AndroidResource Include="Resources\drawable-xxhdpi\ic_filter_7_black_24dp.png" />
-  </ItemGroup>
-  <ItemGroup>
-    <AndroidResource Include="Resources\drawable-xxhdpi\ic_filter_7_white_24dp.png" />
-  </ItemGroup>
-  <ItemGroup>
-    <AndroidResource Include="Resources\drawable-xxhdpi\ic_filter_8_black_24dp.png" />
-  </ItemGroup>
-  <ItemGroup>
-    <AndroidResource Include="Resources\drawable-xxhdpi\ic_filter_8_white_24dp.png" />
-  </ItemGroup>
-  <ItemGroup>
-    <AndroidResource Include="Resources\drawable-xxhdpi\ic_filter_9_black_24dp.png" />
-  </ItemGroup>
-  <ItemGroup>
-    <AndroidResource Include="Resources\drawable-xxhdpi\ic_filter_9_plus_black_24dp.png" />
-  </ItemGroup>
-  <ItemGroup>
-    <AndroidResource Include="Resources\drawable-xxhdpi\ic_filter_9_plus_white_24dp.png" />
-  </ItemGroup>
-  <ItemGroup>
-    <AndroidResource Include="Resources\drawable-xxhdpi\ic_filter_9_white_24dp.png" />
-  </ItemGroup>
-  <ItemGroup>
-    <AndroidResource Include="Resources\drawable-xxhdpi\ic_filter_none_black_24dp.png" />
-  </ItemGroup>
-  <ItemGroup>
-    <AndroidResource Include="Resources\drawable-xxhdpi\ic_filter_none_white_24dp.png" />
-  </ItemGroup>
-  <ItemGroup>
-    <AndroidResource Include="Resources\drawable-xxhdpi\ic_home_white_24dp.png" />
-  </ItemGroup>
-  <ItemGroup>
-    <AndroidResource Include="Resources\drawable-xxhdpi\ic_home_black_24dp.png" />
-  </ItemGroup>
-  <ItemGroup>
-    <AndroidResource Include="Resources\drawable-xxxhdpi\ic_filter_1_black_24dp.png" />
-  </ItemGroup>
-  <ItemGroup>
-    <AndroidResource Include="Resources\drawable-xxxhdpi\ic_filter_1_white_24dp.png" />
-  </ItemGroup>
-  <ItemGroup>
-    <AndroidResource Include="Resources\drawable-xxxhdpi\ic_filter_2_black_24dp.png" />
-  </ItemGroup>
-  <ItemGroup>
-    <AndroidResource Include="Resources\drawable-xxxhdpi\ic_filter_2_white_24dp.png" />
-  </ItemGroup>
-  <ItemGroup>
-    <AndroidResource Include="Resources\drawable-xxxhdpi\ic_filter_3_black_24dp.png" />
-  </ItemGroup>
-  <ItemGroup>
-    <AndroidResource Include="Resources\drawable-xxxhdpi\ic_filter_3_white_24dp.png" />
-  </ItemGroup>
-  <ItemGroup>
-    <AndroidResource Include="Resources\drawable-xxxhdpi\ic_filter_4_black_24dp.png" />
-  </ItemGroup>
-  <ItemGroup>
-    <AndroidResource Include="Resources\drawable-xxxhdpi\ic_filter_4_white_24dp.png" />
-  </ItemGroup>
-  <ItemGroup>
-    <AndroidResource Include="Resources\drawable-xxxhdpi\ic_filter_5_black_24dp.png" />
-  </ItemGroup>
-  <ItemGroup>
-    <AndroidResource Include="Resources\drawable-xxxhdpi\ic_filter_5_white_24dp.png" />
-  </ItemGroup>
-  <ItemGroup>
-    <AndroidResource Include="Resources\drawable-xxxhdpi\ic_filter_6_black_24dp.png" />
-  </ItemGroup>
-  <ItemGroup>
-    <AndroidResource Include="Resources\drawable-xxxhdpi\ic_filter_6_white_24dp.png" />
-  </ItemGroup>
-  <ItemGroup>
-    <AndroidResource Include="Resources\drawable-xxxhdpi\ic_filter_7_black_24dp.png" />
-  </ItemGroup>
-  <ItemGroup>
-    <AndroidResource Include="Resources\drawable-xxxhdpi\ic_filter_7_white_24dp.png" />
-  </ItemGroup>
-  <ItemGroup>
-    <AndroidResource Include="Resources\drawable-xxxhdpi\ic_filter_8_black_24dp.png" />
-  </ItemGroup>
-  <ItemGroup>
-    <AndroidResource Include="Resources\drawable-xxxhdpi\ic_filter_8_white_24dp.png" />
-  </ItemGroup>
-  <ItemGroup>
-    <AndroidResource Include="Resources\drawable-xxxhdpi\ic_filter_9_black_24dp.png" />
-  </ItemGroup>
-  <ItemGroup>
-    <AndroidResource Include="Resources\drawable-xxxhdpi\ic_filter_9_plus_black_24dp.png" />
-  </ItemGroup>
-  <ItemGroup>
-    <AndroidResource Include="Resources\drawable-xxxhdpi\ic_filter_9_plus_white_24dp.png" />
-  </ItemGroup>
-  <ItemGroup>
-    <AndroidResource Include="Resources\drawable-xxxhdpi\ic_filter_9_white_24dp.png" />
-  </ItemGroup>
-  <ItemGroup>
-    <AndroidResource Include="Resources\drawable-xxxhdpi\ic_filter_none_black_24dp.png" />
-  </ItemGroup>
-  <ItemGroup>
-    <AndroidResource Include="Resources\drawable-xxxhdpi\ic_filter_none_white_24dp.png" />
-  </ItemGroup>
-  <ItemGroup>
-    <AndroidResource Include="Resources\drawable-xxxhdpi\ic_home_black_24dp.png" />
-  </ItemGroup>
-  <ItemGroup>
-    <AndroidResource Include="Resources\drawable-xxxhdpi\ic_home_white_24dp.png" />
-  </ItemGroup>
-  <Import Project="$(MSBuildExtensionsPath)\Xamarin\Android\Xamarin.Android.CSharp.targets" />
+    <PropertyGroup>
+        <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+        <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+        <ProjectGuid>{57C54AF6-67C6-4627-9210-C830373DD92D}</ProjectGuid>
+        <ProjectTypeGuids>{EFBA0AD7-5A72-4C68-AF49-83D382785DCF};{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}</ProjectTypeGuids>
+        <TemplateGuid>{c9e5eea5-ca05-42a1-839b-61506e0a37df}</TemplateGuid>
+        <OutputType>Library</OutputType>
+        <RootNamespace>Lyread.Droid</RootNamespace>
+        <AssemblyName>Lyread.Android</AssemblyName>
+        <AndroidApplication>True</AndroidApplication>
+        <AndroidResgenFile>Resources\Resource.designer.cs</AndroidResgenFile>
+        <AndroidResgenClass>Resource</AndroidResgenClass>
+        <AndroidManifest>Properties\AndroidManifest.xml</AndroidManifest>
+        <MonoAndroidResourcePrefix>Resources</MonoAndroidResourcePrefix>
+        <MonoAndroidAssetsPrefix>Assets</MonoAndroidAssetsPrefix>
+        <AndroidUseLatestPlatformSdk>false</AndroidUseLatestPlatformSdk>
+        <TargetFrameworkVersion>v10.0</TargetFrameworkVersion>
+        <AndroidEnableSGenConcurrent>true</AndroidEnableSGenConcurrent>
+        <AndroidUseAapt2>true</AndroidUseAapt2>
+        <AndroidHttpClientHandlerType>Xamarin.Android.Net.AndroidClientHandler</AndroidHttpClientHandlerType>
+        <NuGetPackageImportStamp>
+        </NuGetPackageImportStamp>
+    </PropertyGroup>
+    <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+        <DebugSymbols>true</DebugSymbols>
+        <DebugType>portable</DebugType>
+        <Optimize>false</Optimize>
+        <OutputPath>bin\Debug</OutputPath>
+        <DefineConstants>DEBUG;</DefineConstants>
+        <ErrorReport>prompt</ErrorReport>
+        <WarningLevel>4</WarningLevel>
+        <AndroidLinkMode>None</AndroidLinkMode>
+        <AotAssemblies>false</AotAssemblies>
+        <EnableLLVM>false</EnableLLVM>
+        <BundleAssemblies>false</BundleAssemblies>
+        <EmbedAssembliesIntoApk>false</EmbedAssembliesIntoApk>
+        <AndroidUseSharedRuntime>true</AndroidUseSharedRuntime>
+        <MandroidI18n>West</MandroidI18n>
+        <AndroidEnableProfiledAot>false</AndroidEnableProfiledAot>
+    </PropertyGroup>
+    <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+        <DebugSymbols>false</DebugSymbols>
+        <DebugType>pdbonly</DebugType>
+        <Optimize>true</Optimize>
+        <OutputPath>bin\Release</OutputPath>
+        <ErrorReport>prompt</ErrorReport>
+        <WarningLevel>4</WarningLevel>
+        <AndroidManagedSymbols>true</AndroidManagedSymbols>
+        <AndroidUseSharedRuntime>false</AndroidUseSharedRuntime>
+        <AotAssemblies>false</AotAssemblies>
+        <EnableLLVM>false</EnableLLVM>
+        <BundleAssemblies>false</BundleAssemblies>
+        <EmbedAssembliesIntoApk>true</EmbedAssembliesIntoApk>
+        <AndroidLinkMode>SdkOnly</AndroidLinkMode>
+        <MandroidI18n>West</MandroidI18n>
+    </PropertyGroup>
+    <ItemGroup>
+        <Reference Include="Mono.Android"/>
+        <Reference Include="System"/>
+        <Reference Include="System.Core"/>
+        <Reference Include="System.Numerics"/>
+        <Reference Include="System.Numerics.Vectors"/>
+        <Reference Include="System.Xml.Linq"/>
+        <Reference Include="System.Xml"/>
+    </ItemGroup>
+    <ItemGroup>
+        <PackageReference Include="Xamarin.AndroidX.MediaRouter">
+            <Version>1.1.0.5</Version>
+        </PackageReference>
+        <PackageReference Include="Xamarin.CommunityToolkit">
+            <Version>1.0.0-pre4</Version>
+        </PackageReference>
+        <PackageReference Include="Xamarin.Forms" Version="4.8.0.1560"/>
+        <PackageReference Include="Xamarin.Android.Support.Design" Version="28.0.0.3"/>
+        <PackageReference Include="Xamarin.Android.Support.v7.AppCompat" Version="28.0.0.3"/>
+        <PackageReference Include="Xamarin.Android.Support.v4" Version="28.0.0.3"/>
+        <PackageReference Include="Xamarin.Android.Support.v7.CardView" Version="28.0.0.3"/>
+        <PackageReference Include="Xamarin.Android.Support.v7.MediaRouter" Version="28.0.0.3"/>
+        <PackageReference Include="Xamarin.Android.Support.Core.Utils" Version="28.0.0.3"/>
+        <PackageReference Include="Xamarin.Android.Support.CustomTabs" Version="28.0.0.3"/>
+        <PackageReference Include="Xamarin.Essentials" Version="1.5.3.2"/>
+        <PackageReference Include="NLog">
+            <Version>4.7.5</Version>
+        </PackageReference>
+    </ItemGroup>
+    <ItemGroup>
+        <Compile Include="AndroidPlatformService.cs"/>
+        <Compile Include="MainActivity.cs"/>
+        <Compile Include="Resources\Resource.Designer.cs"/>
+        <Compile Include="Properties\AssemblyInfo.cs"/>
+    </ItemGroup>
+    <ItemGroup>
+        <None Include="Resources\AboutResources.txt"/>
+        <None Include="Assets\AboutAssets.txt"/>
+        <None Include="Properties\AndroidManifest.xml"/>
+    </ItemGroup>
+    <ItemGroup>
+        <AndroidResource Include="Resources\layout\Tabbar.axml"/>
+        <AndroidResource Include="Resources\layout\Toolbar.axml"/>
+        <AndroidResource Include="Resources\values\styles.xml"/>
+        <AndroidResource Include="Resources\values\colors.xml"/>
+        <AndroidResource Include="Resources\mipmap-anydpi-v26\icon.xml"/>
+        <AndroidResource Include="Resources\mipmap-hdpi\icon.png"/>
+        <AndroidResource Include="Resources\mipmap-mdpi\icon.png"/>
+        <AndroidResource Include="Resources\mipmap-xhdpi\icon.png"/>
+        <AndroidResource Include="Resources\mipmap-xxhdpi\icon.png"/>
+        <AndroidResource Include="Resources\mipmap-xxxhdpi\icon.png"/>
+    </ItemGroup>
+    <ItemGroup>
+        <Folder Include="Assets\"/>
+    </ItemGroup>
+    <ItemGroup>
+        <ProjectReference Include="..\Lyread\Lyread.csproj">
+            <Project>{226C6890-EE4A-41FD-8896-CA0E648B05FF}</Project>
+            <Name>Lyread</Name>
+        </ProjectReference>
+    </ItemGroup>
+    <ItemGroup>
+        <AndroidResource Include="Resources\drawable\ic_insert_drive_file_white_24dp.xml"/>
+    </ItemGroup>
+    <ItemGroup>
+        <AndroidResource Include="Resources\drawable\ic_settings_white_24dp.xml"/>
+    </ItemGroup>
+    <ItemGroup>
+        <AndroidResource Include="Resources\drawable\ic_folder_white_24dp.xml"/>
+    </ItemGroup>
+    <ItemGroup>
+        <AndroidResource Include="Resources\drawable-hdpi\ic_folder_white_24dp.png"/>
+    </ItemGroup>
+    <ItemGroup>
+        <AndroidResource Include="Resources\drawable-hdpi\ic_insert_drive_file_white_24dp.png"/>
+    </ItemGroup>
+    <ItemGroup>
+        <AndroidResource Include="Resources\drawable-hdpi\ic_settings_white_24dp.png"/>
+    </ItemGroup>
+    <ItemGroup>
+        <AndroidResource Include="Resources\drawable-xhdpi\ic_folder_white_24dp.png"/>
+    </ItemGroup>
+    <ItemGroup>
+        <AndroidResource Include="Resources\drawable-xhdpi\ic_insert_drive_file_white_24dp.png"/>
+    </ItemGroup>
+    <ItemGroup>
+        <AndroidResource Include="Resources\drawable-xhdpi\ic_settings_white_24dp.png"/>
+    </ItemGroup>
+    <ItemGroup>
+        <AndroidResource Include="Resources\drawable-xxhdpi\ic_insert_drive_file_white_24dp.png"/>
+    </ItemGroup>
+    <ItemGroup>
+        <AndroidResource Include="Resources\drawable-xxhdpi\ic_settings_white_24dp.png"/>
+    </ItemGroup>
+    <ItemGroup>
+        <AndroidResource Include="Resources\drawable-xxhdpi\ic_folder_white_24dp.png"/>
+    </ItemGroup>
+    <ItemGroup>
+        <AndroidResource Include="Resources\drawable-xxxhdpi\ic_folder_white_24dp.png"/>
+    </ItemGroup>
+    <ItemGroup>
+        <AndroidResource Include="Resources\drawable-xxxhdpi\ic_insert_drive_file_white_24dp.png"/>
+    </ItemGroup>
+    <ItemGroup>
+        <AndroidResource Include="Resources\drawable-xxxhdpi\ic_settings_white_24dp.png"/>
+    </ItemGroup>
+    <ItemGroup>
+        <AndroidResource Include="Resources\drawable\splash.xml"/>
+    </ItemGroup>
+    <ItemGroup>
+        <AndroidResource Include="Resources\xml\file_paths.xml"/>
+    </ItemGroup>
+    <ItemGroup>
+        <AndroidResource Include="Resources\drawable\ic_filter_1_black_24dp.xml"/>
+    </ItemGroup>
+    <ItemGroup>
+        <AndroidResource Include="Resources\drawable\icon.xml"/>
+    </ItemGroup>
+    <ItemGroup>
+        <AndroidResource Include="Resources\drawable\ic_folder_black_24dp.xml"/>
+    </ItemGroup>
+    <ItemGroup>
+        <AndroidResource Include="Resources\drawable-hdpi\ic_folder_black_24dp.png"/>
+    </ItemGroup>
+    <ItemGroup>
+        <AndroidResource Include="Resources\drawable-xhdpi\ic_folder_black_24dp.png"/>
+    </ItemGroup>
+    <ItemGroup>
+        <AndroidResource Include="Resources\drawable-xxhdpi\ic_folder_black_24dp.png"/>
+    </ItemGroup>
+    <ItemGroup>
+        <AndroidResource Include="Resources\drawable-xxxhdpi\ic_folder_black_24dp.png"/>
+    </ItemGroup>
+    <ItemGroup>
+        <AndroidResource Include="Resources\drawable\ic_insert_drive_file_black_24dp.xml"/>
+    </ItemGroup>
+    <ItemGroup>
+        <AndroidResource Include="Resources\drawable-hdpi\ic_insert_drive_file_black_24dp.png"/>
+    </ItemGroup>
+    <ItemGroup>
+        <AndroidResource Include="Resources\drawable-xhdpi\ic_insert_drive_file_black_24dp.png"/>
+    </ItemGroup>
+    <ItemGroup>
+        <AndroidResource Include="Resources\drawable-xxhdpi\ic_insert_drive_file_black_24dp.png"/>
+    </ItemGroup>
+    <ItemGroup>
+        <AndroidResource Include="Resources\drawable-xxxhdpi\ic_insert_drive_file_black_24dp.png"/>
+    </ItemGroup>
+    <ItemGroup>
+        <AndroidResource Include="Resources\drawable-hdpi\ic_settings_black_24dp.png"/>
+    </ItemGroup>
+    <ItemGroup>
+        <AndroidResource Include="Resources\drawable-xhdpi\ic_settings_black_24dp.png"/>
+    </ItemGroup>
+    <ItemGroup>
+        <AndroidResource Include="Resources\drawable-xxhdpi\ic_settings_black_24dp.png"/>
+    </ItemGroup>
+    <ItemGroup>
+        <AndroidResource Include="Resources\drawable-xxxhdpi\ic_settings_black_24dp.png"/>
+    </ItemGroup>
+    <ItemGroup>
+        <AndroidResource Include="Resources\drawable\ic_settings_black_24dp.xml"/>
+    </ItemGroup>
+    <ItemGroup>
+        <AndroidResource Include="Resources\drawable\ic_toc_black_24dp.xml"/>
+    </ItemGroup>
+    <ItemGroup>
+        <AndroidResource Include="Resources\drawable-xxxhdpi\ic_toc_black_24dp.png"/>
+    </ItemGroup>
+    <ItemGroup>
+        <AndroidResource Include="Resources\drawable-xxhdpi\ic_toc_black_24dp.png"/>
+    </ItemGroup>
+    <ItemGroup>
+        <AndroidResource Include="Resources\drawable-xhdpi\ic_toc_black_24dp.png"/>
+    </ItemGroup>
+    <ItemGroup>
+        <AndroidResource Include="Resources\drawable-hdpi\ic_toc_black_24dp.png"/>
+    </ItemGroup>
+    <ItemGroup>
+        <AndroidResource Include="Resources\drawable-hdpi\ic_toc_white_24dp.png"/>
+    </ItemGroup>
+    <ItemGroup>
+        <AndroidResource Include="Resources\drawable-xhdpi\ic_toc_white_24dp.png"/>
+    </ItemGroup>
+    <ItemGroup>
+        <AndroidResource Include="Resources\drawable-xxhdpi\ic_toc_white_24dp.png"/>
+    </ItemGroup>
+    <ItemGroup>
+        <AndroidResource Include="Resources\drawable-xxxhdpi\ic_toc_white_24dp.png"/>
+    </ItemGroup>
+    <ItemGroup>
+        <AndroidResource Include="Resources\drawable-xxxhdpi\ic_list_black_24dp.png"/>
+    </ItemGroup>
+    <ItemGroup>
+        <AndroidResource Include="Resources\drawable-xxhdpi\ic_list_black_24dp.png"/>
+    </ItemGroup>
+    <ItemGroup>
+        <AndroidResource Include="Resources\drawable-xhdpi\ic_list_black_24dp.png"/>
+    </ItemGroup>
+    <ItemGroup>
+        <AndroidResource Include="Resources\drawable-hdpi\ic_list_black_24dp.png"/>
+    </ItemGroup>
+    <ItemGroup>
+        <AndroidResource Include="Resources\drawable\ic_list_black_24dp.xml"/>
+    </ItemGroup>
+    <ItemGroup>
+        <AndroidResource Include="Resources\drawable-xxxhdpi\ic_list_white_24dp.png"/>
+    </ItemGroup>
+    <ItemGroup>
+        <AndroidResource Include="Resources\drawable-xxhdpi\ic_list_white_24dp.png"/>
+    </ItemGroup>
+    <ItemGroup>
+        <AndroidResource Include="Resources\drawable-xhdpi\ic_list_white_24dp.png"/>
+    </ItemGroup>
+    <ItemGroup>
+        <AndroidResource Include="Resources\drawable-hdpi\ic_list_white_24dp.png"/>
+    </ItemGroup>
+    <ItemGroup>
+        <AndroidResource Include="Resources\drawable\ic_image_black_24dp.xml"/>
+    </ItemGroup>
+    <ItemGroup>
+        <AndroidResource Include="Resources\drawable\ic_search_black_24dp.xml"/>
+    </ItemGroup>
+    <ItemGroup>
+        <AndroidResource Include="Resources\drawable\ic_note_black_24dp.xml"/>
+    </ItemGroup>
+    <ItemGroup>
+        <AndroidResource Include="Resources\drawable-hdpi\ic_image_black_24dp.png"/>
+    </ItemGroup>
+    <ItemGroup>
+        <AndroidResource Include="Resources\drawable-hdpi\ic_image_white_24dp.png"/>
+    </ItemGroup>
+    <ItemGroup>
+        <AndroidResource Include="Resources\drawable-hdpi\ic_note_black_24dp.png"/>
+    </ItemGroup>
+    <ItemGroup>
+        <AndroidResource Include="Resources\drawable-hdpi\ic_note_white_24dp.png"/>
+    </ItemGroup>
+    <ItemGroup>
+        <AndroidResource Include="Resources\drawable-hdpi\ic_search_black_24dp.png"/>
+    </ItemGroup>
+    <ItemGroup>
+        <AndroidResource Include="Resources\drawable-hdpi\ic_search_white_24dp.png"/>
+    </ItemGroup>
+    <ItemGroup>
+        <AndroidResource Include="Resources\drawable-xhdpi\ic_image_black_24dp.png"/>
+    </ItemGroup>
+    <ItemGroup>
+        <AndroidResource Include="Resources\drawable-xhdpi\ic_image_white_24dp.png"/>
+    </ItemGroup>
+    <ItemGroup>
+        <AndroidResource Include="Resources\drawable-xhdpi\ic_note_black_24dp.png"/>
+    </ItemGroup>
+    <ItemGroup>
+        <AndroidResource Include="Resources\drawable-xhdpi\ic_note_white_24dp.png"/>
+    </ItemGroup>
+    <ItemGroup>
+        <AndroidResource Include="Resources\drawable-xhdpi\ic_search_black_24dp.png"/>
+    </ItemGroup>
+    <ItemGroup>
+        <AndroidResource Include="Resources\drawable-xhdpi\ic_search_white_24dp.png"/>
+    </ItemGroup>
+    <ItemGroup>
+        <AndroidResource Include="Resources\drawable-xxhdpi\ic_image_black_24dp.png"/>
+    </ItemGroup>
+    <ItemGroup>
+        <AndroidResource Include="Resources\drawable-xxhdpi\ic_image_white_24dp.png"/>
+    </ItemGroup>
+    <ItemGroup>
+        <AndroidResource Include="Resources\drawable-xxhdpi\ic_note_white_24dp.png"/>
+    </ItemGroup>
+    <ItemGroup>
+        <AndroidResource Include="Resources\drawable-xxhdpi\ic_note_black_24dp.png"/>
+    </ItemGroup>
+    <ItemGroup>
+        <AndroidResource Include="Resources\drawable-xxhdpi\ic_search_black_24dp.png"/>
+    </ItemGroup>
+    <ItemGroup>
+        <AndroidResource Include="Resources\drawable-xxhdpi\ic_search_white_24dp.png"/>
+    </ItemGroup>
+    <ItemGroup>
+        <AndroidResource Include="Resources\drawable-xxxhdpi\ic_image_black_24dp.png"/>
+    </ItemGroup>
+    <ItemGroup>
+        <AndroidResource Include="Resources\drawable-xxxhdpi\ic_image_white_24dp.png"/>
+    </ItemGroup>
+    <ItemGroup>
+        <AndroidResource Include="Resources\drawable-xxxhdpi\ic_note_white_24dp.png"/>
+    </ItemGroup>
+    <ItemGroup>
+        <AndroidResource Include="Resources\drawable-xxxhdpi\ic_note_black_24dp.png"/>
+    </ItemGroup>
+    <ItemGroup>
+        <AndroidResource Include="Resources\drawable-xxxhdpi\ic_search_black_24dp.png"/>
+    </ItemGroup>
+    <ItemGroup>
+        <AndroidResource Include="Resources\drawable-xxxhdpi\ic_search_white_24dp.png"/>
+    </ItemGroup>
+    <ItemGroup>
+        <AndroidResource Include="Resources\drawable\ic_image_white_24dp.xml"/>
+    </ItemGroup>
+    <ItemGroup>
+        <AndroidResource Include="Resources\drawable\ic_list_white_24dp.xml"/>
+    </ItemGroup>
+    <ItemGroup>
+        <AndroidResource Include="Resources\drawable\ic_note_white_24dp.xml"/>
+    </ItemGroup>
+    <ItemGroup>
+        <AndroidResource Include="Resources\drawable\ic_search_white_24dp.xml"/>
+    </ItemGroup>
+    <ItemGroup>
+        <AndroidResource Include="Resources\drawable\ic_toc_white_24dp.xml">
+            <Generator>MSBuild:UpdateGeneratedFiles</Generator>
+            <SubType>Designer</SubType>
+        </AndroidResource>
+    </ItemGroup>
+    <ItemGroup>
+        <AndroidResource Include="Resources\drawable\ic_filter_1_white_24dp.xml"/>
+    </ItemGroup>
+    <ItemGroup>
+        <AndroidResource Include="Resources\drawable\ic_filter_2_black_24dp.xml"/>
+    </ItemGroup>
+    <ItemGroup>
+        <AndroidResource Include="Resources\drawable\ic_filter_2_white_24dp.xml"/>
+    </ItemGroup>
+    <ItemGroup>
+        <AndroidResource Include="Resources\drawable\ic_filter_3_black_24dp.xml"/>
+    </ItemGroup>
+    <ItemGroup>
+        <AndroidResource Include="Resources\drawable\ic_filter_3_white_24dp.xml"/>
+    </ItemGroup>
+    <ItemGroup>
+        <AndroidResource Include="Resources\drawable\ic_filter_4_black_24dp.xml"/>
+    </ItemGroup>
+    <ItemGroup>
+        <AndroidResource Include="Resources\drawable\ic_filter_4_white_24dp.xml"/>
+    </ItemGroup>
+    <ItemGroup>
+        <AndroidResource Include="Resources\drawable\ic_filter_5_black_24dp.xml"/>
+    </ItemGroup>
+    <ItemGroup>
+        <AndroidResource Include="Resources\drawable\ic_filter_5_white_24dp.xml"/>
+    </ItemGroup>
+    <ItemGroup>
+        <AndroidResource Include="Resources\drawable\ic_filter_6_black_24dp.xml"/>
+    </ItemGroup>
+    <ItemGroup>
+        <AndroidResource Include="Resources\drawable\ic_filter_6_white_24dp.xml"/>
+    </ItemGroup>
+    <ItemGroup>
+        <AndroidResource Include="Resources\drawable\ic_filter_7_black_24dp.xml"/>
+    </ItemGroup>
+    <ItemGroup>
+        <AndroidResource Include="Resources\drawable\ic_filter_7_white_24dp.xml"/>
+    </ItemGroup>
+    <ItemGroup>
+        <AndroidResource Include="Resources\drawable\ic_filter_8_black_24dp.xml"/>
+    </ItemGroup>
+    <ItemGroup>
+        <AndroidResource Include="Resources\drawable\ic_filter_8_white_24dp.xml"/>
+    </ItemGroup>
+    <ItemGroup>
+        <AndroidResource Include="Resources\drawable\ic_filter_9_black_24dp.xml"/>
+    </ItemGroup>
+    <ItemGroup>
+        <AndroidResource Include="Resources\drawable\ic_filter_9_plus_black_24dp.xml"/>
+    </ItemGroup>
+    <ItemGroup>
+        <AndroidResource Include="Resources\drawable\ic_filter_9_plus_white_24dp.xml"/>
+    </ItemGroup>
+    <ItemGroup>
+        <AndroidResource Include="Resources\drawable\ic_filter_9_white_24dp.xml"/>
+    </ItemGroup>
+    <ItemGroup>
+        <AndroidResource Include="Resources\drawable\ic_filter_none_black_24dp.xml"/>
+    </ItemGroup>
+    <ItemGroup>
+        <AndroidResource Include="Resources\drawable\ic_filter_none_white_24dp.xml"/>
+    </ItemGroup>
+    <ItemGroup>
+        <AndroidResource Include="Resources\drawable\ic_home_black_24dp.xml"/>
+    </ItemGroup>
+    <ItemGroup>
+        <AndroidResource Include="Resources\drawable\ic_home_white_24dp.xml"/>
+    </ItemGroup>
+    <ItemGroup>
+        <AndroidResource Include="Resources\drawable-hdpi\ic_filter_1_black_24dp.png"/>
+    </ItemGroup>
+    <ItemGroup>
+        <AndroidResource Include="Resources\drawable-hdpi\ic_filter_1_white_24dp.png"/>
+    </ItemGroup>
+    <ItemGroup>
+        <AndroidResource Include="Resources\drawable-hdpi\ic_filter_2_black_24dp.png"/>
+    </ItemGroup>
+    <ItemGroup>
+        <AndroidResource Include="Resources\drawable-hdpi\ic_filter_2_white_24dp.png"/>
+    </ItemGroup>
+    <ItemGroup>
+        <AndroidResource Include="Resources\drawable-hdpi\ic_filter_3_black_24dp.png"/>
+    </ItemGroup>
+    <ItemGroup>
+        <AndroidResource Include="Resources\drawable-hdpi\ic_filter_3_white_24dp.png"/>
+    </ItemGroup>
+    <ItemGroup>
+        <AndroidResource Include="Resources\drawable-hdpi\ic_filter_4_black_24dp.png"/>
+    </ItemGroup>
+    <ItemGroup>
+        <AndroidResource Include="Resources\drawable-hdpi\ic_filter_4_white_24dp.png"/>
+    </ItemGroup>
+    <ItemGroup>
+        <AndroidResource Include="Resources\drawable-hdpi\ic_filter_5_black_24dp.png"/>
+    </ItemGroup>
+    <ItemGroup>
+        <AndroidResource Include="Resources\drawable-hdpi\ic_filter_5_white_24dp.png"/>
+    </ItemGroup>
+    <ItemGroup>
+        <AndroidResource Include="Resources\drawable-hdpi\ic_filter_6_black_24dp.png"/>
+    </ItemGroup>
+    <ItemGroup>
+        <AndroidResource Include="Resources\drawable-hdpi\ic_filter_6_white_24dp.png"/>
+    </ItemGroup>
+    <ItemGroup>
+        <AndroidResource Include="Resources\drawable-hdpi\ic_filter_7_black_24dp.png"/>
+    </ItemGroup>
+    <ItemGroup>
+        <AndroidResource Include="Resources\drawable-hdpi\ic_filter_7_white_24dp.png"/>
+    </ItemGroup>
+    <ItemGroup>
+        <AndroidResource Include="Resources\drawable-hdpi\ic_filter_8_black_24dp.png"/>
+    </ItemGroup>
+    <ItemGroup>
+        <AndroidResource Include="Resources\drawable-hdpi\ic_filter_8_white_24dp.png"/>
+    </ItemGroup>
+    <ItemGroup>
+        <AndroidResource Include="Resources\drawable-hdpi\ic_filter_9_black_24dp.png"/>
+    </ItemGroup>
+    <ItemGroup>
+        <AndroidResource Include="Resources\drawable-hdpi\ic_filter_9_plus_black_24dp.png"/>
+    </ItemGroup>
+    <ItemGroup>
+        <AndroidResource Include="Resources\drawable-hdpi\ic_filter_9_plus_white_24dp.png"/>
+    </ItemGroup>
+    <ItemGroup>
+        <AndroidResource Include="Resources\drawable-hdpi\ic_filter_9_white_24dp.png"/>
+    </ItemGroup>
+    <ItemGroup>
+        <AndroidResource Include="Resources\drawable-hdpi\ic_filter_none_black_24dp.png"/>
+    </ItemGroup>
+    <ItemGroup>
+        <AndroidResource Include="Resources\drawable-hdpi\ic_filter_none_white_24dp.png"/>
+    </ItemGroup>
+    <ItemGroup>
+        <AndroidResource Include="Resources\drawable-hdpi\ic_home_black_24dp.png"/>
+    </ItemGroup>
+    <ItemGroup>
+        <AndroidResource Include="Resources\drawable-hdpi\ic_home_white_24dp.png"/>
+    </ItemGroup>
+    <ItemGroup>
+        <AndroidResource Include="Resources\drawable-xhdpi\ic_filter_1_black_24dp.png"/>
+    </ItemGroup>
+    <ItemGroup>
+        <AndroidResource Include="Resources\drawable-xhdpi\ic_filter_1_white_24dp.png"/>
+    </ItemGroup>
+    <ItemGroup>
+        <AndroidResource Include="Resources\drawable-xhdpi\ic_filter_2_black_24dp.png"/>
+    </ItemGroup>
+    <ItemGroup>
+        <AndroidResource Include="Resources\drawable-xhdpi\ic_filter_2_white_24dp.png"/>
+    </ItemGroup>
+    <ItemGroup>
+        <AndroidResource Include="Resources\drawable-xhdpi\ic_filter_3_black_24dp.png"/>
+    </ItemGroup>
+    <ItemGroup>
+        <AndroidResource Include="Resources\drawable-xhdpi\ic_filter_3_white_24dp.png"/>
+    </ItemGroup>
+    <ItemGroup>
+        <AndroidResource Include="Resources\drawable-xhdpi\ic_filter_4_black_24dp.png"/>
+    </ItemGroup>
+    <ItemGroup>
+        <AndroidResource Include="Resources\drawable-xhdpi\ic_filter_4_white_24dp.png"/>
+    </ItemGroup>
+    <ItemGroup>
+        <AndroidResource Include="Resources\drawable-xhdpi\ic_filter_5_black_24dp.png"/>
+    </ItemGroup>
+    <ItemGroup>
+        <AndroidResource Include="Resources\drawable-xhdpi\ic_filter_5_white_24dp.png"/>
+    </ItemGroup>
+    <ItemGroup>
+        <AndroidResource Include="Resources\drawable-xhdpi\ic_filter_6_black_24dp.png"/>
+    </ItemGroup>
+    <ItemGroup>
+        <AndroidResource Include="Resources\drawable-xhdpi\ic_filter_6_white_24dp.png"/>
+    </ItemGroup>
+    <ItemGroup>
+        <AndroidResource Include="Resources\drawable-xhdpi\ic_filter_7_black_24dp.png"/>
+    </ItemGroup>
+    <ItemGroup>
+        <AndroidResource Include="Resources\drawable-xhdpi\ic_filter_7_white_24dp.png"/>
+    </ItemGroup>
+    <ItemGroup>
+        <AndroidResource Include="Resources\drawable-xhdpi\ic_filter_8_black_24dp.png"/>
+    </ItemGroup>
+    <ItemGroup>
+        <AndroidResource Include="Resources\drawable-xhdpi\ic_filter_8_white_24dp.png"/>
+    </ItemGroup>
+    <ItemGroup>
+        <AndroidResource Include="Resources\drawable-xhdpi\ic_filter_9_black_24dp.png"/>
+    </ItemGroup>
+    <ItemGroup>
+        <AndroidResource Include="Resources\drawable-xhdpi\ic_filter_9_plus_black_24dp.png"/>
+    </ItemGroup>
+    <ItemGroup>
+        <AndroidResource Include="Resources\drawable-xhdpi\ic_filter_9_plus_white_24dp.png"/>
+    </ItemGroup>
+    <ItemGroup>
+        <AndroidResource Include="Resources\drawable-xhdpi\ic_filter_9_white_24dp.png"/>
+    </ItemGroup>
+    <ItemGroup>
+        <AndroidResource Include="Resources\drawable-xhdpi\ic_filter_none_black_24dp.png"/>
+    </ItemGroup>
+    <ItemGroup>
+        <AndroidResource Include="Resources\drawable-xhdpi\ic_filter_none_white_24dp.png"/>
+    </ItemGroup>
+    <ItemGroup>
+        <AndroidResource Include="Resources\drawable-xhdpi\ic_home_black_24dp.png"/>
+    </ItemGroup>
+    <ItemGroup>
+        <AndroidResource Include="Resources\drawable-xhdpi\ic_home_white_24dp.png"/>
+    </ItemGroup>
+    <ItemGroup>
+        <AndroidResource Include="Resources\drawable-xxhdpi\ic_filter_1_black_24dp.png"/>
+    </ItemGroup>
+    <ItemGroup>
+        <AndroidResource Include="Resources\drawable-xxhdpi\ic_filter_1_white_24dp.png"/>
+    </ItemGroup>
+    <ItemGroup>
+        <AndroidResource Include="Resources\drawable-xxhdpi\ic_filter_2_black_24dp.png"/>
+    </ItemGroup>
+    <ItemGroup>
+        <AndroidResource Include="Resources\drawable-xxhdpi\ic_filter_2_white_24dp.png"/>
+    </ItemGroup>
+    <ItemGroup>
+        <AndroidResource Include="Resources\drawable-xxhdpi\ic_filter_3_black_24dp.png"/>
+    </ItemGroup>
+    <ItemGroup>
+        <AndroidResource Include="Resources\drawable-xxhdpi\ic_filter_3_white_24dp.png"/>
+    </ItemGroup>
+    <ItemGroup>
+        <AndroidResource Include="Resources\drawable-xxhdpi\ic_filter_4_black_24dp.png"/>
+    </ItemGroup>
+    <ItemGroup>
+        <AndroidResource Include="Resources\drawable-xxhdpi\ic_filter_4_white_24dp.png"/>
+    </ItemGroup>
+    <ItemGroup>
+        <AndroidResource Include="Resources\drawable-xxhdpi\ic_filter_5_black_24dp.png"/>
+    </ItemGroup>
+    <ItemGroup>
+        <AndroidResource Include="Resources\drawable-xxhdpi\ic_filter_5_white_24dp.png"/>
+    </ItemGroup>
+    <ItemGroup>
+        <AndroidResource Include="Resources\drawable-xxhdpi\ic_filter_6_black_24dp.png"/>
+    </ItemGroup>
+    <ItemGroup>
+        <AndroidResource Include="Resources\drawable-xxhdpi\ic_filter_6_white_24dp.png"/>
+    </ItemGroup>
+    <ItemGroup>
+        <AndroidResource Include="Resources\drawable-xxhdpi\ic_filter_7_black_24dp.png"/>
+    </ItemGroup>
+    <ItemGroup>
+        <AndroidResource Include="Resources\drawable-xxhdpi\ic_filter_7_white_24dp.png"/>
+    </ItemGroup>
+    <ItemGroup>
+        <AndroidResource Include="Resources\drawable-xxhdpi\ic_filter_8_black_24dp.png"/>
+    </ItemGroup>
+    <ItemGroup>
+        <AndroidResource Include="Resources\drawable-xxhdpi\ic_filter_8_white_24dp.png"/>
+    </ItemGroup>
+    <ItemGroup>
+        <AndroidResource Include="Resources\drawable-xxhdpi\ic_filter_9_black_24dp.png"/>
+    </ItemGroup>
+    <ItemGroup>
+        <AndroidResource Include="Resources\drawable-xxhdpi\ic_filter_9_plus_black_24dp.png"/>
+    </ItemGroup>
+    <ItemGroup>
+        <AndroidResource Include="Resources\drawable-xxhdpi\ic_filter_9_plus_white_24dp.png"/>
+    </ItemGroup>
+    <ItemGroup>
+        <AndroidResource Include="Resources\drawable-xxhdpi\ic_filter_9_white_24dp.png"/>
+    </ItemGroup>
+    <ItemGroup>
+        <AndroidResource Include="Resources\drawable-xxhdpi\ic_filter_none_black_24dp.png"/>
+    </ItemGroup>
+    <ItemGroup>
+        <AndroidResource Include="Resources\drawable-xxhdpi\ic_filter_none_white_24dp.png"/>
+    </ItemGroup>
+    <ItemGroup>
+        <AndroidResource Include="Resources\drawable-xxhdpi\ic_home_white_24dp.png"/>
+    </ItemGroup>
+    <ItemGroup>
+        <AndroidResource Include="Resources\drawable-xxhdpi\ic_home_black_24dp.png"/>
+    </ItemGroup>
+    <ItemGroup>
+        <AndroidResource Include="Resources\drawable-xxxhdpi\ic_filter_1_black_24dp.png"/>
+    </ItemGroup>
+    <ItemGroup>
+        <AndroidResource Include="Resources\drawable-xxxhdpi\ic_filter_1_white_24dp.png"/>
+    </ItemGroup>
+    <ItemGroup>
+        <AndroidResource Include="Resources\drawable-xxxhdpi\ic_filter_2_black_24dp.png"/>
+    </ItemGroup>
+    <ItemGroup>
+        <AndroidResource Include="Resources\drawable-xxxhdpi\ic_filter_2_white_24dp.png"/>
+    </ItemGroup>
+    <ItemGroup>
+        <AndroidResource Include="Resources\drawable-xxxhdpi\ic_filter_3_black_24dp.png"/>
+    </ItemGroup>
+    <ItemGroup>
+        <AndroidResource Include="Resources\drawable-xxxhdpi\ic_filter_3_white_24dp.png"/>
+    </ItemGroup>
+    <ItemGroup>
+        <AndroidResource Include="Resources\drawable-xxxhdpi\ic_filter_4_black_24dp.png"/>
+    </ItemGroup>
+    <ItemGroup>
+        <AndroidResource Include="Resources\drawable-xxxhdpi\ic_filter_4_white_24dp.png"/>
+    </ItemGroup>
+    <ItemGroup>
+        <AndroidResource Include="Resources\drawable-xxxhdpi\ic_filter_5_black_24dp.png"/>
+    </ItemGroup>
+    <ItemGroup>
+        <AndroidResource Include="Resources\drawable-xxxhdpi\ic_filter_5_white_24dp.png"/>
+    </ItemGroup>
+    <ItemGroup>
+        <AndroidResource Include="Resources\drawable-xxxhdpi\ic_filter_6_black_24dp.png"/>
+    </ItemGroup>
+    <ItemGroup>
+        <AndroidResource Include="Resources\drawable-xxxhdpi\ic_filter_6_white_24dp.png"/>
+    </ItemGroup>
+    <ItemGroup>
+        <AndroidResource Include="Resources\drawable-xxxhdpi\ic_filter_7_black_24dp.png"/>
+    </ItemGroup>
+    <ItemGroup>
+        <AndroidResource Include="Resources\drawable-xxxhdpi\ic_filter_7_white_24dp.png"/>
+    </ItemGroup>
+    <ItemGroup>
+        <AndroidResource Include="Resources\drawable-xxxhdpi\ic_filter_8_black_24dp.png"/>
+    </ItemGroup>
+    <ItemGroup>
+        <AndroidResource Include="Resources\drawable-xxxhdpi\ic_filter_8_white_24dp.png"/>
+    </ItemGroup>
+    <ItemGroup>
+        <AndroidResource Include="Resources\drawable-xxxhdpi\ic_filter_9_black_24dp.png"/>
+    </ItemGroup>
+    <ItemGroup>
+        <AndroidResource Include="Resources\drawable-xxxhdpi\ic_filter_9_plus_black_24dp.png"/>
+    </ItemGroup>
+    <ItemGroup>
+        <AndroidResource Include="Resources\drawable-xxxhdpi\ic_filter_9_plus_white_24dp.png"/>
+    </ItemGroup>
+    <ItemGroup>
+        <AndroidResource Include="Resources\drawable-xxxhdpi\ic_filter_9_white_24dp.png"/>
+    </ItemGroup>
+    <ItemGroup>
+        <AndroidResource Include="Resources\drawable-xxxhdpi\ic_filter_none_black_24dp.png"/>
+    </ItemGroup>
+    <ItemGroup>
+        <AndroidResource Include="Resources\drawable-xxxhdpi\ic_filter_none_white_24dp.png"/>
+    </ItemGroup>
+    <ItemGroup>
+        <AndroidResource Include="Resources\drawable-xxxhdpi\ic_home_black_24dp.png"/>
+    </ItemGroup>
+    <ItemGroup>
+        <AndroidResource Include="Resources\drawable-xxxhdpi\ic_home_white_24dp.png"/>
+    </ItemGroup>
+    <Import Project="$(MSBuildExtensionsPath)\Xamarin\Android\Xamarin.Android.CSharp.targets"/>
 </Project>
