@@ -11,11 +11,11 @@
 
     <ItemGroup>
         <PackageReference Include="Xamarin.CommunityToolkit" Version="1.0.0-pre4" />
-        <PackageReference Include="Xamarin.Forms" Version="4.8.0.1560" />
+        <PackageReference Include="Xamarin.Forms" Version="4.8.0.1687" />
         <PackageReference Include="Xamarin.Essentials" Version="1.5.3.2" />
-        <PackageReference Include="Lucene.Net.QueryParser" Version="4.8.0-beta00012" />
-        <PackageReference Include="NLog" Version="4.7.5" />
-        <PackageReference Include="System.Reactive" Version="4.4.1" />
+        <PackageReference Include="Lucene.Net.QueryParser" Version="4.8.0-beta00013" />
+        <PackageReference Include="NLog" Version="4.7.6" />
+        <PackageReference Include="System.Reactive" Version="5.0.0" />
         <PackageReference Include="Xam.Plugin.SimpleAudioPlayer" Version="1.4.0" />
     </ItemGroup>
 
