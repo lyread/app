@@ -8,6 +8,7 @@
              x:Class="Lyread.Views.MediaPage"
              xmlns:vm="clr-namespace:Lyread.ViewModels"
              xmlns:converters="clr-namespace:Xamarin.CommunityToolkit.Converters;assembly=Xamarin.CommunityToolkit"
+             xmlns:lyread="clr-namespace:Lyread;assembly=Lyread"
              Title="{Binding Title}">
 
     <ContentPage.Resources>
@@ -57,9 +58,9 @@
     </CollectionView>
 
     <Shell.SearchHandler>
-        <SearchHandler x:Name="MediaSearchHandler" Placeholder="" DisplayMemberName="Name"
-                       Command="{Binding QueryIndexCommand}"
-                       CommandParameter="{Binding Query, Source={x:Reference MediaSearchHandler}}" />
+        <lyread:ReactiveSearchHandler x:Name="MediaSearchHandler" Placeholder="" DisplayMemberName="Name"
+                                      Command="{Binding QueryIndexCommand}"
+                                      CommandParameter="{Binding Query, Source={x:Reference MediaSearchHandler}}" />
     </Shell.SearchHandler>
 
 </ContentPage>

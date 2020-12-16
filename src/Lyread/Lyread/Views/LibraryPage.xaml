@@ -8,6 +8,7 @@
              x:Class="Lyread.Views.LibraryPage"
              xmlns:vm="clr-namespace:Lyread.ViewModels"
              xmlns:converters="clr-namespace:Xamarin.CommunityToolkit.Converters;assembly=Xamarin.CommunityToolkit"
+             xmlns:lyread="clr-namespace:Lyread;assembly=Lyread"
              Title="{Binding Title}">
 
     <ContentPage.Resources>
@@ -68,7 +69,7 @@
     </AbsoluteLayout>
 
     <Shell.SearchHandler>
-        <SearchHandler
+        <lyread:ReactiveSearchHandler
             x:Name="LibrarySearchHandler"
             Placeholder="" DisplayMemberName="Name"
             Command="{Binding SearchBooksCommand}"

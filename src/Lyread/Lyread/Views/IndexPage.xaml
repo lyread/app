@@ -7,6 +7,7 @@
              mc:Ignorable="d"
              x:Class="Lyread.Views.IndexPage"
              xmlns:vm="clr-namespace:Lyread.ViewModels"
+             xmlns:lyread="clr-namespace:Lyread;assembly=Lyread"
              Title="{Binding Title}">
 
     <ContentPage.Resources>
@@ -58,7 +59,7 @@
     </AbsoluteLayout>
 
     <Shell.SearchHandler>
-        <SearchHandler
+        <lyread:ReactiveSearchHandler
             x:Name="IndexSearchHandler"
             Placeholder=""
             DisplayMemberName="Name"
