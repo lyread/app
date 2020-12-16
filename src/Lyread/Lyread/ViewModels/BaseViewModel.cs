@@ -13,12 +13,12 @@ namespace Lyread.ViewModels
     {
         public IDataStore<IPublisherItem> DataStore => DependencyService.Get<IDataStore<IPublisherItem>>();
 
-        bool isBusy = false;
+        private bool _isBusy = false;
 
         public bool IsBusy
         {
-            get { return isBusy; }
-            set { SetProperty(ref isBusy, value); }
+            get { return _isBusy; }
+            set { SetProperty(ref _isBusy, value); }
         }
 
         string title = string.Empty;

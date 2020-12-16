@@ -1,18 +1,17 @@
-﻿using Book;
-using Book.Item;
-using Lyread.Models;
-using Lyread.Views;
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.Diagnostics;
 using System.Globalization;
 using System.IO;
 using System.Linq;
-using System.Reactive.Linq;
 using System.Text.RegularExpressions;
 using System.Threading.Tasks;
 using System.Windows.Input;
+using Book;
+using Book.Item;
+using Lyread.Models;
+using Lyread.Views;
 using Xamarin.CommunityToolkit.ObjectModel;
 using Xamarin.Essentials;
 using Xamarin.Forms;
@@ -72,11 +71,15 @@ namespace Lyread.ViewModels
             finally
             {
                 IsBusy = false;
+                IsRefreshing = false;
             }
         });
 
         public ICommand LoadMoreBooksCommand => new Command(async () =>
         {
+            if (IsBusy)
+                return;
+
             IsBusy = true;
 
             try

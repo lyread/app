@@ -2,6 +2,6 @@
 {
     public class BookConstant
     {
-        public const int PageSize = 16;
+        public const int PageSize = 64;
     }
 }

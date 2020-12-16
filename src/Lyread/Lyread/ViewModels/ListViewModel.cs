@@ -7,6 +7,14 @@ namespace Lyread.ViewModels
 {
     public class ListViewModel : BaseViewModel
     {
+        private bool _isRefreshing;
+
+        public bool IsRefreshing
+        {
+            get { return _isRefreshing; }
+            set { SetProperty(ref _isRefreshing, value); }
+        }
+
         protected ICommand CreateRefreshCommand(Action execute)
         {
             return new Command(async () =>

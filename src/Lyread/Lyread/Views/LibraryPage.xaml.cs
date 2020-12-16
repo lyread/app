@@ -13,7 +13,7 @@ namespace Lyread.Views
         protected override void OnAppearing()
         {
             base.OnAppearing();
-            LibraryViewModel.IsBusy |= LibraryViewModel.Books.Count == 0;
+            LibraryViewModel.IsRefreshing |= LibraryViewModel.Books.Count == 0;
         }
     }
 }

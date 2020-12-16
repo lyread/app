@@ -44,11 +44,15 @@ namespace Lyread.ViewModels
             finally
             {
                 IsBusy = false;
+                IsRefreshing = false;
             }
         });
 
         public ICommand LoadMoreIndexItemsCommand => new Command(async () =>
         {
+            if (IsBusy)
+                return;
+
             IsBusy = true;
 
             try

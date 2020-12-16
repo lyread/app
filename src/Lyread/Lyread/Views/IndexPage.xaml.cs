@@ -15,7 +15,7 @@ namespace Lyread.Views
         protected override void OnAppearing()
         {
             base.OnAppearing();
-            IndexViewModel.IsBusy |= IndexViewModel.IndexItems.Count == 0;
+            IndexViewModel.IsRefreshing |= IndexViewModel.IndexItems.Count == 0;
         }
 
         private void Toggle_Clicked(object sender, EventArgs e)

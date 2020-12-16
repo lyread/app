@@ -25,7 +25,7 @@
     </ContentPage.ToolbarItems>
 
     <AbsoluteLayout Padding="0" HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand">
-        <RefreshView IsRefreshing="{Binding IsBusy, Mode=TwoWay}" Command="{Binding LoadIndexItemsCommand}"
+        <RefreshView Command="{Binding LoadIndexItemsCommand}" IsRefreshing="{Binding IsRefreshing}"
                      AbsoluteLayout.LayoutBounds="0, 0, 1, 1" AbsoluteLayout.LayoutFlags="All">
             <CollectionView x:Name="IndexView"
                             ItemsSource="{Binding IndexItems}"

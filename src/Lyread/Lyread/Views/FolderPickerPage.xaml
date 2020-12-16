@@ -25,7 +25,7 @@
         <ToolbarItem Text="Save" Clicked="Save_Clicked" />
     </ContentPage.ToolbarItems>
 
-    <RefreshView Command="{Binding RefreshFolderCommand}" IsRefreshing="{Binding IsBusy}">
+    <RefreshView Command="{Binding RefreshFolderCommand}" IsRefreshing="{Binding IsRefreshing}">
         <CollectionView x:Name="FolderPickerView"
                         ItemsSource="{Binding FileSystemInfos}"
                         SelectionMode="Single"

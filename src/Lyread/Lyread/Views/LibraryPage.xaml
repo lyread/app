@@ -22,7 +22,7 @@
     </ContentPage.BindingContext>
 
     <AbsoluteLayout Padding="0" HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand">
-        <RefreshView IsRefreshing="{Binding IsBusy, Mode=TwoWay}" Command="{Binding LoadBooksCommand}"
+        <RefreshView Command="{Binding LoadBooksCommand}" IsRefreshing="{Binding IsRefreshing}"
                      AbsoluteLayout.LayoutBounds="0, 0, 1, 1" AbsoluteLayout.LayoutFlags="All">
             <CollectionView x:Name="BooksView"
                             ItemsSource="{Binding Books}"

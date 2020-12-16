@@ -2,7 +2,7 @@
 
 namespace Lyread.ViewModels
 {
-    public class BookViewModel : BaseViewModel
+    public class BookViewModel : ListViewModel
     {
         public IBookItem Book { get; set; }
 
