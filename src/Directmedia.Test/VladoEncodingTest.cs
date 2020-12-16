@@ -24,66 +24,66 @@ namespace Directmedia.Test
         [Fact]
         public void SingleCp1252Char()
         {
-            Assert.Equal("ß", enc.GetString(new byte[] { 223 }));
+            Assert.Equal("ÃŸ", enc.GetString(new byte[] {223}));
         }
 
         [Fact]
         public void SingleUtf16Char()
         {
-            Assert.Equal("–", enc.GetString(new byte[] { 10, 30 }));
+            Assert.Equal("â€“", enc.GetString(new byte[] {10, 30}));
         }
 
         [Fact]
         public void EndWithCp1252Char()
         {
-            Assert.Equal("–ß", enc.GetString(new byte[] { 10, 30, 223 }));
+            Assert.Equal("â€“ÃŸ", enc.GetString(new byte[] {10, 30, 223}));
         }
 
         [Fact]
         public void EndWithUtf16Char()
         {
-            Assert.Equal("ß–", enc.GetString(new byte[] { 223, 10, 30 }));
+            Assert.Equal("ÃŸâ€“", enc.GetString(new byte[] {223, 10, 30}));
         }
 
         [Fact]
         public void EndWithIncompleteUtf16Char()
         {
-            Assert.Equal("ß", enc.GetString(new byte[] { 223, 10 }));
+            Assert.Equal("ÃŸ", enc.GetString(new byte[] {223, 10}));
         }
 
         [Fact]
         public void Blocks()
         {
-            byte[] bytes = Enumerable.Repeat((byte)223, 130).ToArray();
+            byte[] bytes = Enumerable.Repeat((byte) 223, 130).ToArray();
             bytes[126] = bytes[128] = 10;
             bytes[127] = bytes[129] = 30;
             using (StreamReader reader = new StreamReader(new MemoryStream(bytes), enc, false, 128))
             {
-                Assert.Equal(new string('ß', 126) + "––", reader.ReadToEnd());
+                Assert.Equal(new string('ÃŸ', 126) + "â€“â€“", reader.ReadToEnd());
             }
         }
 
         [Fact]
         public void TrailingByte()
         {
-            byte[] bytes = Enumerable.Repeat((byte)223, 130).ToArray();
+            byte[] bytes = Enumerable.Repeat((byte) 223, 130).ToArray();
             bytes[127] = 10;
             bytes[128] = 30;
             using (StreamReader reader = new StreamReader(new MemoryStream(bytes), enc, false, 128))
             {
-                Assert.Equal(new string('ß', 127) + "–ß", reader.ReadToEnd());
+                Assert.Equal(new string('ÃŸ', 127) + "â€“ÃŸ", reader.ReadToEnd());
             }
         }
 
         [Fact]
         public void TrailingByteUsedOnlyOnce()
         {
-            byte[] bytes = Enumerable.Repeat((byte)223, 257).ToArray();
+            byte[] bytes = Enumerable.Repeat((byte) 223, 257).ToArray();
             bytes[127] = 10;
             bytes[128] = 30;
             using (StreamReader reader = new StreamReader(new MemoryStream(bytes), enc, false, 128))
             {
-                Assert.Equal(new string('ß', 127) + "–" + new string('ß', 128), reader.ReadToEnd());
+                Assert.Equal(new string('ÃŸ', 127) + "â€“" + new string('ÃŸ', 128), reader.ReadToEnd());
             }
         }
     }

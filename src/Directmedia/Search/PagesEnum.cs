@@ -19,6 +19,7 @@ namespace Directmedia.Search
 
         private int[] _matchingWordsOffsets = null;
         private int _matchingWordsPosition;
+
         private int[] MatchingWordsOffsets
         {
             get
@@ -26,16 +27,18 @@ namespace Directmedia.Search
                 if (_matchingWordsOffsets == null)
                 {
                     int[] hashes = _textTable.ReadHashes(_pagenumbers.Current);
-                    _matchingWordsOffsets = hashes.Select((hash, i) => new { hash, i })
-                          .Where(item => item.hash == _entry.Hash)
-                          .Select(item => item.i).ToArray();
+                    _matchingWordsOffsets = hashes.Select((hash, i) => new {hash, i})
+                        .Where(item => item.hash == _entry.Hash)
+                        .Select(item => item.i).ToArray();
                     _matchingWordsPosition = -1;
                 }
+
                 return _matchingWordsOffsets;
             }
         }
 
-        public PagesEnum(WordListEntry entry, HashTable hashTable, WordList wordList, PagenumberList pagenumberList, TextTable textTable)
+        public PagesEnum(WordListEntry entry, HashTable hashTable, WordList wordList, PagenumberList pagenumberList,
+            TextTable textTable)
         {
             _entry = entry;
             _hashTable = hashTable;
@@ -43,7 +46,8 @@ namespace Directmedia.Search
             _pagenumberList = pagenumberList;
             _textTable = textTable;
 
-            _pagenumbers = _pagenumberList.ReadPagenumbers(_entry).AsEnumerable().GetEnumerator(); // read all due to parallelism
+            _pagenumbers =
+                _pagenumberList.ReadPagenumbers(_entry).AsEnumerable().GetEnumerator(); // read all due to parallelism
         }
 
         public override int DocID
@@ -60,6 +64,7 @@ namespace Directmedia.Search
                 }
             }
         }
+
         public override int Freq => MatchingWordsOffsets.Length;
 
         /// <summary>
@@ -82,16 +87,21 @@ namespace Directmedia.Search
                 _matchingWordsOffsets = null;
                 return _pagenumbers.Current;
             }
+
             return NO_MORE_DOCS;
         }
 
-        public override long GetCost() { return -1; }
+        public override long GetCost()
+        {
+            return -1;
+        }
 
         /// <summary>
         /// DocsAndPositionsEnum methods
         /// </summary>
 
         public override int StartOffset => MatchingWordsOffsets[_matchingWordsPosition];
+
         public override int EndOffset => MatchingWordsOffsets[_matchingWordsPosition] + 1;
 
         public override int NextPosition()
@@ -99,6 +109,9 @@ namespace Directmedia.Search
             return ++_matchingWordsPosition < Freq ? _matchingWordsPosition : -1;
         }
 
-        public override BytesRef GetPayload() { return null; }
+        public override BytesRef GetPayload()
+        {
+            return null;
+        }
     }
 }

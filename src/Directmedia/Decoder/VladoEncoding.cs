@@ -102,30 +102,33 @@ namespace Directmedia.Decoder
                     i++;
                     continue;
                 }
+
                 if (bytes[i] < 32) // proven to be at least 32
                 {
                     charCount--;
                     i++;
                 }
             }
+
             return charCount;
         }
 
         private char Unichar(byte b0, byte b1)
         {
-            char unichar = (char)(b1 - (b0 + 1) + ((b0 - 1) << 8));
+            char unichar = (char) (b1 - (b0 + 1) + ((b0 - 1) << 8));
             if (unichar >= 0x700 && unichar < 0x1100)
             {
-                unichar = (char)(unichar + 0x1700);
+                unichar = (char) (unichar + 0x1700);
             }
             else if (unichar >= 0x1100 && unichar < 0x1200)
             {
-                unichar = (char)(unichar + 0xe000 - 0x1100);
+                unichar = (char) (unichar + 0xe000 - 0x1100);
             }
             else if (unichar >= 0x1200 && unichar < 0x1e00)
             {
                 Log.Warn("Unicode character: " + unichar);
             }
+
             return unichar;
         }
     }

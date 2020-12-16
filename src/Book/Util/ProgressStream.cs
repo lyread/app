@@ -15,7 +15,13 @@ namespace Book.Util
         }
 
         public override bool CanRead => _stream.CanRead;
-        public override long Position { get => _stream.Position; set => throw new NotImplementedException(); }
+
+        public override long Position
+        {
+            get => _stream.Position;
+            set => throw new NotImplementedException();
+        }
+
         public override long Length => _stream.Length;
         public override bool CanSeek => false;
         public override bool CanWrite => false;
@@ -23,7 +29,7 @@ namespace Book.Util
         public override int Read(byte[] buffer, int offset, int count)
         {
             int total = _stream.Read(buffer, offset, count);
-            _progres.Report((double)Position / Length);
+            _progres.Report((double) Position / Length);
             return total;
         }
 

@@ -12,6 +12,7 @@ namespace Epub.Extensions
             {
                 dir = "";
             }
+
             return dir;
         }
 
@@ -37,7 +38,8 @@ namespace Epub.Extensions
                     var newDir = GetDirectoryPath(directory);
                     if (newDir == directory)
                     {
-                        throw new InvalidOperationException($"There is no room to normalize '../'. Directory={directory}, filename={filename}");
+                        throw new InvalidOperationException(
+                            $"There is no room to normalize '../'. Directory={directory}, filename={filename}");
                     }
 
                     directory = newDir;

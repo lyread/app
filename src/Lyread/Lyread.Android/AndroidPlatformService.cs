@@ -8,6 +8,7 @@ using Xamarin.Essentials;
 using Xamarin.Forms;
 
 [assembly: Dependency(typeof(AndroidPlatformService))]
+
 namespace Lyread.Droid
 {
     public class AndroidPlatformService : IPlatformService
@@ -41,7 +42,9 @@ namespace Lyread.Droid
             intent.AddFlags(ActivityFlags.NewTask);
             intent.AddFlags(ActivityFlags.GrantReadUriPermission);
             intent.AddFlags(ActivityFlags.ClearWhenTaskReset);
-            intent.SetDataAndType(global::Android.Support.V4.Content.FileProvider.GetUriForFile(global::Android.App.Application.Context, "io.github.lyread.fileprovider", new Java.IO.File(file.FullName)), type);
+            intent.SetDataAndType(
+                global::Android.Support.V4.Content.FileProvider.GetUriForFile(global::Android.App.Application.Context,
+                    "io.github.lyread.fileprovider", new Java.IO.File(file.FullName)), type);
             global::Android.App.Application.Context.StartActivity(intent);
             return Task.FromResult<object>(null);
         }

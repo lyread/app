@@ -16,7 +16,9 @@ namespace Lyread.ViewModels
 {
     public class IndexViewModel : BookViewModel
     {
-        public ObservableRangeCollection<ICategoryItem> CategoryItems { get; } = new ObservableRangeCollection<ICategoryItem>();
+        public ObservableRangeCollection<ICategoryItem> CategoryItems { get; } =
+            new ObservableRangeCollection<ICategoryItem>();
+
         public ObservableRangeCollection<IIndexItem> IndexItems { get; } = new ObservableRangeCollection<IIndexItem>();
 
         public ICommand LoadIndexItemsCommand => new Command(async () =>
@@ -73,7 +75,9 @@ namespace Lyread.ViewModels
             }
         });
 
-        public ICommand OpenDocumentCommand => new Command<IIndexItem>(async item => await Application.Current.MainPage.Navigation.PushModalAsync(new NavigationPage(new DocumentPage(Book, item.Id))));
+        public ICommand OpenDocumentCommand => new Command<IIndexItem>(async item =>
+            await Application.Current.MainPage.Navigation.PushModalAsync(
+                new NavigationPage(new DocumentPage(Book, item.Id))));
 
         public string Pattern { get; set; }
 
@@ -97,17 +101,24 @@ namespace Lyread.ViewModels
             {
                 if (items.All(item => !item.Selected) || items.All(item => item.Selected))
                 {
-                    return ImageSource.FromFile(Device.RuntimePlatform == Device.Android ? "@drawable/ic_filter_none_white_24dp" : null);
+                    return ImageSource.FromFile(Device.RuntimePlatform == Device.Android
+                        ? "@drawable/ic_filter_none_white_24dp"
+                        : null);
                 }
                 else if (items.Count(item => item.Selected) > 9)
                 {
-                    return ImageSource.FromFile(Device.RuntimePlatform == Device.Android ? "@drawable/ic_filter_9_plus_white_24dp.png" : null);
+                    return ImageSource.FromFile(Device.RuntimePlatform == Device.Android
+                        ? "@drawable/ic_filter_9_plus_white_24dp.png"
+                        : null);
                 }
                 else
                 {
-                    return ImageSource.FromFile(Device.RuntimePlatform == Device.Android ? $"@drawable/ic_filter_{items.Count(item => item.Selected)}_white_24dp.png" : null);
+                    return ImageSource.FromFile(Device.RuntimePlatform == Device.Android
+                        ? $"@drawable/ic_filter_{items.Count(item => item.Selected)}_white_24dp.png"
+                        : null);
                 }
             }
+
             return null;
         }
 

@@ -38,12 +38,17 @@ namespace Duden.Item
         public Task<bool> Run()
         {
             using (Analyzer analyzer = new HTMLStripCharAnalyzer())
-            using (Lucene.Net.Store.Directory index = new SimpleFSDirectory(Path.ChangeExtension(_file.FullName, Convert.ToInt32(LuceneVersion.LUCENE_48).ToString())))
-            using (IndexWriter writer = new IndexWriter(index, new IndexWriterConfig(LuceneVersion.LUCENE_48, analyzer)))
+            using (Lucene.Net.Store.Directory index =
+                new SimpleFSDirectory(Path.ChangeExtension(_file.FullName,
+                    Convert.ToInt32(LuceneVersion.LUCENE_48).ToString())))
+            using (IndexWriter writer =
+                new IndexWriter(index, new IndexWriterConfig(LuceneVersion.LUCENE_48, analyzer)))
             using (SQLiteConnection connection = new SQLiteConnection(_file.FullName))
             {
-                int position = 0, length = connection.FindWithQuery<int>(Compile(new Query(nameof(TabHtmlText)).AsCount()));
-                foreach (TabHtmlText row in connection.DeferredQuery<TabHtmlText>(Compile(new Query(nameof(TabHtmlText)))))
+                int position = 0,
+                    length = connection.FindWithQuery<int>(Compile(new Query(nameof(TabHtmlText)).AsCount()));
+                foreach (TabHtmlText row in connection.DeferredQuery<TabHtmlText>(
+                    Compile(new Query(nameof(TabHtmlText)))))
                 {
                     Document doc = new Document
                     {
@@ -55,10 +60,11 @@ namespace Duden.Item
 
                     if (position % 1024 == 0 || position == length - 1)
                     {
-                        Report((double)++position / (double)length);
+                        Report((double) ++position / (double) length);
                     }
                 }
             }
+
             return Task.FromResult(true);
         }
 

@@ -12,13 +12,10 @@ namespace Lyread.ViewModels
 {
     public class MediaViewModel : BookViewModel
     {
-        public ObservableRangeCollection<IImageItem> MediaItems { get; set; } = new ObservableRangeCollection<IImageItem>();
+        public ObservableRangeCollection<IImageItem> MediaItems { get; set; } =
+            new ObservableRangeCollection<IImageItem>();
 
-        public ICommand QueryIndexCommand => new Command<string>(async pattern =>
-        {
-            Pattern = pattern;
-
-        });
+        public ICommand QueryIndexCommand => new Command<string>(async pattern => { Pattern = pattern; });
 
         public string Pattern { get; set; }
 
@@ -26,7 +23,9 @@ namespace Lyread.ViewModels
         {
             try
             {
-                string filename = Path.HasExtension(item.Filename) ? item.Filename : Path.ChangeExtension(item.Filename, ".jpg");
+                string filename = Path.HasExtension(item.Filename)
+                    ? item.Filename
+                    : Path.ChangeExtension(item.Filename, ".jpg");
                 FileInfo file = new FileInfo(Path.Combine(FileSystem.CacheDirectory, filename));
                 File.WriteAllBytes(file.FullName, item.Huge);
                 await DependencyService.Get<IPlatformService>().LaunchImage(file);

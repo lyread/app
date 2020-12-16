@@ -1,4 +1,5 @@
-﻿<?xml version="1.0" encoding="utf-8" ?>
+﻿<?xml version="1.0" encoding="utf-8"?>
+
 <ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              xmlns:d="http://xamarin.com/schemas/2014/forms/design"
@@ -11,44 +12,48 @@
 
     <ContentPage.Resources>
         <ResourceDictionary>
-            <converters:ByteArrayToImageSourceConverter x:Key="ImageConverter"/>
-            <vm:JobItemsToBooleanConverter x:Key="JobItemsConverter"/>
+            <converters:ByteArrayToImageSourceConverter x:Key="ImageConverter" />
+            <vm:JobItemsToBooleanConverter x:Key="JobItemsConverter" />
         </ResourceDictionary>
     </ContentPage.Resources>
 
     <ContentPage.BindingContext>
-        <vm:LibraryViewModel x:Name="LibraryViewModel"/>
+        <vm:LibraryViewModel x:Name="LibraryViewModel" />
     </ContentPage.BindingContext>
 
     <AbsoluteLayout Padding="0" HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand">
-        <RefreshView IsRefreshing="{Binding IsBusy, Mode=TwoWay}" Command="{Binding LoadBooksCommand}" AbsoluteLayout.LayoutBounds="0, 0, 1, 1" AbsoluteLayout.LayoutFlags="All">
+        <RefreshView IsRefreshing="{Binding IsBusy, Mode=TwoWay}" Command="{Binding LoadBooksCommand}"
+                     AbsoluteLayout.LayoutBounds="0, 0, 1, 1" AbsoluteLayout.LayoutFlags="All">
             <CollectionView x:Name="BooksView"
-                                ItemsSource="{Binding Books}"
-                                RemainingItemsThreshold="0"
-                                RemainingItemsThresholdReachedCommand="{Binding LoadMoreBooksCommand}"
-                                SelectionMode="Single"
-                                SelectionChangedCommand="{Binding OpenBookCommand}"
-                                SelectionChangedCommandParameter="{Binding SelectedItem, Source={x:Reference BooksView}}"
-                                AbsoluteLayout.LayoutBounds="0, 0, 1, 1"
-                                AbsoluteLayout.LayoutFlags="All">
+                            ItemsSource="{Binding Books}"
+                            RemainingItemsThreshold="0"
+                            RemainingItemsThresholdReachedCommand="{Binding LoadMoreBooksCommand}"
+                            SelectionMode="Single"
+                            SelectionChangedCommand="{Binding OpenBookCommand}"
+                            SelectionChangedCommandParameter="{Binding SelectedItem, Source={x:Reference BooksView}}"
+                            AbsoluteLayout.LayoutBounds="0, 0, 1, 1"
+                            AbsoluteLayout.LayoutFlags="All">
                 <CollectionView.ItemTemplate>
                     <DataTemplate>
                         <Grid>
                             <Grid.RowDefinitions>
-                                <RowDefinition Height="{Binding CoverHeight, Source={x:Reference LibraryViewModel}}"/>
+                                <RowDefinition Height="{Binding CoverHeight, Source={x:Reference LibraryViewModel}}" />
                             </Grid.RowDefinitions>
                             <Grid.ColumnDefinitions>
-                                <ColumnDefinition Width="{Binding CoverWidth, Source={x:Reference LibraryViewModel}}"/>
-                                <ColumnDefinition Width="*"/>
+                                <ColumnDefinition Width="{Binding CoverWidth, Source={x:Reference LibraryViewModel}}" />
+                                <ColumnDefinition Width="*" />
                             </Grid.ColumnDefinitions>
-                            <Image Grid.Row="0" Grid.Column="0" Source="{Binding Cover, Converter={StaticResource ImageConverter}}"/>
-                            <Label Grid.Row="0" Grid.Column="1" Text="{Binding Title}" VerticalOptions="Center"/>
+                            <Image Grid.Row="0" Grid.Column="0"
+                                   Source="{Binding Cover, Converter={StaticResource ImageConverter}}" />
+                            <Label Grid.Row="0" Grid.Column="1" Text="{Binding Title}" VerticalOptions="Center" />
                         </Grid>
                     </DataTemplate>
                 </CollectionView.ItemTemplate>
             </CollectionView>
         </RefreshView>
-        <ListView ItemsSource="{Binding Jobs}" CachingStrategy="RecycleElement" IsVisible="{Binding Jobs, Converter={StaticResource JobItemsConverter}}" BackgroundColor="White" AbsoluteLayout.LayoutBounds="0, 0, 1, 1" AbsoluteLayout.LayoutFlags="All">
+        <ListView ItemsSource="{Binding Jobs}" CachingStrategy="RecycleElement"
+                  IsVisible="{Binding Jobs, Converter={StaticResource JobItemsConverter}}" BackgroundColor="White"
+                  AbsoluteLayout.LayoutBounds="0, 0, 1, 1" AbsoluteLayout.LayoutFlags="All">
             <ListView.ItemTemplate>
                 <DataTemplate>
                     <ViewCell>

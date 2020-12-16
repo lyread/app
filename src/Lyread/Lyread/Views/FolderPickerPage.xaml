@@ -1,4 +1,5 @@
-﻿<?xml version="1.0" encoding="utf-8" ?>
+﻿<?xml version="1.0" encoding="utf-8"?>
+
 <ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              xmlns:d="http://xamarin.com/schemas/2014/forms/design"
@@ -9,13 +10,13 @@
              Title="{Binding Parent.FullName}">
 
     <ContentPage.BindingContext>
-        <vm:FolderPickerViewModel x:Name="FolderPickerViewModel"/>
+        <vm:FolderPickerViewModel x:Name="FolderPickerViewModel" />
     </ContentPage.BindingContext>
 
     <ContentPage.Resources>
         <ResourceDictionary>
-            <vm:FileSystemInfoToNameConverter x:Key="NameConverter"/>
-            <vm:FileSystemInfoToImageConverter x:Key="ImageConverter"/>
+            <vm:FileSystemInfoToNameConverter x:Key="NameConverter" />
+            <vm:FileSystemInfoToImageConverter x:Key="ImageConverter" />
         </ResourceDictionary>
     </ContentPage.Resources>
 
@@ -34,14 +35,16 @@
                 <DataTemplate>
                     <Grid VerticalOptions="Center">
                         <Grid.RowDefinitions>
-                            <RowDefinition Height="Auto"/>
+                            <RowDefinition Height="Auto" />
                         </Grid.RowDefinitions>
                         <Grid.ColumnDefinitions>
-                            <ColumnDefinition Width="Auto"/>
-                            <ColumnDefinition Width="*"/>
+                            <ColumnDefinition Width="Auto" />
+                            <ColumnDefinition Width="*" />
                         </Grid.ColumnDefinitions>
-                        <Image Grid.Row="0" Grid.Column="0" Source="{Binding Converter={StaticResource ImageConverter}}"/>
-                        <Label Grid.Row="0" Grid.Column="1" VerticalOptions="Center" LineBreakMode="TailTruncation" Text="{Binding Converter={StaticResource NameConverter}, ConverterParameter={x:Reference FolderPickerViewModel}}"/>
+                        <Image Grid.Row="0" Grid.Column="0"
+                               Source="{Binding Converter={StaticResource ImageConverter}}" />
+                        <Label Grid.Row="0" Grid.Column="1" VerticalOptions="Center" LineBreakMode="TailTruncation"
+                               Text="{Binding Converter={StaticResource NameConverter}, ConverterParameter={x:Reference FolderPickerViewModel}}" />
                     </Grid>
                 </DataTemplate>
             </CollectionView.ItemTemplate>

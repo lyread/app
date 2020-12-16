@@ -30,6 +30,7 @@ namespace Directmedia.Item
                 {
                     zipStream.UnpackAll(_file.Directory);
                 }
+
                 return Task.FromResult(true);
             }
             catch (Exception)

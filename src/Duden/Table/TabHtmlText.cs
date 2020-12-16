@@ -8,17 +8,14 @@ namespace Duden.Table
 {
     class TabHtmlText
     {
-        [PrimaryKey]
-        public int NumId { get; set; } // 12 bits BookId, 20 bits counter
-        [MaxLength(40)]
-        public string Lemma { get; set; }
-        [MaxLength(100)]
-        public string Context { get; set; } // not used
+        [PrimaryKey] public int NumId { get; set; } // 12 bits BookId, 20 bits counter
+        [MaxLength(40)] public string Lemma { get; set; }
+        [MaxLength(100)] public string Context { get; set; } // not used
         public int Type { get; set; } // not used
         public byte[] Html { get; set; }
 
-        [Ignore]
-        private int CompressedSize => Html.Length - 4;
+        [Ignore] private int CompressedSize => Html.Length - 4;
+
         [Ignore]
         private int UncompressedSize
         {
@@ -30,6 +27,7 @@ namespace Duden.Table
                 return BitConverter.ToInt32(bytes, 0);
             }
         }
+
         [Ignore]
         public string UncompressedHtml
         {
@@ -39,7 +37,10 @@ namespace Duden.Table
                 {
                     return string.Empty;
                 }
-                using (StreamReader reader = new StreamReader(new InflaterInputStream(new MemoryStream(Html, 4, CompressedSize)), Encoding.UTF8, true, UncompressedSize))
+
+                using (StreamReader reader =
+                    new StreamReader(new InflaterInputStream(new MemoryStream(Html, 4, CompressedSize)), Encoding.UTF8,
+                        true, UncompressedSize))
                 {
                     return reader.ReadToEnd();
                 }

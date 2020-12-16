@@ -25,17 +25,23 @@ namespace Directmedia.Util
             int categoryCount = LoadLemmata(lemmataFile, null, Enumerable.Empty<ICategoryItem>(), -1)
                 .Aggregate(0, (count, item) => Math.Max(count, item.Category + 1));
             return Enumerable.Range(0, categoryCount)
-                .Select((category, index) => new CategoryItem(ini[Constants.Stichwoerter][Constants.Gruppe + (category + 1)], index == 0, Convert.ToByte(category)));
+                .Select((category, index) =>
+                    new CategoryItem(ini[Constants.Stichwoerter][Constants.Gruppe + (category + 1)], index == 0,
+                        Convert.ToByte(category)));
         }
 
-        public static IEnumerable<IndexItem> LoadLemmata(FileInfo lemmataFile, string pattern, IEnumerable<ICategoryItem> categories, int page)
+        public static IEnumerable<IndexItem> LoadLemmata(FileInfo lemmataFile, string pattern,
+            IEnumerable<ICategoryItem> categories, int page)
         {
             bool patternIsNullOrWhiteSpace = string.IsNullOrWhiteSpace(pattern);
-            int categoryMask = categories.Any() ? categories.Aggregate(0, (mask, category) => mask | (1 << category.Id)) : int.MaxValue;
+            int categoryMask = categories.Any()
+                ? categories.Aggregate(0, (mask, category) => mask | (1 << category.Id))
+                : int.MaxValue;
             return lemmataFile.ReadAllLines(Encoding.GetEncoding(1252))
                 .Select(line => Regex.Match(line, LineRegex))
                 .Where(match => match.Success)
-                .Select(match => new IndexItem(match.Groups[1].Value.Trim(), Convert.ToByte(match.Groups[2].Value.First() - 'A'), Convert.ToInt32(match.Groups[3].Value)))
+                .Select(match => new IndexItem(match.Groups[1].Value.Trim(),
+                    Convert.ToByte(match.Groups[2].Value.First() - 'A'), Convert.ToInt32(match.Groups[3].Value)))
                 .Where(item => patternIsNullOrWhiteSpace || Regex.IsMatch(item.Title, pattern, RegexOptions.IgnoreCase))
                 .Where(item => (categoryMask & (1 << item.Category)) > 0)
                 .Skip(page < 0 ? 0 : page * PageSize)

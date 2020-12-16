@@ -37,6 +37,7 @@ namespace Epub.Extensions
             {
                 throw new EpubParseException($"{entryName} file not found in archive.");
             }
+
             return entry;
         }
 

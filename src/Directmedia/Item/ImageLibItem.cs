@@ -10,7 +10,8 @@ namespace Directmedia.Item
         public ImageLibOffset _title, _description, _thumbnail, _huge;
         private readonly FileInfo _libFile;
 
-        public ImageLibItem(string filename, bool hidden, ImageLibOffset title, ImageLibOffset description, ImageLibOffset thumbnail, ImageLibOffset huge, FileInfo libFile)
+        public ImageLibItem(string filename, bool hidden, ImageLibOffset title, ImageLibOffset description,
+            ImageLibOffset thumbnail, ImageLibOffset huge, FileInfo libFile)
         {
             Filename = filename;
             Hidden = hidden;
@@ -34,6 +35,7 @@ namespace Directmedia.Item
             {
                 return null;
             }
+
             return Encoding.GetEncoding(1252).GetString(LoadBytes(location));
         }
 
@@ -43,6 +45,7 @@ namespace Directmedia.Item
             {
                 return null;
             }
+
             using (BinaryReader reader = new BinaryReader(_libFile.OpenRead()))
             {
                 reader.BaseStream.Seek(location.Offset, SeekOrigin.Begin);

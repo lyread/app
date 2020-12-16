@@ -15,7 +15,8 @@ namespace Directmedia.Decoder
             {
                 return b;
             }
-            return (byte)(255 - (b - 32));
+
+            return (byte) (255 - (b - 32));
         }
 
         public override int GetChars(byte[] bytes, int byteIndex, int byteCount, char[] chars, int charIndex)

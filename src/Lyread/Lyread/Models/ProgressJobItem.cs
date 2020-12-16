@@ -23,14 +23,33 @@ namespace Lyread.Models
         public string Title => _wrappedJobItem.Title;
 
         private double _progress;
-        public double Progress { get { return _progress; } set { _progress = value; OnPropertyChanged(); } }
+
+        public double Progress
+        {
+            get { return _progress; }
+            set
+            {
+                _progress = value;
+                OnPropertyChanged();
+            }
+        }
 
         private Color _color = Color.Black;
-        public Color Color { get { return _color; } set { _color = value; OnPropertyChanged(); } }
+
+        public Color Color
+        {
+            get { return _color; }
+            set
+            {
+                _color = value;
+                OnPropertyChanged();
+            }
+        }
 
         public async Task<bool> Run()
         {
-            using (Observable.FromEventPattern<ProgressEventArgs>(handler => _wrappedJobItem.ProgressChanged += handler, handler => _wrappedJobItem.ProgressChanged -= handler)
+            using (Observable.FromEventPattern<ProgressEventArgs>(handler => _wrappedJobItem.ProgressChanged += handler,
+                    handler => _wrappedJobItem.ProgressChanged -= handler)
                 .Sample(TimeSpan.FromMilliseconds(250))
                 .Select(pattern => pattern.EventArgs.Progress)
                 .Finally(() => Device.BeginInvokeOnMainThread(() => { Progress = 1; }))

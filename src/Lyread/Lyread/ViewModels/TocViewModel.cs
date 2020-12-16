@@ -31,7 +31,9 @@ namespace Lyread.ViewModels
             {
                 return;
             }
-            await Application.Current.MainPage.Navigation.PushModalAsync(new NavigationPage(new DocumentPage(Book, item.Id)));
+
+            await Application.Current.MainPage.Navigation.PushModalAsync(
+                new NavigationPage(new DocumentPage(Book, item.Id)));
         });
 
         public async Task Init()
@@ -50,12 +52,13 @@ namespace Lyread.ViewModels
                 ListChildren(TocItems.First().Parent.Parent);
                 return true;
             }
+
             return false;
         }
 
         private void ListChildren(ITocItem item)
         {
-            TocItems.ReplaceRange(item.HasChildren ? item.Children : new ITocItem[] { item });
+            TocItems.ReplaceRange(item.HasChildren ? item.Children : new ITocItem[] {item});
         }
     }
 }

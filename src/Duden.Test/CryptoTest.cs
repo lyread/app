@@ -9,7 +9,8 @@ namespace Duden.Test
         [Fact]
         public void Encrypt()
         {
-            using (CryptoStream inStream = new CryptoStream(new FileInfo("test.sqlite3").OpenRead(), new DudenCipher().CreateEncryptor(), CryptoStreamMode.Read))
+            using (CryptoStream inStream = new CryptoStream(new FileInfo("test.sqlite3").OpenRead(),
+                new DudenCipher().CreateEncryptor(), CryptoStreamMode.Read))
             using (MemoryStream outStream = new MemoryStream())
             {
                 inStream.CopyTo(outStream);
@@ -20,7 +21,8 @@ namespace Duden.Test
         [Fact]
         public void Decrypt()
         {
-            using (CryptoStream inStream = new CryptoStream(new FileInfo("test.dbb").OpenRead(), new DudenCipher().CreateDecryptor(), CryptoStreamMode.Read))
+            using (CryptoStream inStream = new CryptoStream(new FileInfo("test.dbb").OpenRead(),
+                new DudenCipher().CreateDecryptor(), CryptoStreamMode.Read))
             using (MemoryStream outStream = new MemoryStream())
             {
                 inStream.CopyTo(outStream);

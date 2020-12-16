@@ -30,30 +30,63 @@ namespace Directmedia.Search
         public override int MaxDoc => NumDocs; // text pages start at 1
         public override Fields Fields { get; }
 
-        public override NumericDocValues GetNormValues(string field) { return new DirectmediaNumericDocValues(); }
-        public override Fields GetTermVectors(int docID) { return Fields; }
+        public override NumericDocValues GetNormValues(string field)
+        {
+            return new DirectmediaNumericDocValues();
+        }
 
-
+        public override Fields GetTermVectors(int docID)
+        {
+            return Fields;
+        }
 
 
         // for highlighter
         public override void Document(int docID, StoredFieldVisitor visitor)
         {
-            visitor.StringField(new FieldInfo("1", false, 1, false, true, false, IndexOptions.NONE, DocValuesType.NONE, DocValuesType.NONE, new Dictionary<string, string>()), "test1");
+            visitor.StringField(
+                new FieldInfo("1", false, 1, false, true, false, IndexOptions.NONE, DocValuesType.NONE,
+                    DocValuesType.NONE, new Dictionary<string, string>()), "test1");
         }
 
 
-
         public override IBits LiveDocs => null; // nothing deleted
-        protected override void DoClose() { }
+
+        protected override void DoClose()
+        {
+        }
 
         public override FieldInfos FieldInfos => throw new NotImplementedException();
-        public override void CheckIntegrity() { throw new NotImplementedException(); }
-        public override BinaryDocValues GetBinaryDocValues(string field) { throw new NotImplementedException(); }
-        public override IBits GetDocsWithField(string field) { throw new NotImplementedException(); }
-        public override NumericDocValues GetNumericDocValues(string field) { throw new NotImplementedException(); }
-        public override SortedDocValues GetSortedDocValues(string field) { throw new NotImplementedException(); }
-        public override SortedSetDocValues GetSortedSetDocValues(string field) { throw new NotImplementedException(); }
+
+        public override void CheckIntegrity()
+        {
+            throw new NotImplementedException();
+        }
+
+        public override BinaryDocValues GetBinaryDocValues(string field)
+        {
+            throw new NotImplementedException();
+        }
+
+        public override IBits GetDocsWithField(string field)
+        {
+            throw new NotImplementedException();
+        }
+
+        public override NumericDocValues GetNumericDocValues(string field)
+        {
+            throw new NotImplementedException();
+        }
+
+        public override SortedDocValues GetSortedDocValues(string field)
+        {
+            throw new NotImplementedException();
+        }
+
+        public override SortedSetDocValues GetSortedSetDocValues(string field)
+        {
+            throw new NotImplementedException();
+        }
 
         public new void Dispose()
         {
@@ -75,8 +108,16 @@ namespace Directmedia.Search
         }
 
         public override int Count => -1;
-        public override IEnumerator<string> GetEnumerator() { yield break; }
-        public override Terms GetTerms(string field) { return _words; }
+
+        public override IEnumerator<string> GetEnumerator()
+        {
+            yield break;
+        }
+
+        public override Terms GetTerms(string field)
+        {
+            return _words;
+        }
     }
 
     class Words : Terms
@@ -102,7 +143,10 @@ namespace Directmedia.Search
         public override long SumTotalTermFreq => -1; // total number of tokens for this field
         public override long SumDocFreq => -1; // total number of postings for this field
 
-        public override TermsEnum GetIterator(TermsEnum reuse) { return new WordsEnum(_hashTable, _wordList, _pagenumberList, _textTable); }
+        public override TermsEnum GetIterator(TermsEnum reuse)
+        {
+            return new WordsEnum(_hashTable, _wordList, _pagenumberList, _textTable);
+        }
 
         public override TermsEnum GetEnumerator()
         {
@@ -116,6 +160,9 @@ namespace Directmedia.Search
 
     class DirectmediaNumericDocValues : NumericDocValues
     {
-        public override long Get(int docID) { return docID; }
+        public override long Get(int docID)
+        {
+            return docID;
+        }
     }
 }

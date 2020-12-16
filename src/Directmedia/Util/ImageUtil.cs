@@ -55,6 +55,7 @@ namespace Directmedia.Util
                 {
                     throw new Exception("too many images: " + imageCount);
                 }
+
                 int textOffset = reader.ReadInt32(); // beginning of text
                 reader.ReadBytes(16);
                 for (int i = 0; i < imageCount; i++)
@@ -101,6 +102,7 @@ namespace Directmedia.Util
                     }
                 }
             }
+
             return new ImageLibItem(filename, hidden, title, description, thumbnail, huge, libFile);
         }
 
@@ -126,10 +128,12 @@ namespace Directmedia.Util
             {
                 images = images.Concat(LoadFiles(thumbnailFolder, false));
             }
+
             if (includeHidden)
             {
                 images = images.Concat(LoadFiles(imagesFolder, true));
             }
+
             return images;
         }
 
@@ -140,7 +144,7 @@ namespace Directmedia.Util
 
         private static string NameOf(ImageSize imageSize)
         {
-            return ((int)imageSize).ToString();
+            return ((int) imageSize).ToString();
         }
     }
 }

@@ -27,8 +27,10 @@ namespace Epub.Item
             {
                 using (ZipInputStream zipStream = new ZipInputStream(new ProgressStream(_file.OpenRead(), this)))
                 {
-                    zipStream.UnpackAll(_file.Directory.CreateSubdirectory(Path.GetFileNameWithoutExtension(_file.Name)));
+                    zipStream.UnpackAll(
+                        _file.Directory.CreateSubdirectory(Path.GetFileNameWithoutExtension(_file.Name)));
                 }
+
                 return Task.FromResult(true);
             }
             catch (Exception e)

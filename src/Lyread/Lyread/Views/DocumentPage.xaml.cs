@@ -16,7 +16,7 @@ namespace Lyread.Views
 
         protected override void OnAppearing()
         {
-            webView.Source = new UrlWebViewSource { Url = DocumentViewModel.DocumentUri() };
+            webView.Source = new UrlWebViewSource {Url = DocumentViewModel.DocumentUri()};
         }
 
         protected override bool OnBackButtonPressed()
@@ -26,6 +26,7 @@ namespace Lyread.Views
                 webView.GoBack();
                 return true;
             }
+
             return base.OnBackButtonPressed();
         }
 

@@ -2,6 +2,9 @@
 {
     public enum ViewType
     {
-        Toc, Index, Search, Images
+        Toc,
+        Index,
+        Search,
+        Images
     }
 }

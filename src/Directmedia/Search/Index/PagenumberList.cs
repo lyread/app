@@ -60,6 +60,7 @@ namespace Directmedia.Search.Index
                     Log.Warn("PagelistIndexSize > 4");
                     break;
             }
+
             return 0;
         }
 

@@ -7,6 +7,7 @@ using Windows.System;
 using Xamarin.Forms;
 
 [assembly: Dependency(typeof(UwpPlatformService))]
+
 namespace Lyread.UWP
 {
     public class UwpPlatformService : IPlatformService

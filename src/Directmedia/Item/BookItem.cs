@@ -30,7 +30,11 @@ namespace Directmedia.Item
         private readonly DirectoryInfo _bookFolder;
         private DirectoryInfo DataFolder => _bookFolder.GetSubdirectoryIgnoreCase(Constants.DataFolder);
         private DirectoryInfo ImagesFolder => _bookFolder.GetSubdirectoryIgnoreCase(Constants.ImagesFolder);
-        private IniData Ini => new FileIniDataParser(new IniDataParser(new IniParserConfiguration { AllowDuplicateSections = true, AllowDuplicateKeys = true })).ReadFile(DataFolder.GetFileIgnoreCase(DigibibTxt).FullName, Encoding.GetEncoding(1252));
+
+        private IniData Ini =>
+            new FileIniDataParser(new IniDataParser(new IniParserConfiguration
+                    {AllowDuplicateSections = true, AllowDuplicateKeys = true}))
+                .ReadFile(DataFolder.GetFileIgnoreCase(DigibibTxt).FullName, Encoding.GetEncoding(1252));
 
         public BookItem(DirectoryInfo bookFolder)
         {
@@ -51,6 +55,7 @@ namespace Directmedia.Item
                 }
             }
         }
+
         public string Title
         {
             get
@@ -65,6 +70,7 @@ namespace Directmedia.Item
                 }
             }
         }
+
         public byte[] Cover
         {
             get
@@ -100,8 +106,10 @@ namespace Directmedia.Item
             FileInfo lemmataTxt = DataFolder.GetFileIgnoreCase(LemmataTxt);
             if (lemmataTxt.Exists)
             {
-                return Task.FromResult(IndexUtil.LoadLemmata(lemmataTxt, pattern, categories, page).AsEnumerable<IIndexItem>());
+                return Task.FromResult(IndexUtil.LoadLemmata(lemmataTxt, pattern, categories, page)
+                    .AsEnumerable<IIndexItem>());
             }
+
             return Task.FromResult(Enumerable.Empty<IIndexItem>());
         }
 
@@ -112,6 +120,7 @@ namespace Directmedia.Item
             {
                 return Task.FromResult(IndexUtil.LoadCategories(lemmataTxt, Ini).AsEnumerable<ICategoryItem>());
             }
+
             return Task.FromResult(Enumerable.Empty<ICategoryItem>());
         }
 
@@ -122,6 +131,7 @@ namespace Directmedia.Item
             {
                 return Task.FromResult(ImageUtil.LoadImages(imagesFolder, false));
             }
+
             return Task.FromResult(Enumerable.Empty<IImageItem>());
         }
 
@@ -132,16 +142,22 @@ namespace Directmedia.Item
 
         public Task<bool> Html(int pagenumber, DirectoryInfo folder, string highlight)
         {
-            string filename = Path.Combine(folder.FullName, Path.ChangeExtension(pagenumber.ToString(), html.ToString()));
-            ISet<int> highlightedOffsets = string.IsNullOrWhiteSpace(highlight) ? new HashSet<int>() : SearchUtil.HighlightedOffsets(pagenumber, highlight, DataFolder);
-            using (HtmlWriter writer = new HtmlWriter(new FileStream(filename, FileMode.Create, FileAccess.Write), pagenumber, highlightedOffsets))
+            string filename = Path.Combine(folder.FullName,
+                Path.ChangeExtension(pagenumber.ToString(), html.ToString()));
+            ISet<int> highlightedOffsets = string.IsNullOrWhiteSpace(highlight)
+                ? new HashSet<int>()
+                : SearchUtil.HighlightedOffsets(pagenumber, highlight, DataFolder);
+            using (HtmlWriter writer = new HtmlWriter(new FileStream(filename, FileMode.Create, FileAccess.Write),
+                pagenumber, highlightedOffsets))
             {
                 TocItem item = FindItem(pagenumber);
-                IEnumerable<Page> pages = PageUtil.LoadPages(DataFolder.GetFileIgnoreCase(TextDki), item.Pagenumber, item.Pagecount);
+                IEnumerable<Page> pages = PageUtil.LoadPages(DataFolder.GetFileIgnoreCase(TextDki), item.Pagenumber,
+                    item.Pagecount);
                 foreach (Page page in pages)
                 {
                     PageUtil.Parse(page, writer);
                 }
+
                 DumpImages(writer.ImageIdsToExtensions, folder);
             }
 
@@ -162,12 +178,15 @@ namespace Directmedia.Item
                 {
                     break;
                 }
+
                 item = child;
             }
+
             while (item.Pagecount == 0 && item.ParentConcrete != null)
             {
                 item = item.ParentConcrete;
             }
+
             return item;
         }
 
@@ -179,7 +198,10 @@ namespace Directmedia.Item
                 ImageUtil.LoadImages(imagesFolder, true)
                     .Where(image => imageIdsToExtensions.ContainsKey(image.Id))
                     .ToList()
-                    .ForEach(image => File.WriteAllBytes(Path.Combine(folder.FullName, Path.ChangeExtension(image.Filename, imageIdsToExtensions[image.Id])), image.Huge));
+                    .ForEach(image =>
+                        File.WriteAllBytes(
+                            Path.Combine(folder.FullName,
+                                Path.ChangeExtension(image.Filename, imageIdsToExtensions[image.Id])), image.Huge));
             }
         }
 
@@ -213,6 +235,7 @@ namespace Directmedia.Item
                 case ViewType.Images:
                     return true;
             }
+
             return false;
         }
     }

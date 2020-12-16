@@ -39,6 +39,7 @@ namespace Lyread.ViewModels
                 return true;
             }
         }
+
         public async Task<bool> Local(Uri uri)
         {
             string filename = Path.GetFileName(uri.AbsolutePath);
@@ -50,7 +51,8 @@ namespace Lyread.ViewModels
                     case html:
                         Id = int.Parse(Path.GetFileNameWithoutExtension(filename));
                         OnPropertyChanged(nameof(Id));
-                        await Book.Html(Id, new DirectoryInfo(Path.Combine(FileSystem.CacheDirectory, html.ToString())), Pattern);
+                        await Book.Html(Id, new DirectoryInfo(Path.Combine(FileSystem.CacheDirectory, html.ToString())),
+                            Pattern);
                         return false;
                     case pdf:
                         byte[] pdfData = await Book.ExternalFile(filename);
@@ -60,6 +62,7 @@ namespace Lyread.ViewModels
                             File.WriteAllBytes(pdfPath, pdfData);
                             await DependencyService.Get<IPlatformService>().LaunchPdf(new FileInfo(pdfPath));
                         }
+
                         break;
                     case mp3:
                         Task.Run(async () =>
@@ -84,9 +87,11 @@ namespace Lyread.ViewModels
                             File.WriteAllBytes(imagePath, imageData);
                             await DependencyService.Get<IPlatformService>().LaunchImage(new FileInfo(imagePath));
                         }
+
                         break;
                 }
             }
+
             return true;
         }
     }

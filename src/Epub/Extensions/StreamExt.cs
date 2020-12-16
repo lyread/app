@@ -33,7 +33,7 @@ namespace Epub.Extensions
                         {
                             var temp = new byte[readBuffer.Length * 2];
                             Buffer.BlockCopy(readBuffer, 0, temp, 0, readBuffer.Length);
-                            Buffer.SetByte(temp, totalBytesRead, (byte)nextByte);
+                            Buffer.SetByte(temp, totalBytesRead, (byte) nextByte);
                             readBuffer = temp;
                             totalBytesRead++;
                         }
@@ -46,6 +46,7 @@ namespace Epub.Extensions
                     buffer = new byte[totalBytesRead];
                     Buffer.BlockCopy(readBuffer, 0, buffer, 0, totalBytesRead);
                 }
+
                 return buffer;
             }
             finally

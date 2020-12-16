@@ -16,8 +16,8 @@ namespace Epub.Format.Readers
             {
                 RootFiles = rootFiles.AsObjectList(elem => new OcfRootFile
                 {
-                    FullPath = (string)elem.Attribute(OcfRootFile.Attributes.FullPath),
-                    MediaType = (string)elem.Attribute(OcfRootFile.Attributes.MediaType)
+                    FullPath = (string) elem.Attribute(OcfRootFile.Attributes.FullPath),
+                    MediaType = (string) elem.Attribute(OcfRootFile.Attributes.MediaType)
                 })
             };
             return ocf;

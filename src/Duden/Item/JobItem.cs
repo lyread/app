@@ -25,11 +25,14 @@ namespace Duden.Item
         {
             try
             {
-                using (Stream inStream = new CryptoStream(new ProgressStream(_file.OpenRead(), this), new DudenCipher().CreateDecryptor(), CryptoStreamMode.Read))
-                using (Stream outStream = new FileStream(Path.ChangeExtension(_file.FullName, "sqlite3"), FileMode.CreateNew, FileAccess.Write))
+                using (Stream inStream = new CryptoStream(new ProgressStream(_file.OpenRead(), this),
+                    new DudenCipher().CreateDecryptor(), CryptoStreamMode.Read))
+                using (Stream outStream = new FileStream(Path.ChangeExtension(_file.FullName, "sqlite3"),
+                    FileMode.CreateNew, FileAccess.Write))
                 {
                     inStream.CopyTo(outStream);
                 }
+
                 return Task.FromResult(true);
             }
             catch (Exception)

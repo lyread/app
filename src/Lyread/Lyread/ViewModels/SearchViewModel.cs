@@ -14,7 +14,8 @@ namespace Lyread.ViewModels
 {
     public class SearchViewModel : BookViewModel
     {
-        public ObservableRangeCollection<ISearchItem> SearchItems { get; } = new ObservableRangeCollection<ISearchItem>();
+        public ObservableRangeCollection<ISearchItem> SearchItems { get; } =
+            new ObservableRangeCollection<ISearchItem>();
 
         public string Pattern { get; set; }
 
@@ -25,6 +26,7 @@ namespace Lyread.ViewModels
             {
                 return;
             }
+
             SearchItems.Clear();
             IEnumerable<ISearchItem> items = await GetSearchItemsAsync();
             SearchItems.AddRange(items);
@@ -49,7 +51,9 @@ namespace Lyread.ViewModels
             }
         });
 
-        public ICommand OpenDocumentCommand => new Command<ISearchItem>(async item => await Application.Current.MainPage.Navigation.PushModalAsync(new NavigationPage(new DocumentPage(Book, item.Id, Pattern))));
+        public ICommand OpenDocumentCommand => new Command<ISearchItem>(async item =>
+            await Application.Current.MainPage.Navigation.PushModalAsync(
+                new NavigationPage(new DocumentPage(Book, item.Id, Pattern))));
 
         private async Task<IEnumerable<ISearchItem>> GetSearchItemsAsync()
         {

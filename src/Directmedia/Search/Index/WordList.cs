@@ -22,7 +22,6 @@ namespace Directmedia.Search.Index
         /// </summary>
         public WordListEntry ReadEntry(int offset)
         {
-
             _reader.BaseStream.Seek(offset, SeekOrigin.Begin);
             if (_reader.BaseStream.Length - _reader.BaseStream.Position >= 12) // entries have a 12 byte header
             {
@@ -32,6 +31,7 @@ namespace Directmedia.Search.Index
                 string word = _reader.ReadNullTerminatedString(Encoding.GetEncoding(1252));
                 return new WordListEntry(position, hash, count, word);
             }
+
             return null;
         }
 

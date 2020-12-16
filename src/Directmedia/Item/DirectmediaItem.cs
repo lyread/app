@@ -38,6 +38,7 @@ namespace Directmedia.Item
             catch (Exception)
             {
             }
+
             return false;
         }
     }

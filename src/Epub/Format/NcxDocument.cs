@@ -56,6 +56,7 @@ namespace Epub.Format
         /// Populated only when an EPUB with NCX is read.
         /// </summary>
         public XElement Dom { get; internal set; }
+
         public IList<NcxNavPoint> NavPoints { get; internal set; } = new List<NcxNavPoint>();
     }
 
@@ -71,7 +72,9 @@ namespace Epub.Format
 
         public string Id { get; internal set; }
         public string Class { get; internal set; }
+
         public int? PlayOrder { get; internal set; }
+
         // NavLabelText and ContentSrc are flattened elements for convenience.
         // In case <navLabel> or <content/> need to carry more data, then they should have a dedicated model created.
         public string NavLabelText { get; internal set; }

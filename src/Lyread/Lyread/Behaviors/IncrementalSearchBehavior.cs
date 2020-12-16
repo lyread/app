@@ -11,7 +11,8 @@ namespace Lyread.Behaviors
 
         protected override void OnAttachedTo(SearchBar searchBar)
         {
-            _subscription = Observable.FromEventPattern<TextChangedEventArgs>(handler => searchBar.TextChanged += handler, handler => searchBar.TextChanged -= handler)
+            _subscription = Observable.FromEventPattern<TextChangedEventArgs>(
+                    handler => searchBar.TextChanged += handler, handler => searchBar.TextChanged -= handler)
                 .Select(pattern => pattern.EventArgs.NewTextValue)
                 .DistinctUntilChanged()
                 .Throttle(TimeSpan.FromMilliseconds(500))

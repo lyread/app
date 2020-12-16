@@ -14,7 +14,7 @@ namespace Duden.Test
         [Fact]
         public void Infos()
         {
-            Assert.Equal("Testwörterbuch 1" + Environment.NewLine + "Testwörterbuch 2", book.Title);
+            Assert.Equal("TestwÃ¶rterbuch 1" + Environment.NewLine + "TestwÃ¶rterbuch 2", book.Title);
             Assert.True(book.Cover.Length > 0);
         }
 

@@ -1,4 +1,5 @@
-﻿<?xml version="1.0" encoding="utf-8" ?>
+﻿<?xml version="1.0" encoding="utf-8"?>
+
 <ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              xmlns:d="http://xamarin.com/schemas/2014/forms/design"
@@ -11,13 +12,13 @@
 
     <ContentPage.Resources>
         <ResourceDictionary>
-            <converters:ByteArrayToImageSourceConverter x:Key="ImageConverter"/>
-            <converters:IsNotNullOrEmptyConverter x:Key="StringConverter"/>
+            <converters:ByteArrayToImageSourceConverter x:Key="ImageConverter" />
+            <converters:IsNotNullOrEmptyConverter x:Key="StringConverter" />
         </ResourceDictionary>
     </ContentPage.Resources>
 
     <ContentPage.BindingContext>
-        <vm:MediaViewModel x:Name="MediaViewModel"/>
+        <vm:MediaViewModel x:Name="MediaViewModel" />
     </ContentPage.BindingContext>
 
     <CollectionView x:Name="MediaView"
@@ -39,7 +40,7 @@
                            Source="{Binding Thumbnail, Converter={StaticResource ImageConverter}}"
                            Aspect="AspectFit"
                            WidthRequest="200"
-                           HeightRequest="200"/>
+                           HeightRequest="200" />
                     <StackLayout Grid.Row="1">
                         <Label Text="{Binding Title}"
                                IsVisible="{Binding Title, Converter={StaticResource StringConverter}}"
@@ -56,7 +57,9 @@
     </CollectionView>
 
     <Shell.SearchHandler>
-        <SearchHandler x:Name="MediaSearchHandler" Placeholder="" DisplayMemberName="Name" Command="{Binding QueryIndexCommand}" CommandParameter="{Binding Query, Source={x:Reference MediaSearchHandler}}" />
+        <SearchHandler x:Name="MediaSearchHandler" Placeholder="" DisplayMemberName="Name"
+                       Command="{Binding QueryIndexCommand}"
+                       CommandParameter="{Binding Query, Source={x:Reference MediaSearchHandler}}" />
     </Shell.SearchHandler>
 
 </ContentPage>

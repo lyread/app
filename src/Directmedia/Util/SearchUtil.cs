@@ -26,7 +26,8 @@ namespace Directmedia.Util
             {
                 Query query = new QueryParser(LuceneVersion.LUCENE_48, string.Empty, analyzer).Parse(pattern);
                 IndexSearcher searcher = new IndexSearcher(reader);
-                TopFieldCollector collector = TopFieldCollector.Create(Sort.INDEXORDER, NumHits, false, false, false, false);
+                TopFieldCollector collector =
+                    TopFieldCollector.Create(Sort.INDEXORDER, NumHits, false, false, false, false);
                 searcher.Search(query, collector);
 
                 /*
@@ -61,7 +62,8 @@ namespace Directmedia.Util
                 IEnumerable<int> highlightOffsets = ExtractTerms(query).SelectMany(term =>
                 {
                     termsEnum.SeekExact(term.Bytes);
-                    DocsAndPositionsEnum docsAndPositionsEnum = termsEnum.DocsAndPositions(null, null, DocsAndPositionsFlags.OFFSETS);
+                    DocsAndPositionsEnum docsAndPositionsEnum =
+                        termsEnum.DocsAndPositions(null, null, DocsAndPositionsFlags.OFFSETS);
                     docsAndPositionsEnum.Advance(pagenumber);
                     return Enumerable.Range(0, docsAndPositionsEnum.Freq).Select(i =>
                     {
@@ -83,6 +85,7 @@ namespace Directmedia.Util
             catch (Exception)
             {
             }
+
             return terms;
         }
     }

@@ -17,12 +17,10 @@ namespace Lyread.ViewModels
         public IPublisherItem Directmedia => new DirectmediaItem();
         public IPublisherItem Duden => new DudenItem();
         public IPublisherItem Epub => new EpubItem();
+
         public int CoverSize
         {
-            get
-            {
-                return Preferences.Get(nameof(CoverSize), 3);
-            }
+            get { return Preferences.Get(nameof(CoverSize), 3); }
             set
             {
                 Preferences.Set(nameof(CoverSize), value);
@@ -30,7 +28,10 @@ namespace Lyread.ViewModels
             }
         }
 
-        public ICommand PickFolderCommand => new Command<IPublisherItem>(async publisher => await Application.Current.MainPage.Navigation.PushModalAsync(new NavigationPage(new FolderPickerPage(publisher))));
+        public ICommand PickFolderCommand => new Command<IPublisherItem>(async publisher =>
+            await Application.Current.MainPage.Navigation.PushModalAsync(
+                new NavigationPage(new FolderPickerPage(publisher))));
+
         public ICommand ResetFolderCommand => new Command<IPublisherItem>(publisher =>
         {
             string name = publisher.Title;
@@ -59,6 +60,7 @@ namespace Lyread.ViewModels
             {
                 return Preferences.Get(publisher.Title, null) ?? "Select...";
             }
+
             return null;
         }
 

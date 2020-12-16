@@ -2,9 +2,7 @@
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Runtime.CompilerServices;
-
 using Xamarin.Forms;
-
 using Lyread.Models;
 using Lyread.Services;
 using Book.Item;
@@ -16,6 +14,7 @@ namespace Lyread.ViewModels
         public IDataStore<IPublisherItem> DataStore => DependencyService.Get<IDataStore<IPublisherItem>>();
 
         bool isBusy = false;
+
         public bool IsBusy
         {
             get { return isBusy; }
@@ -23,6 +22,7 @@ namespace Lyread.ViewModels
         }
 
         string title = string.Empty;
+
         public string Title
         {
             get { return title; }
@@ -43,7 +43,9 @@ namespace Lyread.ViewModels
         }
 
         #region INotifyPropertyChanged
+
         public event PropertyChangedEventHandler PropertyChanged;
+
         protected void OnPropertyChanged([CallerMemberName] string propertyName = "")
         {
             var changed = PropertyChanged;
@@ -52,6 +54,7 @@ namespace Lyread.ViewModels
 
             changed.Invoke(this, new PropertyChangedEventArgs(propertyName));
         }
+
         #endregion
     }
 }

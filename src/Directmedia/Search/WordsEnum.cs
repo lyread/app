@@ -25,7 +25,10 @@ namespace Directmedia.Search
 
         public override long Ord => _currentPosition;
         public override BytesRef Term => _currentEntry != null ? new BytesRef(_currentEntry.Word) : null;
-        public override int DocFreq => _currentEntry != null ? _currentEntry.Count : -1; // number of text pages containing current word
+
+        public override int DocFreq =>
+            _currentEntry != null ? _currentEntry.Count : -1; // number of text pages containing current word
+
         public override long TotalTermFreq => -1;
 
         public override SeekStatus SeekCeil(BytesRef text)
@@ -44,7 +47,10 @@ namespace Directmedia.Search
             {
                 SeekExact(hash);
             }
-            return _currentEntry != null ? _currentEntry.Word == word ? SeekStatus.FOUND : SeekStatus.NOT_FOUND : SeekStatus.END;
+
+            return _currentEntry != null
+                ? _currentEntry.Word == word ? SeekStatus.FOUND : SeekStatus.NOT_FOUND
+                : SeekStatus.END;
         }
 
         public override void SeekExact(long hash)
@@ -53,7 +59,8 @@ namespace Directmedia.Search
             {
                 _currentEntry = null;
             }
-            _currentPosition = (int)hash;
+
+            _currentPosition = (int) hash;
             _currentEntry = _wordList.ReadEntry(_hashTable.ReadOffset(_currentPosition));
         }
 
@@ -63,9 +70,23 @@ namespace Directmedia.Search
             return Term;
         }
 
-        public override DocsEnum Docs(IBits liveDocs, DocsEnum reuse, DocsFlags flags) { return CreatePagesEnum(); }
-        public override DocsAndPositionsEnum DocsAndPositions(IBits liveDocs, DocsAndPositionsEnum reuse, DocsAndPositionsFlags flags) { return CreatePagesEnum(); }
-        private PagesEnum CreatePagesEnum() { return _currentEntry != null ? new PagesEnum(_currentEntry, _hashTable, _wordList, _pagenumberList, _textTable) : null; }
+        public override DocsEnum Docs(IBits liveDocs, DocsEnum reuse, DocsFlags flags)
+        {
+            return CreatePagesEnum();
+        }
+
+        public override DocsAndPositionsEnum DocsAndPositions(IBits liveDocs, DocsAndPositionsEnum reuse,
+            DocsAndPositionsFlags flags)
+        {
+            return CreatePagesEnum();
+        }
+
+        private PagesEnum CreatePagesEnum()
+        {
+            return _currentEntry != null
+                ? new PagesEnum(_currentEntry, _hashTable, _wordList, _pagenumberList, _textTable)
+                : null;
+        }
 
         public override IComparer<BytesRef> Comparer => this;
 

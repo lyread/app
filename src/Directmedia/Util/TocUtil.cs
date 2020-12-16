@@ -22,6 +22,7 @@ namespace Directmedia.Util
             {
                 throw new Exception("Different number of entries in tree.dki and tree.dka.");
             }
+
             return CreateTree(CreateItems(lines, pagenumbers));
         }
 
@@ -61,6 +62,7 @@ namespace Directmedia.Util
                 {
                     parent = parent.ParentConcrete;
                 }
+
                 parent.AddChild(next);
                 return next;
             });
@@ -68,6 +70,7 @@ namespace Directmedia.Util
             {
                 item = item.ParentConcrete;
             }
+
             return item;
         }
     }

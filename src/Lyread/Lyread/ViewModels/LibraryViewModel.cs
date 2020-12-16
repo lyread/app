@@ -117,20 +117,52 @@ namespace Lyread.ViewModels
                 };
                 if (book.Has(ViewType.Toc))
                 {
-                    item.Items.Add(new ShellContent() { Title = "Contents", Icon = ImageSource.FromFile(Device.RuntimePlatform == Device.Android ? "@drawable/ic_toc_black_24dp" : null), Content = new TocPage(book) });
+                    item.Items.Add(new ShellContent()
+                    {
+                        Title = "Contents",
+                        Icon = ImageSource.FromFile(Device.RuntimePlatform == Device.Android
+                            ? "@drawable/ic_toc_black_24dp"
+                            : null),
+                        Content = new TocPage(book)
+                    });
                 }
+
                 if (book.Has(ViewType.Index))
                 {
-                    item.Items.Add(new ShellContent() { Title = "Index", Icon = ImageSource.FromFile(Device.RuntimePlatform == Device.Android ? "@drawable/ic_list_black_24dp" : null), Content = new IndexPage(book) });
+                    item.Items.Add(new ShellContent()
+                    {
+                        Title = "Index",
+                        Icon = ImageSource.FromFile(Device.RuntimePlatform == Device.Android
+                            ? "@drawable/ic_list_black_24dp"
+                            : null),
+                        Content = new IndexPage(book)
+                    });
                 }
+
                 if (book.Has(ViewType.Search))
                 {
-                    item.Items.Add(new ShellContent() { Title = "Search", Icon = ImageSource.FromFile(Device.RuntimePlatform == Device.Android ? "@drawable/ic_search_black_24dp" : null), Content = new SearchPage(book) });
+                    item.Items.Add(new ShellContent()
+                    {
+                        Title = "Search",
+                        Icon = ImageSource.FromFile(Device.RuntimePlatform == Device.Android
+                            ? "@drawable/ic_search_black_24dp"
+                            : null),
+                        Content = new SearchPage(book)
+                    });
                 }
+
                 if (book.Has(ViewType.Images))
                 {
-                    item.Items.Add(new ShellContent() { Title = "Media", Icon = ImageSource.FromFile(Device.RuntimePlatform == Device.Android ? "@drawable/ic_image_black_24dp" : null), Content = new MediaPage(book) });
+                    item.Items.Add(new ShellContent()
+                    {
+                        Title = "Media",
+                        Icon = ImageSource.FromFile(Device.RuntimePlatform == Device.Android
+                            ? "@drawable/ic_image_black_24dp"
+                            : null),
+                        Content = new MediaPage(book)
+                    });
                 }
+
                 Shell.Current.Items.Add(item);
             }
 
@@ -149,7 +181,8 @@ namespace Lyread.ViewModels
             int page = (Books.Count + PageSize - 1) / PageSize;
 
             return publishers
-                .SelectMany(publisher => publisher.QueryBooks(new DirectoryInfo(Preferences.Get(publisher.Title, null))))
+                .SelectMany(
+                    publisher => publisher.QueryBooks(new DirectoryInfo(Preferences.Get(publisher.Title, null))))
                 .Where(book => patternIsNullOrEmpty || Regex.IsMatch(book.Title, Pattern, RegexOptions.IgnoreCase))
                 .Skip(page * PageSize)
                 .Take(PageSize);
@@ -172,6 +205,7 @@ namespace Lyread.ViewModels
             {
                 return items.Any();
             }
+
             return false;
         }
 

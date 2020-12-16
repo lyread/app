@@ -35,6 +35,7 @@ namespace Directmedia.Search.Index
             {
                 throw new ArgumentException();
             }
+
             if (pagenumber == NumberOfPages)
             {
                 // last page: check entries left via (length - position) / 3
@@ -56,9 +57,10 @@ namespace Directmedia.Search.Index
         private int[] HashKey3ToHashKey4(byte[] hashList, int hashCount)
         {
             // before: mask = caseSensitive ? 0xffffffff : 0xff7fffff; but no case possible
-            int mask = /* TODO caseSensitive ? -1 : */ unchecked((int)0xff7fffff);
+            int mask = /* TODO caseSensitive ? -1 : */ unchecked((int) 0xff7fffff);
             return Enumerable.Range(0, hashCount)
-                .Select(i => (((hashList[i * 3] + (hashList[i * 3 + 1] << 8) + (hashList[i * 3 + 2] << 16)) & mask) - 1) & mask)
+                .Select(i =>
+                    (((hashList[i * 3] + (hashList[i * 3 + 1] << 8) + (hashList[i * 3 + 2] << 16)) & mask) - 1) & mask)
                 .Where(hashKey4 => (hashKey4 & 0x7FFFFF) < 0x7FFFFF - 0x200)
                 .ToArray();
         }

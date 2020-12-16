@@ -1,4 +1,5 @@
-﻿<?xml version="1.0" encoding="utf-8" ?>
+﻿<?xml version="1.0" encoding="utf-8"?>
+
 <ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              xmlns:d="http://xamarin.com/schemas/2014/forms/design"
@@ -10,21 +11,25 @@
              Title="{Binding Title}">
 
     <ContentPage.BindingContext>
-        <vm:TocViewModel x:Name="TocViewModel"/>
+        <vm:TocViewModel x:Name="TocViewModel" />
     </ContentPage.BindingContext>
 
     <ListView x:Name="TocView" ItemsSource="{Binding TocItems}" CachingStrategy="RecycleElement">
         <ListView.ItemTemplate>
             <DataTemplate>
-                <TextCell Text="{Binding Title}" Command="{Binding OpenDocumentCommand, Source={x:Reference TocViewModel}}" CommandParameter="{Binding}" >
+                <TextCell Text="{Binding Title}"
+                          Command="{Binding OpenDocumentCommand, Source={x:Reference TocViewModel}}"
+                          CommandParameter="{Binding}">
                     <TextCell.ContextActions>
-                        <MenuItem Text="Open" Command="{Binding OpenDocumentCommand, Source={x:Reference TocViewModel}}" CommandParameter="{Binding}"/>
+                        <MenuItem Text="Open"
+                                  Command="{Binding OpenDocumentCommand, Source={x:Reference TocViewModel}}"
+                                  CommandParameter="{Binding}" />
                     </TextCell.ContextActions>
                 </TextCell>
             </DataTemplate>
         </ListView.ItemTemplate>
         <ListView.Behaviors>
-            <behaviors:ItemTappedBehavior Command="{Binding OpenTocItemCommand}"/>
+            <behaviors:ItemTappedBehavior Command="{Binding OpenTocItemCommand}" />
         </ListView.Behaviors>
     </ListView>
 

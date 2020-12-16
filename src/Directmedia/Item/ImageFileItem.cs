@@ -21,7 +21,9 @@ namespace Directmedia.Item
         public string Description => null;
         public string Filename => _thumbnail.Name;
         public byte[] Thumbnail => File.ReadAllBytes(_thumbnail.FullName);
-        public byte[] Huge => File.ReadAllBytes(Path.Combine(_thumbnail.Directory.Parent.GetSubdirectory(((int)ImageSize.Huge).ToString()).FullName, _thumbnail.Name));
+
+        public byte[] Huge => File.ReadAllBytes(Path.Combine(
+            _thumbnail.Directory.Parent.GetSubdirectory(((int) ImageSize.Huge).ToString()).FullName, _thumbnail.Name));
     }
 
     public enum ImageSize

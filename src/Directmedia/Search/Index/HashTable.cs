@@ -42,6 +42,7 @@ namespace Directmedia.Search.Index
             {
                 result = (((result * ord % Length) + 1) * ord % Length) + 1;
             }
+
             return result - 1;
         }
 

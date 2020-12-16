@@ -22,6 +22,7 @@ namespace Lyread
             {
                 return false;
             }
+
             return true;
         }
 
@@ -41,6 +42,7 @@ namespace Lyread
             {
                 return false;
             }
+
             return true;
         }
     }

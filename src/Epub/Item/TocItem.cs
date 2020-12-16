@@ -11,6 +11,7 @@ namespace Epub.Item
         public ITocItem Parent => ParentConcrete;
         public IEnumerable<ITocItem> Children => ChildrenConcrete;
         public bool HasChildren => ChildrenConcrete.Any();
+
         public byte Level
         {
             get
@@ -20,6 +21,7 @@ namespace Epub.Item
                 return level;
             }
         }
+
         public bool Expanded { get; set; }
 
         public TocItem ParentConcrete { get; set; }
