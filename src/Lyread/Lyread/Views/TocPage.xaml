@@ -13,6 +13,7 @@
 
     <ContentPage.Resources>
         <ResourceDictionary>
+            <vm:TocItemsToImageConverter x:Key="ImageConverter" />
             <converters:ItemSelectedEventArgsConverter x:Key="ItemSelectedEventArgsConverter" />
         </ResourceDictionary>
     </ContentPage.Resources>
@@ -21,12 +22,14 @@
         <vm:TocViewModel x:Name="TocViewModel" />
     </ContentPage.BindingContext>
 
+    <ContentPage.ToolbarItems>
+        <ToolbarItem IconImageSource="{Binding TocItems, Converter={StaticResource ImageConverter}}" />
+    </ContentPage.ToolbarItems>
+
     <ListView x:Name="TocView" ItemsSource="{Binding TocItems}" CachingStrategy="RecycleElement">
         <ListView.ItemTemplate>
             <DataTemplate>
-                <TextCell Text="{Binding Title}"
-                          Command="{Binding OpenDocumentCommand, Source={x:Reference TocViewModel}}"
-                          CommandParameter="{Binding}">
+                <TextCell Text="{Binding Title}">
                     <TextCell.ContextActions>
                         <MenuItem Text="Open"
                                   Command="{Binding OpenDocumentCommand, Source={x:Reference TocViewModel}}"

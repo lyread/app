@@ -12,8 +12,7 @@ namespace Lyread.ViewModels
 {
     public class MediaViewModel : BookViewModel
     {
-        public ObservableRangeCollection<IImageItem> MediaItems { get; set; } =
-            new ObservableRangeCollection<IImageItem>();
+        public ObservableRangeCollection<IImageItem> MediaItems { get; } = new ObservableRangeCollection<IImageItem>();
 
         public ICommand QueryIndexCommand => new Command<string>(async pattern => { Pattern = pattern; });
 

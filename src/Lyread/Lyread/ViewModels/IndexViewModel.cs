@@ -109,18 +109,17 @@ namespace Lyread.ViewModels
                         ? "@drawable/ic_filter_none_white_24dp"
                         : null);
                 }
-                else if (items.Count(item => item.Selected) > 9)
+
+                if (items.Count(item => item.Selected) > 9)
                 {
                     return ImageSource.FromFile(Device.RuntimePlatform == Device.Android
                         ? "@drawable/ic_filter_9_plus_white_24dp.png"
                         : null);
                 }
-                else
-                {
-                    return ImageSource.FromFile(Device.RuntimePlatform == Device.Android
-                        ? $"@drawable/ic_filter_{items.Count(item => item.Selected)}_white_24dp.png"
-                        : null);
-                }
+
+                return ImageSource.FromFile(Device.RuntimePlatform == Device.Android
+                    ? $"@drawable/ic_filter_{items.Count(item => item.Selected)}_white_24dp.png"
+                    : null);
             }
 
             return null;
