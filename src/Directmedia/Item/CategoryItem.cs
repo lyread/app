@@ -10,11 +10,10 @@ namespace Directmedia.Item
 
         private byte Category { get; }
 
-        public CategoryItem(string title, bool selected, byte category)
+        public CategoryItem(string title, byte category)
         {
             Title = title;
             Category = category;
-            Selected = selected;
         }
     }
 }

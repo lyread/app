@@ -26,7 +26,7 @@ namespace Directmedia.Util
                 .Aggregate(0, (count, item) => Math.Max(count, item.Category + 1));
             return Enumerable.Range(0, categoryCount)
                 .Select((category, index) =>
-                    new CategoryItem(ini[Constants.Stichwoerter][Constants.Gruppe + (category + 1)], index == 0,
+                    new CategoryItem(ini[Constants.Stichwoerter][Constants.Gruppe + (category + 1)],
                         Convert.ToByte(category)));
         }
 

@@ -20,7 +20,7 @@ namespace Lyread.Views
 
         private void Toggle_Clicked(object sender, EventArgs e)
         {
-            IndexViewModel.IsBusy |= CategoryView.IsVisible;
+            IndexViewModel.IsRefreshing |= CategoryView.IsVisible;
             CategoryView.IsVisible ^= true;
             IndexViewModel.CategoryItemsChanged();
         }
